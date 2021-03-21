@@ -7,7 +7,7 @@
 
 ## Overview
 ### Description
-Makes predictions for upcoming NBA games and displays the confidence of those predictions, along with other game and team statistics. Could be used to help with sports betting, or just for those who are sports fans in general.
+Dubb Club makes predictions for upcoming NBA games and displays the confidence of those predictions, along with other game and team statistics. It can be used to help with sports betting, or just by those who are fans of sports in general.
 
 ### App Evaluation
 - **Category:** Sports
