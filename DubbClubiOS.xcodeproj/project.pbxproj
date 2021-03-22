@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		120772C4260951CE0024A355 /* DubbClubiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120772C3260951CE0024A355 /* DubbClubiOSApp.swift */; };
+		120772C6260951CE0024A355 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120772C5260951CE0024A355 /* ContentView.swift */; };
+		120772C8260951D40024A355 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 120772C7260951D40024A355 /* Assets.xcassets */; };
+		120772CB260951D40024A355 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 120772CA260951D40024A355 /* Preview Assets.xcassets */; };
+		120772D6260951D40024A355 /* DubbClubiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120772D5260951D40024A355 /* DubbClubiOSTests.swift */; };
+		120772E1260951D40024A355 /* DubbClubiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120772E0260951D40024A355 /* DubbClubiOSUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		120772D2260951D40024A355 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120772B8260951CE0024A355 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 120772BF260951CE0024A355;
+			remoteInfo = DubbClubiOS;
+		};
+		120772DD260951D40024A355 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120772B8260951CE0024A355 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 120772BF260951CE0024A355;
+			remoteInfo = DubbClubiOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		120772C0260951CE0024A355 /* DubbClubiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubbClubiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		120772C3260951CE0024A355 /* DubbClubiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DubbClubiOSApp.swift; sourceTree = "<group>"; };
+		120772C5260951CE0024A355 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		120772C7260951D40024A355 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		120772CA260951D40024A355 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		120772CC260951D40024A355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		120772D1260951D40024A355 /* DubbClubiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DubbClubiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		120772D5260951D40024A355 /* DubbClubiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DubbClubiOSTests.swift; sourceTree = "<group>"; };
+		120772D7260951D40024A355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		120772DC260951D40024A355 /* DubbClubiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DubbClubiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		120772E0260951D40024A355 /* DubbClubiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DubbClubiOSUITests.swift; sourceTree = "<group>"; };
+		120772E2260951D40024A355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		120772BD260951CE0024A355 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120772CE260951D40024A355 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120772D9260951D40024A355 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		120772B7260951CE0024A355 = {
+			isa = PBXGroup;
+			children = (
+				120772C2260951CE0024A355 /* DubbClubiOS */,
+				120772D4260951D40024A355 /* DubbClubiOSTests */,
+				120772DF260951D40024A355 /* DubbClubiOSUITests */,
+				120772C1260951CE0024A355 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		120772C1260951CE0024A355 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				120772C0260951CE0024A355 /* DubbClubiOS.app */,
+				120772D1260951D40024A355 /* DubbClubiOSTests.xctest */,
+				120772DC260951D40024A355 /* DubbClubiOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		120772C2260951CE0024A355 /* DubbClubiOS */ = {
+			isa = PBXGroup;
+			children = (
+				120772C3260951CE0024A355 /* DubbClubiOSApp.swift */,
+				120772C5260951CE0024A355 /* ContentView.swift */,
+				120772C7260951D40024A355 /* Assets.xcassets */,
+				120772CC260951D40024A355 /* Info.plist */,
+				120772C9260951D40024A355 /* Preview Content */,
+			);
+			path = DubbClubiOS;
+			sourceTree = "<group>";
+		};
+		120772C9260951D40024A355 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				120772CA260951D40024A355 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		120772D4260951D40024A355 /* DubbClubiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				120772D5260951D40024A355 /* DubbClubiOSTests.swift */,
+				120772D7260951D40024A355 /* Info.plist */,
+			);
+			path = DubbClubiOSTests;
+			sourceTree = "<group>";
+		};
+		120772DF260951D40024A355 /* DubbClubiOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				120772E0260951D40024A355 /* DubbClubiOSUITests.swift */,
+				120772E2260951D40024A355 /* Info.plist */,
+			);
+			path = DubbClubiOSUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		120772BF260951CE0024A355 /* DubbClubiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 120772E5260951D40024A355 /* Build configuration list for PBXNativeTarget "DubbClubiOS" */;
+			buildPhases = (
+				120772BC260951CE0024A355 /* Sources */,
+				120772BD260951CE0024A355 /* Frameworks */,
+				120772BE260951CE0024A355 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DubbClubiOS;
+			productName = DubbClubiOS;
+			productReference = 120772C0260951CE0024A355 /* DubbClubiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		120772D0260951D40024A355 /* DubbClubiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 120772E8260951D40024A355 /* Build configuration list for PBXNativeTarget "DubbClubiOSTests" */;
+			buildPhases = (
+				120772CD260951D40024A355 /* Sources */,
+				120772CE260951D40024A355 /* Frameworks */,
+				120772CF260951D40024A355 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				120772D3260951D40024A355 /* PBXTargetDependency */,
+			);
+			name = DubbClubiOSTests;
+			productName = DubbClubiOSTests;
+			productReference = 120772D1260951D40024A355 /* DubbClubiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		120772DB260951D40024A355 /* DubbClubiOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 120772EB260951D40024A355 /* Build configuration list for PBXNativeTarget "DubbClubiOSUITests" */;
+			buildPhases = (
+				120772D8260951D40024A355 /* Sources */,
+				120772D9260951D40024A355 /* Frameworks */,
+				120772DA260951D40024A355 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				120772DE260951D40024A355 /* PBXTargetDependency */,
+			);
+			name = DubbClubiOSUITests;
+			productName = DubbClubiOSUITests;
+			productReference = 120772DC260951D40024A355 /* DubbClubiOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		120772B8260951CE0024A355 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					120772BF260951CE0024A355 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					120772D0260951D40024A355 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 120772BF260951CE0024A355;
+					};
+					120772DB260951D40024A355 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 120772BF260951CE0024A355;
+					};
+				};
+			};
+			buildConfigurationList = 120772BB260951CE0024A355 /* Build configuration list for PBXProject "DubbClubiOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 120772B7260951CE0024A355;
+			productRefGroup = 120772C1260951CE0024A355 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				120772BF260951CE0024A355 /* DubbClubiOS */,
+				120772D0260951D40024A355 /* DubbClubiOSTests */,
+				120772DB260951D40024A355 /* DubbClubiOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		120772BE260951CE0024A355 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120772CB260951D40024A355 /* Preview Assets.xcassets in Resources */,
+				120772C8260951D40024A355 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120772CF260951D40024A355 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120772DA260951D40024A355 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		120772BC260951CE0024A355 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120772C6260951CE0024A355 /* ContentView.swift in Sources */,
+				120772C4260951CE0024A355 /* DubbClubiOSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120772CD260951D40024A355 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120772D6260951D40024A355 /* DubbClubiOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120772D8260951D40024A355 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120772E1260951D40024A355 /* DubbClubiOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		120772D3260951D40024A355 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 120772BF260951CE0024A355 /* DubbClubiOS */;
+			targetProxy = 120772D2260951D40024A355 /* PBXContainerItemProxy */;
+		};
+		120772DE260951D40024A355 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 120772BF260951CE0024A355 /* DubbClubiOS */;
+			targetProxy = 120772DD260951D40024A355 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		120772E3260951D40024A355 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		120772E4260951D40024A355 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		120772E6260951D40024A355 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"DubbClubiOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DubbClubiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dubbclub.DubbClubiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		120772E7260951D40024A355 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"DubbClubiOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DubbClubiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dubbclub.DubbClubiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		120772E9260951D40024A355 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DubbClubiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dubbclub.DubbClubiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DubbClubiOS.app/DubbClubiOS";
+			};
+			name = Debug;
+		};
+		120772EA260951D40024A355 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DubbClubiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dubbclub.DubbClubiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DubbClubiOS.app/DubbClubiOS";
+			};
+			name = Release;
+		};
+		120772EC260951D40024A355 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DubbClubiOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dubbclub.DubbClubiOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DubbClubiOS;
+			};
+			name = Debug;
+		};
+		120772ED260951D40024A355 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DubbClubiOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dubbclub.DubbClubiOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DubbClubiOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		120772BB260951CE0024A355 /* Build configuration list for PBXProject "DubbClubiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120772E3260951D40024A355 /* Debug */,
+				120772E4260951D40024A355 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		120772E5260951D40024A355 /* Build configuration list for PBXNativeTarget "DubbClubiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120772E6260951D40024A355 /* Debug */,
+				120772E7260951D40024A355 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		120772E8260951D40024A355 /* Build configuration list for PBXNativeTarget "DubbClubiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120772E9260951D40024A355 /* Debug */,
+				120772EA260951D40024A355 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		120772EB260951D40024A355 /* Build configuration list for PBXNativeTarget "DubbClubiOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120772EC260951D40024A355 /* Debug */,
+				120772ED260951D40024A355 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 120772B8260951CE0024A355 /* Project object */;
+}
