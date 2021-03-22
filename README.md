@@ -82,6 +82,6 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 ![wireframe)](dubb-club-flow.jpg)
 
 ## Digital Wireframe Draft
-![wireframe)](<img width="1401" alt="Screen Shot 2021-03-21 at 10 58 04 PM" src="https://user-images.githubusercontent.com/43575529/111935139-33494000-8a99-11eb-86f2-90d8ea0502d9.png">)
+<img width="1401" alt="Screen Shot 2021-03-21 at 10 58 04 PM" src="https://user-images.githubusercontent.com/43575529/111935139-33494000-8a99-11eb-86f2-90d8ea0502d9.png">
 
 
