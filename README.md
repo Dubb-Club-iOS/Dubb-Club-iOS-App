@@ -2,8 +2,9 @@
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
+2. [Product Spec](#Product-Spec)
+3. [Wireframes](#Wireframes)
+1. [Schema](#Schema)
 
 ## Overview
 ### Description
@@ -83,5 +84,51 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 
 ## Digital Wireframe Draft
 <img width="1401" alt="Screen Shot 2021-03-21 at 10 58 04 PM" src="https://user-images.githubusercontent.com/43575529/111935139-33494000-8a99-11eb-86f2-90d8ea0502d9.png">
+
+## Schema
+### Models
+
+#### TeamObject
+| Property      | Type | Description |
+| ----------- | ----------- | ----------- |
+| teamId      | Integer    | unique id for the team|
+| teamName    | String     | The name of the team |
+| teamImage   | String     | url to team logo |
+
+#### GameObject
+| Property      | Type | Description |
+| ----------------- | ------------- | ----------- |
+| gameId      		| Integer    	| unique id for the game|
+| date      		| Date     		| The date of the game |
+| homeTeam      	| TeamObject	| Team object of the home team |
+| awayTeam      	| TeamObject	| Team object of the away team |
+| predictedWinner  	| Integer		| id of the predicted winning team |
+| confidence  		| Float			| confidence of the prediction |
+
+#### UserObject
+| Property      | Type | Description |
+| ----------- | ----------- | ----------- |
+| username      | String    | unique username for the user|
+| email      	| String    | unique email for the user |
+| password      | String	| the password for logging in |
+| favoriteTeams | [Integer] | array of the teams a user is following  |
+
+#### List of network requests by screen
+
+- Login
+	- (POST) Login the user if the credentials are correct 
+- Registration
+	- (POST) Register a new user
+- Home Stream
+	- (GET) Query all upcoming games based on date
+- Team Detail
+	- (GET) Get team statistics
+	- (PUT) Follow a team and add it to the user object
+- Search
+	- (GET) Get games based on search parameters
+	- (GET) Get teams based on search parameters
+- Profile Page
+	- (GET) Get user details for displaying
+	- (PUT) Unfollow a team 
 
 
