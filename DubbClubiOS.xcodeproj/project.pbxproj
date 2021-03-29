@@ -18,6 +18,7 @@
 		1207D6F026128A890045DB2A /* PredictionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207D6EF26128A890045DB2A /* PredictionCard.swift */; };
 		42D9605E2612390200E27B9B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9605D2612390200E27B9B /* Model.swift */; };
 		CACC3B7E261291830034587E /* TeamFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC3B7D261291830034587E /* TeamFollowingCell.swift */; };
+		CACC3B832612926A0034587E /* TeamsFollowingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC3B822612926A0034587E /* TeamsFollowingList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		1207D6EF26128A890045DB2A /* PredictionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionCard.swift; sourceTree = "<group>"; };
 		42D9605D2612390200E27B9B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CACC3B7D261291830034587E /* TeamFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamFollowingCell.swift; sourceTree = "<group>"; };
+		CACC3B822612926A0034587E /* TeamsFollowingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsFollowingList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				CACC3B7D261291830034587E /* TeamFollowingCell.swift */,
+				CACC3B822612926A0034587E /* TeamsFollowingList.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			files = (
 				1207D6DE261289E40045DB2A /* HomeStream.swift in Sources */,
 				CACC3B7E261291830034587E /* TeamFollowingCell.swift in Sources */,
+				CACC3B832612926A0034587E /* TeamsFollowingList.swift in Sources */,
 				1207D6E326128A1B0045DB2A /* ColorManager.swift in Sources */,
 				42D9605E2612390200E27B9B /* Model.swift in Sources */,
 				120772C6260951CE0024A355 /* ContentView.swift in Sources */,

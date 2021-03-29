@@ -12,9 +12,8 @@ struct TeamFollowingCell: View {
         HStack {
             VStack {
                 Text("Team\nLogo")
-                
             }
-            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 10)
             .background(Color.red)
             Text("Team Name")
             Spacer()
