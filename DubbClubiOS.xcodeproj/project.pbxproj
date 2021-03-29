@@ -13,6 +13,9 @@
 		120772CB260951D40024A355 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 120772CA260951D40024A355 /* Preview Assets.xcassets */; };
 		120772D6260951D40024A355 /* DubbClubiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120772D5260951D40024A355 /* DubbClubiOSTests.swift */; };
 		120772E1260951D40024A355 /* DubbClubiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120772E0260951D40024A355 /* DubbClubiOSUITests.swift */; };
+		1207D6DE261289E40045DB2A /* HomeStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207D6DD261289E40045DB2A /* HomeStream.swift */; };
+		1207D6E326128A1B0045DB2A /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207D6E226128A1B0045DB2A /* ColorManager.swift */; };
+		1207D6F026128A890045DB2A /* PredictionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207D6EF26128A890045DB2A /* PredictionCard.swift */; };
 		42D9605E2612390200E27B9B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9605D2612390200E27B9B /* Model.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +49,9 @@
 		120772DC260951D40024A355 /* DubbClubiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DubbClubiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		120772E0260951D40024A355 /* DubbClubiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DubbClubiOSUITests.swift; sourceTree = "<group>"; };
 		120772E2260951D40024A355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1207D6DD261289E40045DB2A /* HomeStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStream.swift; sourceTree = "<group>"; };
+		1207D6E226128A1B0045DB2A /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		1207D6EF26128A890045DB2A /* PredictionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionCard.swift; sourceTree = "<group>"; };
 		42D9605D2612390200E27B9B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,12 +103,14 @@
 		120772C2260951CE0024A355 /* DubbClubiOS */ = {
 			isa = PBXGroup;
 			children = (
+				1207D6D9261289C30045DB2A /* Home */,
 				120772C3260951CE0024A355 /* DubbClubiOSApp.swift */,
 				120772C5260951CE0024A355 /* ContentView.swift */,
 				120772C7260951D40024A355 /* Assets.xcassets */,
 				120772CC260951D40024A355 /* Info.plist */,
 				120772C9260951D40024A355 /* Preview Content */,
 				42D9605D2612390200E27B9B /* Model.swift */,
+				1207D6E226128A1B0045DB2A /* ColorManager.swift */,
 			);
 			path = DubbClubiOS;
 			sourceTree = "<group>";
@@ -131,6 +139,15 @@
 				120772E2260951D40024A355 /* Info.plist */,
 			);
 			path = DubbClubiOSUITests;
+			sourceTree = "<group>";
+		};
+		1207D6D9261289C30045DB2A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1207D6DD261289E40045DB2A /* HomeStream.swift */,
+				1207D6EF26128A890045DB2A /* PredictionCard.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +279,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1207D6DE261289E40045DB2A /* HomeStream.swift in Sources */,
+				1207D6E326128A1B0045DB2A /* ColorManager.swift in Sources */,
 				42D9605E2612390200E27B9B /* Model.swift in Sources */,
 				120772C6260951CE0024A355 /* ContentView.swift in Sources */,
+				1207D6F026128A890045DB2A /* PredictionCard.swift in Sources */,
 				120772C4260951CE0024A355 /* DubbClubiOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
