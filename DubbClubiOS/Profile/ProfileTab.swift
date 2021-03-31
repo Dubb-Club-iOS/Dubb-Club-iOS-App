@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileTab: View {
+    let darkMode: Color = Color("Background Gray")
     var body: some View {
         NavigationView {
             /*
@@ -41,6 +42,8 @@ struct ProfileTab: View {
                     }
                     TeamsFollowingList()
                 }
+                
+                
             }
             .navigationTitle("Profile")
         }
