@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct TeamsFollowingList: View {
+    /*
+    let cells = [
+    TeamFollowingCell(),
+    TeamFollowingCell(),
+    TeamFollowingCell()
+    ]
+    */
+    
     var body: some View {
-        VStack{
+        VStack {
+            TeamFollowingCell()
             TeamFollowingCell()
             TeamFollowingCell()
         }
