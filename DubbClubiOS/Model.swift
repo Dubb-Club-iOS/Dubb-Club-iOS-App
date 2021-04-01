@@ -8,12 +8,13 @@
 import Foundation
 import SwiftUI
 
-struct TeamStandings: Codable {
-    let teams: [TeamStanding]
-}
+//struct TeamStandings: Codable {
+//    let teams: [TeamStanding]
+//}
 
-struct TeamStanding: Codable {
+struct Team: Codable {
     let teamId: Int
+    let teamName: String
     let conference: String
     let standing: Int
     let wins: Int
@@ -23,7 +24,29 @@ struct TeamStanding: Codable {
     let winStreak: Int
     let gamesBehind: Float
     func getStandingAsStr() -> String {
-        let toRet: String = "\(teamId)" + " in standing " + "\(standing)" + " in the " + conference
-        return toRet
+        return "\(teamName) in standing \(standing) in the \(conference)"
     }
 }
+
+struct TeamLite: Codable {
+    let teamId: Int
+    let teamName: String
+    let conferenceName: String
+    let place: Int
+    let wins: Int
+    let losses: Int
+}
+
+struct UpcomingGame: Codable {
+    let confidence: Float
+    let away: [TeamLite]
+    let home: [TeamLite]
+    let predictedWinner: Int
+    let status: String
+    let id: Int
+    func getUpcomingGameAsStr() -> String {
+        return "\(home[0].teamName) at \(away[0].teamName). Prediction: \(predictedWinner)"
+    }
+}
+
+
