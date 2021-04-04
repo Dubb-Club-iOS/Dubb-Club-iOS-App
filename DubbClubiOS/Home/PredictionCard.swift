@@ -8,36 +8,62 @@
 import SwiftUI
 
 struct PredictionCard: View {
+    var teamName1: String
+    var teamName2: String
+
     var body: some View {
-        
-        ZStack {
-            ColorManager.cardGray
-            VStack {
-                HStack {
-                    Spacer()
-                    Rectangle()
-                        .fill(Color.red)
-                        .frame(width: 100, height: 100)
-                    Spacer()
-                    Rectangle()
-                        .fill(Color.blue)
-                        .frame(width: 100, height: 100)
-                    Spacer()
+        GeometryReader { geometry in
+            ZStack {
+                ColorManager.cardGray
+
+                VStack {
+                    HStack {
+                        Spacer()
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(ColorManager.imageGray)
+                                .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
+                        Image(teamName1).resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                        }
+                        Text("@").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .font(.title).lineLimit(1).minimumScaleFactor(0.1)
+                            .foregroundColor(.white).frame(width: geometry.size.width / 10, height: geometry.size.width / 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(ColorManager.imageGray)
+                                .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
+                        Image(teamName2).resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                        }
+                        Spacer()
+                        
+                    }
                     
-                }
-                HStack {
-                    Spacer()
+                    DonutChart(geometry: geometry).frame(width: geometry.size.width * 0.7, height: geometry.size.width * 0.7)
+                    HStack {
+                        Text("\(teamName1):").fontWeight(.bold)
+                            .font(.title).lineLimit(2).minimumScaleFactor(0.3).padding([.leading, .trailing])
+                        Spacer()
+                    }
                     
-                    Text("Hi There").font(.system(.title2)).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).foregroundColor(.white)
+                    HStack {
+                        Text("60.00% confidence").fontWeight(.bold)
+                            .font(.title).lineLimit(1).minimumScaleFactor(0.1).padding([.leading, .trailing])
+                        Spacer()
+                    }
                     Spacer()
-                    
-                    Text("@").font(.system(.largeTitle)).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).foregroundColor(.white)
-                    Spacer()
-                    
-                    Text("Oh Hey").font(.system(.title2)).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).foregroundColor(.white)
-                    Spacer()
-                    
-                }
+                    ZStack {
+                        Rectangle()
+                            .fill(LinearGradient(gradient: Gradient(colors: [ColorManager.dateGradientStart, ColorManager.dateGradientEnd]), startPoint: .leading, endPoint: .trailing))
+                            .frame(width: geometry.size.width, height: geometry.size.height / 10, alignment: .center)
+                        Text("04/10 at 8:00 pm").fontWeight(.bold) .font(.title).lineLimit(1).minimumScaleFactor(0.1)
+                            .foregroundColor(.white)
+                            .padding([.leading, .trailing])
+                    }
+                }.padding([.top])
             }
         }
     }
@@ -45,6 +71,22 @@ struct PredictionCard: View {
 
 struct PredictionCard_Previews: PreviewProvider {
     static var previews: some View {
-        PredictionCard()
+        PredictionCard(teamName1: "Minnesota Timberwolves", teamName2: "Sacramento Kings")
     }
 }
+
+//                    HStack {
+//
+//                        Text("Minnesota Timberwolves").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+//                            .font(.title).lineLimit(2).minimumScaleFactor(0.1)
+//                            .foregroundColor(.white).frame(width: geometry.size.width / 3, alignment: .center)
+//
+//                        Text("@").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+//                            .font(.largeTitle).lineLimit(1).minimumScaleFactor(0.1)
+//                            .foregroundColor(.white).frame(width: geometry.size.width / 6, height: geometry.size.width / 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//
+//                        Text("Utah Jazz").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+//                            .font(.title).lineLimit(2).minimumScaleFactor(0.1)
+//                            .foregroundColor(.white).frame(width: geometry.size.width / 3, alignment: .center)
+//                    }
+//                    .frame(alignment: .leading)

@@ -16,6 +16,8 @@
 		1207D6DE261289E40045DB2A /* HomeStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207D6DD261289E40045DB2A /* HomeStream.swift */; };
 		1207D6E326128A1B0045DB2A /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207D6E226128A1B0045DB2A /* ColorManager.swift */; };
 		1207D6F026128A890045DB2A /* PredictionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207D6EF26128A890045DB2A /* PredictionCard.swift */; };
+		12177C5D26182C4E00C9D4E4 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12177C5C26182C4E00C9D4E4 /* DonutChart.swift */; };
+		12177C652619012F00C9D4E4 /* HomeStreamList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12177C642619012C00C9D4E4 /* HomeStreamList.swift */; };
 		42D9605E2612390200E27B9B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9605D2612390200E27B9B /* Model.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,8 @@
 		1207D6DD261289E40045DB2A /* HomeStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStream.swift; sourceTree = "<group>"; };
 		1207D6E226128A1B0045DB2A /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		1207D6EF26128A890045DB2A /* PredictionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionCard.swift; sourceTree = "<group>"; };
+		12177C5C26182C4E00C9D4E4 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
+		12177C642619012C00C9D4E4 /* HomeStreamList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStreamList.swift; sourceTree = "<group>"; };
 		42D9605D2612390200E27B9B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +150,8 @@
 			children = (
 				1207D6DD261289E40045DB2A /* HomeStream.swift */,
 				1207D6EF26128A890045DB2A /* PredictionCard.swift */,
+				12177C5C26182C4E00C9D4E4 /* DonutChart.swift */,
+				12177C642619012C00C9D4E4 /* HomeStreamList.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -283,8 +289,10 @@
 				1207D6E326128A1B0045DB2A /* ColorManager.swift in Sources */,
 				42D9605E2612390200E27B9B /* Model.swift in Sources */,
 				120772C6260951CE0024A355 /* ContentView.swift in Sources */,
+				12177C652619012F00C9D4E4 /* HomeStreamList.swift in Sources */,
 				1207D6F026128A890045DB2A /* PredictionCard.swift in Sources */,
 				120772C4260951CE0024A355 /* DubbClubiOSApp.swift in Sources */,
+				12177C5D26182C4E00C9D4E4 /* DonutChart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
