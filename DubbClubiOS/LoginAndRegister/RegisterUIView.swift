@@ -73,14 +73,6 @@ struct RegisterUIView: View {
                     
                 }).padding(.bottom, 10.0)
                 
-                
-                HStack(spacing: 4){
-                    Text("Already have an account?")
-                        .foregroundColor(.gray)
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                        Text("Sign In")
-                    })
-                }
             }
         }
     }
