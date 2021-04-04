@@ -1,10 +1,20 @@
 # Dubb Club iOS
 
 ## Table of Contents
+1. [Sprint 1 Updates](#Sprint-1-Updates)
 1. [Overview](#Overview)
-2. [Product Spec](#Product-Spec)
-3. [Wireframes](#Wireframes)
+1. [Product Spec](#Product-Spec)
+1. [Wireframes](#Wireframes)
 1. [Schema](#Schema)
+
+## Sprint 1 Updates
+### Below are the gifs for our week 1 sprint. 
+Please note that we are not checking off any completed user stories this week since we focused solely on implementing the design before we add the necessary functionality
+
+Home Feed:
+
+![home-stream-sprint1](https://user-images.githubusercontent.com/43022012/113498127-220c2480-94d8-11eb-8630-ea8df2c0a6e1.gif)
+
 
 ## Overview
 ### Description
