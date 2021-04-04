@@ -15,6 +15,9 @@ Home Feed:
 
 ![home-stream-sprint1](https://user-images.githubusercontent.com/43022012/113498127-220c2480-94d8-11eb-8630-ea8df2c0a6e1.gif)
 
+Login Page and Registration Page:
+
+<img src="http://g.recordit.co/Ws0uhGwKmN.gif" width=250><br>
 
 ## Overview
 ### Description
