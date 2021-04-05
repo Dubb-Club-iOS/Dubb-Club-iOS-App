@@ -20,6 +20,7 @@ Login Page and Registration Page:
 <img src="http://g.recordit.co/Ws0uhGwKmN.gif" width=250><br>
 
 Profile Page:
+
 ![profile-tab](https://user-images.githubusercontent.com/43022012/113529863-a1f6c500-9592-11eb-9453-a399fd1e37b8.gif)
 
 
