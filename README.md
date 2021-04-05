@@ -19,6 +19,10 @@ Login Page and Registration Page:
 
 <img src="http://g.recordit.co/Ws0uhGwKmN.gif" width=250><br>
 
+Profile Page:
+![profile tab gif](https://user-images.githubusercontent.com/43575529/113526269-73bfb800-9587-11eb-85ff-10c7ece9b4db.gif)
+
+
 ## Overview
 ### Description
 Dubb Club makes predictions for upcoming NBA games and displays the confidence of those predictions, along with other game and team statistics. It can be used to help with sports betting, or just by those who are fans of sports in general.
