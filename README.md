@@ -48,7 +48,7 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 - [ ]  View games schedule.
 - [X]  View upcoming game predictions
 - [ ]  View played game stats.
-- [ ]  View profile page
+- [x]  View profile page
 
 **Optional Nice-to-have Stories**
 - [ ]  View team and player stats
