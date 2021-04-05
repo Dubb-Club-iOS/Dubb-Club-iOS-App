@@ -8,14 +8,30 @@
 import SwiftUI
 
 struct ProfileTab: View {
+    
+    @State var selection: Int? = 1
+    
+    func logout() {
+        print("LOGOUT")
+        UserDefaults.standard.set(nil, forKey:"JWT")
+    }
+    
     var body: some View {
-        VStack {
-            Text("@exampleUsername")
-                .fontWeight(.bold)
-            Spacer()
-            Text("Teams Following:")
-            TeamsFollowingList()
-        }
+        NavigationView {
+            VStack {
+                Text("@exampleUsername")
+                    .fontWeight(.bold)
+                Spacer()
+                Text("Teams Following:")
+                TeamsFollowingList()
+                
+                NavigationLink(destination: LoginUIView()) {
+                    Text("Log Out")
+                }.simultaneousGesture(TapGesture().onEnded{
+                    self.logout()
+                })
+            }
+        }.navigationBarHidden(true)
     }
 }
 

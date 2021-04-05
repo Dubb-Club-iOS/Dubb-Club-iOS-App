@@ -11,6 +11,47 @@ struct RegisterUIView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var username = ""
+    @State var registrationSuccessful = false
+    
+    func signup() {
+        
+        let signUpInfo = RegistrationBody(email: self.email, username: self.username, password: self.password)
+        guard let signUpEnc = try? JSONEncoder().encode(signUpInfo) else {
+            print("Failed to encode login information")
+            return
+        }
+        
+        let url = URL(string: "https://api.dubb.club/api/auth/signup")!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = signUpEnc
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 404 {
+                    print("Invalid login!")
+                    return
+                } else if httpResponse.statusCode == 500 {
+                    print("Database failure!")
+                    return
+                }
+            }
+            
+            
+            if let error = error {
+                // Handle HTTP request error
+                print("Error: \(error.localizedDescription)")
+            } else if let data = data {
+                // Handle HTTP request response
+                self.registrationSuccessful = true
+            } else {
+                print("Unexpected error!")
+            }
+        }.resume()
+    }
+    
     var body: some View {
         ZStack() {
             Color(.black).ignoresSafeArea()
@@ -31,14 +72,14 @@ struct RegisterUIView: View {
                 
                 VStack(spacing: 0){
                     
-                    TextField("Username", text: self.$username)
+                    TextField("", text: self.$username)
                         .modifier(PlaceholderStyle(showPlaceHolder: username.isEmpty, placeholder: "Username"))
                         .foregroundColor(.gray)
                         .frame(width: 400.0, height: 50.0)
                         .background(Color(.black))
                         .fixedSize(horizontal: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                     Divider().background(Color.gray).frame(width: 400)
-                    TextField(" Email", text: self.$email)
+                    TextField("", text: self.$email)
                         .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Email"))
                         .foregroundColor(.gray)
                         .frame(width: 400.0, height: 50.0)
@@ -47,7 +88,7 @@ struct RegisterUIView: View {
                     
                     
                     Divider().background(Color.gray).frame(width: 400)
-                        SecureField(" Password", text: self.$password)
+                        SecureField("", text: self.$password)
                             .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
                             .foregroundColor(.gray)
                             .frame(width: 400.0, height: 50.0)
@@ -60,18 +101,33 @@ struct RegisterUIView: View {
                 }
                 
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("Sign Up")
-                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
-                        .fontWeight(.regular)
-                        .foregroundColor(Color.white)
-                        .frame(width: 200, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .background(Color.blue)
-                        .cornerRadius(12.0)
-                        .padding(.top, 200.0)
-                    
-                    
-                }).padding(.bottom, 10.0)
+//                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+//                    Text("Sign Up")
+//                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+//                        .fontWeight(.regular)
+//                        .foregroundColor(Color.white)
+//                        .frame(width: 200, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//                        .background(Color.blue)
+//                        .cornerRadius(12.0)
+//                        .padding(.top, 200.0)
+//
+//
+//                }).padding(.bottom, 10.0)
+                
+                NavigationLink(destination: LoginUIView(), isActive: $registrationSuccessful) {
+                    Button(action: {}, label: {
+                        Text("Sign Up")
+                            .font(.headline)
+                            .fontWeight(.regular)
+                            .foregroundColor(Color.white)
+                            .frame(width: 200, height: 50, alignment: .center)
+                            .background(Color.blue)
+                            .cornerRadius(12.0)
+                            .onTapGesture(perform: {
+                                self.signup()
+                            })
+                    }).padding(.bottom, 10.0)
+                }.padding(.top, 200.0)
                 
             }
         }

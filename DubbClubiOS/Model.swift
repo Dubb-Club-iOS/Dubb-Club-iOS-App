@@ -49,4 +49,28 @@ struct UpcomingGame: Codable {
     }
 }
 
+struct LoginInfo: Codable {
+    let username: String
+    let password: String
+}
 
+struct LoginReturn: Codable {
+    let id: String
+    let username: String
+    let accessToken: String
+    let expiresIn: Int
+}
+
+struct FavoriteTeamsParent: Codable {
+    let favoriteTeams: FavoriteTeams
+}
+
+struct FavoriteTeams: Codable {
+    let NBA: [Int]
+}
+
+struct RegistrationBody: Codable {
+    let email: String
+    let username: String
+    let password: String
+}
