@@ -39,21 +39,21 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-[]  Make an account.
-[]  Login
--   Follow/unfollow teams.
--   Search games (by name)
--   View games schedule.
--   View upcoming game predictions
--   View played game stats.
--   View profile page
+- [ ]  Make an account.
+- [ ]  Login
+- [ ]  Follow/unfollow teams.
+- [ ]  Search games (by name)
+- [ ]  View games schedule.
+- [ ]  View upcoming game predictions
+- [ ]  View played game stats.
+- [ ]  View profile page
 
 **Optional Nice-to-have Stories**
--   View team and player stats
--   Vote on game outcomes
--   Sorting by confidence, etc.
--   Store/cache data locally
--   Change password.
+- [ ]  View team and player stats
+- [ ]  Vote on game outcomes
+- [ ]  Sorting by confidence, etc.
+- [ ]  Store/cache data locally
+- [ ]  Change password.
 
 ### 2. Screen Archetypes
 -   Login Screen
