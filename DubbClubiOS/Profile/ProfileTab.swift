@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileTab: View {
+
     let darkMode: Color = Color("Background Gray")
     var body: some View {
         NavigationView {
@@ -41,12 +42,21 @@ struct ProfileTab: View {
                         Spacer()
                     }
                     TeamsFollowingList()
+                    NavigationLink(destination: LoginUIView()) {
+                        Text("Log Out")
+                    }.simultaneousGesture(TapGesture().onEnded{
+                        self.logout()
+                    })
                 }
                 
                 
             }
             .navigationTitle("Profile")
         }
+    }
+    func logout() {
+        print("LOGOUT")
+        UserDefaults.standard.set(nil, forKey:"JWT")
     }
 }
 

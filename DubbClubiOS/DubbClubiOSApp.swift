@@ -11,7 +11,8 @@ import SwiftUI
 struct DubbClubiOSApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeStream()
+//            HomeStream()
+            LoginUIView()
         }
     }
 }
