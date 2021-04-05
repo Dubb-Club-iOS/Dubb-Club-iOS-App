@@ -39,8 +39,8 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
--   Make an account.
--   Login
+[]  Make an account.
+[]  Login
 -   Follow/unfollow teams.
 -   Search games (by name)
 -   View games schedule.
@@ -57,27 +57,27 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 
 ### 2. Screen Archetypes
 -   Login Screen
-	-   User can login [ ]
+	-   User can login 
 -   Registration Screen
-	-   User can create a new account [ ]
+	-   User can create a new account
 -   Stream
-	-   User can view a feed of game predictions and stats [ ]
-	-   User can vote on what they think the outcome of a game will be (optional) [ ]
+	-   User can view a feed of game predictions and stats 
+	-   User can vote on what they think the outcome of a game will be (optional) 
 -   Team Details
-	-   User can view a team’s record and average statistics [ ]
-	-   User can view player statistics for a given team [ ]
+	-   User can view a team’s record and average statistics 
+	-   User can view player statistics for a given team 
 -   Past Game Details
-	-   User can view statistics about a specific game [ ]
-	-   User can view a team’s record [ ]
+	-   User can view statistics about a specific game
+	-   User can view a team’s record
 -   Search 
-	-   User can search for a specific team and view predictions and previous results [ ]
-	-   User can select a game to view the game details [ ]
+	-   User can search for a specific team and view predictions and previous results
+	-   User can select a game to view the game details
 -   Profile
-	-   User can view their identity [ ]
-	-   User can view their followed teams [ ]
+	-   User can view their identity 
+	-   User can view their followed teams
 -   Settings (optional)
-    -   User can view account details [ ]
-	-   User can change their password [ ]
+    -   User can view account details
+	-   User can change their password 
 
 ### 3. Navigation
 
