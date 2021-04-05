@@ -12,7 +12,6 @@ struct ProfileTab: View {
     @State var selection: Int? = 1
     
     func logout() {
-        print("LOGOUT")
         UserDefaults.standard.set(nil, forKey:"JWT")
     }
     
