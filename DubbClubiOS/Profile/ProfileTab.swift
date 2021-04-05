@@ -28,9 +28,9 @@ struct ProfileTab: View {
                          Spacer()
                          }
                          */
-                        Image("DubbClub Logo")
+                        Image("DubbClub Logo PNG")
                             .resizable()
-                            .frame(width: 865/5, height: 868/5, alignment: .center)
+                            .frame(width: 865/4.5, height: 868/4.5, alignment: .center)
                         Text("@exampleUsername")
                             .font(.system(size: 22))
                             .fontWeight(.bold)
