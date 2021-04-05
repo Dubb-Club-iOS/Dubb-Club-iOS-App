@@ -9,7 +9,7 @@
 
 ## Sprint 1 Updates
 ### Below are the gifs for our week 1 sprint. 
-Please note that we are not checking off any completed user stories this week since we focused solely on implementing the design before we add the necessary functionality
+Please note that since this week focused primarily on design, checking off of user stories is limited.
 
 Home Feed:
 
@@ -20,7 +20,8 @@ Login Page and Registration Page:
 <img src="http://g.recordit.co/Ws0uhGwKmN.gif" width=250><br>
 
 Profile Page:
-![profile tab gif](https://user-images.githubusercontent.com/43575529/113526269-73bfb800-9587-11eb-85ff-10c7ece9b4db.gif)
+![profile-tab](https://user-images.githubusercontent.com/43022012/113529863-a1f6c500-9592-11eb-9453-a399fd1e37b8.gif)
+
 
 
 ## Overview
@@ -44,7 +45,7 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 - [ ]  Follow/unfollow teams.
 - [ ]  Search games (by name)
 - [ ]  View games schedule.
-- [ ]  View upcoming game predictions
+- [X]  View upcoming game predictions
 - [ ]  View played game stats.
 - [ ]  View profile page
 
