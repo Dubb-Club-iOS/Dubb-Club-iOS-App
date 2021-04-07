@@ -44,6 +44,7 @@ struct UpcomingGame: Codable {
     let predictedWinner: Int
     let status: String
     let id: Int
+    let date: String
     func getUpcomingGameAsStr() -> String {
         return "\(home[0].teamName) at \(away[0].teamName). Prediction: \(predictedWinner)"
     }

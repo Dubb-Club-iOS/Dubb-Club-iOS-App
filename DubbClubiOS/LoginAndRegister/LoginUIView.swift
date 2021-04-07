@@ -11,7 +11,7 @@ struct LoginUIView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var showSignUp = false
-    @State var isLoggedIn = false
+    @State private var isLoggedIn = false
     @State private var showErrorMessage = false
     @State private var errorMessage = ""
     
