@@ -157,7 +157,7 @@ struct LoginUIView: View {
                         
                     }
                     
-                    Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showErrorMessage ? 1 : 0).animation(.easeInOut)
+                    Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showErrorMessage ? 1 : 0).animation(.easeInOut, value: self.showErrorMessage)
                     
                     NavigationLink(destination: ProfileTab(), isActive: $isLoggedIn) {
                         Button(action: {}, label: {

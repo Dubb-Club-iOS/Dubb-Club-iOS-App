@@ -11,7 +11,9 @@ struct RegisterUIView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var username = ""
-    @State var registrationSuccessful = false
+    @State private var registrationSuccessful = false
+    @State private var showRegistrationError = false
+    @State private var errorMessage = ""
     
     func signup() {
         
@@ -30,11 +32,9 @@ struct RegisterUIView: View {
         URLSession.shared.dataTask(with: request) { data, response, error in
             
             if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode == 404 {
-                    print("Invalid login!")
-                    return
-                } else if httpResponse.statusCode == 500 {
-                    print("Database failure!")
+                if httpResponse.statusCode != 200 {
+                    self.errorMessage = "Invalid registration"
+                    self.showRegistrationError = true
                     return
                 }
             }
@@ -99,6 +99,8 @@ struct RegisterUIView: View {
 
                     Divider().background(Color.gray).frame(width: 400, height: 0, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
+                
+                Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showRegistrationError ? 1 : 0).animation(.easeInOut, value: showRegistrationError)
                 
                 
 //                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
