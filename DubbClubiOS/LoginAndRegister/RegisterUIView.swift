@@ -11,7 +11,9 @@ struct RegisterUIView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var username = ""
-    @State var registrationSuccessful = false
+    @State private var registrationSuccessful = false
+    @State private var showRegistrationError = false
+    @State private var errorMessage = ""
     
     func signup() {
         
@@ -30,11 +32,9 @@ struct RegisterUIView: View {
         URLSession.shared.dataTask(with: request) { data, response, error in
             
             if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode == 404 {
-                    print("Invalid login!")
-                    return
-                } else if httpResponse.statusCode == 500 {
-                    print("Database failure!")
+                if httpResponse.statusCode != 200 {
+                    self.errorMessage = "Invalid registration"
+                    self.showRegistrationError = true
                     return
                 }
             }
@@ -78,38 +78,39 @@ struct RegisterUIView: View {
                             .modifier(PlaceholderStyle(showPlaceHolder: username.isEmpty, placeholder: "Username"))
                             .foregroundColor(.gray)
                             .padding()
-                          
+                        
                         Divider().background(Color.gray).frame(width: 400)
                         TextField("", text: self.$email)
                             .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Email"))
                             .foregroundColor(.gray)
                             .padding()
-                            
+                        
                         
                         Divider().background(Color.gray).frame(width: 400)
-                            SecureField("", text: self.$password)
-                                .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
-                                .foregroundColor(.gray)
-                                .padding()
-                                
-
+                        SecureField("", text: self.$password)
+                            .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
+                            .foregroundColor(.gray)
+                            .padding()
+                        
+                        
                         Divider().background(Color.gray)
                     }
                     
                     
-    //                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-    //                    Text("Sign Up")
-    //                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
-    //                        .fontWeight(.regular)
-    //                        .foregroundColor(Color.white)
-    //                        .frame(width: 200, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-    //                        .background(Color.blue)
-    //                        .cornerRadius(12.0)
-    //                        .padding(.top, 200.0)
-    //
-    //
-    //                }).padding(.bottom, 10.0)
-                    Spacer()
+                    //                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    //                    Text("Sign Up")
+                    //                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+                    //                        .fontWeight(.regular)
+                    //                        .foregroundColor(Color.white)
+                    //                        .frame(width: 200, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    //                        .background(Color.blue)
+                    //                        .cornerRadius(12.0)
+                    //                        .padding(.top, 200.0)
+                    //
+                    //
+                    //                }).padding(.bottom, 10.0)
+                    
+                    Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showRegistrationError ? 1 : 0).animation(.easeInOut, value: showRegistrationError)
                     Spacer()
                     
                     NavigationLink(destination: LoginUIView(), isActive: $registrationSuccessful) {
@@ -127,6 +128,7 @@ struct RegisterUIView: View {
                         })
                     }
                     Spacer()
+//                    Spacer()
                     
                 }
             }

@@ -12,6 +12,8 @@ struct LoginUIView: View {
     @State private var password = ""
     @State private var showSignUp = false
     @State var isLoggedIn = false
+    @State private var showErrorMessage = false
+    @State private var errorMessage = ""
     
     // TODO: use elsewhere
     func getFavoriteTeams() {
@@ -73,11 +75,16 @@ struct LoginUIView: View {
         URLSession.shared.dataTask(with: request) { data, response, error in
             
             if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode == 404 {
-                    print("Invalid login!")
+                
+                print(httpResponse.statusCode)
+                
+                if httpResponse.statusCode == 500 {
+                    self.errorMessage = "Database failure"
+                    self.showErrorMessage = true
                     return
-                } else if httpResponse.statusCode == 500 {
-                    print("Database failure!")
+                } else if httpResponse.statusCode != 200 {
+                    self.errorMessage = "Invalid login credentials"
+                    self.showErrorMessage = true
                     return
                 }
             }
@@ -89,9 +96,9 @@ struct LoginUIView: View {
             } else if let data = data {
                 // Handle HTTP request response
                 let loginReturn: LoginReturn = try! JSONDecoder().decode(LoginReturn.self, from: data)
-                print(loginReturn.username)
                 UserDefaults.standard.set(loginReturn.accessToken, forKey:"JWT")
                 self.isLoggedIn = true
+                self.showErrorMessage = false
             } else {
                 print("Unexpected error!")
             }
@@ -121,7 +128,7 @@ struct LoginUIView: View {
                             TextField("", text: self.$email)
                                 .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Username or Email"))
                                 .foregroundColor(.gray).padding()
-                                
+                            
                             
                             
                             Divider().background(Color.gray)
@@ -130,7 +137,7 @@ struct LoginUIView: View {
                                     .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
                                     .foregroundColor(.gray)
                                     .padding()
-                                  
+                                
                                 Button(action: {}, label: {
                                     Text("Forgot Password?")
                                         .font(.headline)
@@ -142,7 +149,10 @@ struct LoginUIView: View {
                         }
                         
                         Spacer()
+                        
+                        Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showErrorMessage ? 1 : 0).animation(.easeInOut, value: self.showErrorMessage)
                         Spacer()
+
                         
                         NavigationLink(destination: ProfileTab(), isActive: $isLoggedIn) {
                             Button(action: {}, label: {
@@ -162,7 +172,7 @@ struct LoginUIView: View {
                         }
                         
                         
-
+                        
                         HStack(spacing: 4){
                             Text("Don't have an account?")
                                 .foregroundColor(.gray)
@@ -171,8 +181,7 @@ struct LoginUIView: View {
                                 label: {
                                     Text("Sign Up")
                                 })
-                        }
-                        Spacer()
+                        }.padding(.bottom, geometry.size.height / 10)
                     }
                 }
             }
