@@ -12,7 +12,8 @@ struct DubbClubiOSApp: App {
     var body: some Scene {
         WindowGroup {
 //            HomeStream()
-            LoginUIView()
+//            LoginUIView()
+//            SearchTab()
         }
     }
 }
