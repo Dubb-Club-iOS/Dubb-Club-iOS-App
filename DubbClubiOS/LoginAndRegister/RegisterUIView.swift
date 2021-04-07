@@ -54,81 +54,81 @@ struct RegisterUIView: View {
     
     var body: some View {
         ZStack() {
-            Color(.black).ignoresSafeArea()
-            VStack() {
-                Image("DubbClub Logo Black").resizable().scaledToFit().frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).padding()
-                Text("Create an account")
-                    .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.white)
-                    .padding()
-                Text("We’re glad to see you’re joining the Dubb Club!")
-                    .foregroundColor(.gray)
-                    .font(.callout)
-                Text("Fill out the information below to create an account.")
-                    .foregroundColor(.gray)
-                    .font(.callout)
-                    .padding(.bottom)
-                
-                VStack(spacing: 0){
+            ColorManager.backgroundGray.ignoresSafeArea()
+            GeometryReader { geometry in
+                VStack() {
                     
-                    TextField("", text: self.$username)
-                        .modifier(PlaceholderStyle(showPlaceHolder: username.isEmpty, placeholder: "Username"))
+                    Image("DubbClub Logo").resizable().scaledToFill().frame(width: geometry.size.width / 3, height: geometry.size.width / 3)
+                    Text("Create an account")
+                        .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                        .padding()
+                    Text("We’re glad to see you’re joining the Dubb Club!")
                         .foregroundColor(.gray)
-                        .frame(width: 400.0, height: 50.0)
-                        .background(Color(.black))
-                        .fixedSize(horizontal: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                    Divider().background(Color.gray).frame(width: 400)
-                    TextField("", text: self.$email)
-                        .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Email"))
+                        .font(.callout)
+                    Text("Fill out the information below to create an account.")
                         .foregroundColor(.gray)
-                        .frame(width: 400.0, height: 50.0)
-                        .background(Color(.black))
-                        .fixedSize(horizontal: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                        .font(.callout)
+                        .padding(.bottom, geometry.size.height / 25)
                     
-                    
-                    Divider().background(Color.gray).frame(width: 400)
-                        SecureField("", text: self.$password)
-                            .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
+                    VStack(spacing: 0){
+                        
+                        TextField("", text: self.$username)
+                            .modifier(PlaceholderStyle(showPlaceHolder: username.isEmpty, placeholder: "Username"))
                             .foregroundColor(.gray)
-                            .frame(width: 400.0, height: 50.0)
-                            .background(Color(.black))
-                            .fixedSize(horizontal: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            .padding(.leading, 0)
+                            .padding()
+                          
+                        Divider().background(Color.gray).frame(width: 400)
+                        TextField("", text: self.$email)
+                            .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Email"))
+                            .foregroundColor(.gray)
+                            .padding()
                             
+                        
+                        Divider().background(Color.gray).frame(width: 400)
+                            SecureField("", text: self.$password)
+                                .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
+                                .foregroundColor(.gray)
+                                .padding()
+                                
 
-                    Divider().background(Color.gray).frame(width: 400, height: 0, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        Divider().background(Color.gray)
+                    }
+                    
+                    
+    //                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+    //                    Text("Sign Up")
+    //                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+    //                        .fontWeight(.regular)
+    //                        .foregroundColor(Color.white)
+    //                        .frame(width: 200, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+    //                        .background(Color.blue)
+    //                        .cornerRadius(12.0)
+    //                        .padding(.top, 200.0)
+    //
+    //
+    //                }).padding(.bottom, 10.0)
+                    Spacer()
+                    Spacer()
+                    
+                    NavigationLink(destination: LoginUIView(), isActive: $registrationSuccessful) {
+                        Button(action: {}, label: {
+                            Text("Sign Up")
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                                .frame(width: geometry.size.width / 3, height: geometry.size.width / 8, alignment: .center)
+                                .foregroundColor(Color.white)
+                                .background(Color.blue)
+                                .cornerRadius(12.0)
+                                .onTapGesture(perform: {
+                                    self.signup()
+                                })
+                        })
+                    }
+                    Spacer()
+                    
                 }
-                
-                
-//                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-//                    Text("Sign Up")
-//                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
-//                        .fontWeight(.regular)
-//                        .foregroundColor(Color.white)
-//                        .frame(width: 200, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                        .background(Color.blue)
-//                        .cornerRadius(12.0)
-//                        .padding(.top, 200.0)
-//
-//
-//                }).padding(.bottom, 10.0)
-                
-                NavigationLink(destination: LoginUIView(), isActive: $registrationSuccessful) {
-                    Button(action: {}, label: {
-                        Text("Sign Up")
-                            .font(.headline)
-                            .fontWeight(.regular)
-                            .foregroundColor(Color.white)
-                            .frame(width: 200, height: 50, alignment: .center)
-                            .background(Color.blue)
-                            .cornerRadius(12.0)
-                            .onTapGesture(perform: {
-                                self.signup()
-                            })
-                    }).padding(.bottom, 10.0)
-                }.padding(.top, 200.0)
-                
             }
         }
     }

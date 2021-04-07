@@ -101,79 +101,78 @@ struct LoginUIView: View {
     var body: some View {
         NavigationView {
             ZStack() {
-                Color(.black).ignoresSafeArea()
-                VStack() {
-                    Image("DubbClub Logo Black").resizable().scaledToFit().frame(width: 100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center).padding()
-                    
-                    Text("Login")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.white)
-                        .padding()
-                    Text("Welcome back!")
-                        .foregroundColor(.gray)
-                    Text("Sign In to continue")
-                        .foregroundColor(.gray)
-                        .padding(.bottom)
-                    VStack(spacing: 0){
+                ColorManager.backgroundGray.ignoresSafeArea()
+                GeometryReader { geometry in
+                    VStack() {
+                        Image("DubbClub Logo").resizable().scaledToFill().frame(width: geometry.size.width / 3, height: geometry.size.width / 3)
                         
-                        TextField("", text: self.$email)
-                            .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Username or Email"))
+                        Text("Login")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.white)
+                            .padding()
+                        Text("Welcome back!")
                             .foregroundColor(.gray)
-                            .frame(width: 400.0, height: 50.0)
-                            .background(Color(.black))
-                            .fixedSize(horizontal: true/*@END_MENU_TOKEN@*/, vertical: /*@START_MENU_TOKEN@*/true)
+                        Text("Sign In to continue")
+                            .foregroundColor(.gray)
+                            .padding(.bottom)
+                        VStack(spacing: 0){
+                            
+                            TextField("", text: self.$email)
+                                .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Username or Email"))
+                                .foregroundColor(.gray).padding()
+                                
+                            
+                            
+                            Divider().background(Color.gray)
+                            HStack(){
+                                SecureField("", text: self.$password)
+                                    .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
+                                    .foregroundColor(.gray)
+                                    .padding()
+                                  
+                                Button(action: {}, label: {
+                                    Text("Forgot Password?")
+                                        .font(.headline)
+                                        .foregroundColor(Color.blue)
+                                        .padding()
+                                })
+                            }
+                            Divider().background(Color.gray)
+                        }
                         
+                        Spacer()
+                        Spacer()
                         
-                        Divider().background(Color.gray).frame(width: 400)
-                        HStack(){
-                            SecureField("Password", text: self.$password)
-                                .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
-                                .foregroundColor(.gray)
-                                .frame(width: 250.0, height: 50.0)
-                                .background(Color(.black))
-                                .fixedSize(horizontal: true/*@END_MENU_TOKEN@*/, vertical: /*@START_MENU_TOKEN@*/true)
+                        NavigationLink(destination: ProfileTab(), isActive: $isLoggedIn) {
                             Button(action: {}, label: {
-                                Text("Forgot Password?")
+                                Text("Sign In")
                                     .font(.headline)
-                                    .fontWeight(.regular)
-                                    .foregroundColor(Color.blue)
-                                    .padding(.trailing, 10)
-                                
-                                
-                                
-                                
-                                
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(Color.white)
+                                    .frame(width: geometry.size.width / 3, height: geometry.size.width / 8, alignment: .center)
+                                    .background(Color.blue)
+                                    .cornerRadius(12.0)
+                                    .onTapGesture(perform: {
+                                        showSignUp = true
+                                        self.login()
+                                    })
+                                    .padding()
                             })
                         }
-                        Divider().background(Color.gray).frame(width: 400, height: 0, alignment: .center)
-                    }
-                    
-                    NavigationLink(destination: ProfileTab(), isActive: $isLoggedIn) {
-                        Button(action: {}, label: {
-                            Text("Sign In")
-                                .font(.headline)
-                                .fontWeight(.regular)
-                                .foregroundColor(Color.white)
-                                .frame(width: 200, height: 50, alignment: .center)
-                                .background(Color.blue)
-                                .cornerRadius(12.0)
-                                .onTapGesture(perform: {
-                                    showSignUp = true
-                                    self.login()
+                        
+                        
+
+                        HStack(spacing: 4){
+                            Text("Don't have an account?")
+                                .foregroundColor(.gray)
+                            NavigationLink(
+                                destination: RegisterUIView(),
+                                label: {
+                                    Text("Sign Up")
                                 })
-                        }).padding(.bottom, 10.0)
-                    }.padding(.top, 200.0)
-                    
-                    
-                    HStack(spacing: 4){
-                        Text("Don't have an account?")
-                            .foregroundColor(.gray)
-                        NavigationLink(
-                            destination: RegisterUIView(),
-                            label: {
-                                Text("Sign Up")
-                            })
+                        }
+                        Spacer()
                     }
                 }
             }
