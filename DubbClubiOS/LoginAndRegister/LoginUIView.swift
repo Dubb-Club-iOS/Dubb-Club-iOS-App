@@ -56,7 +56,7 @@ struct LoginUIView: View {
         
         let token = UserDefaults.standard.object(forKey: "JWT") as? String
         if token != nil {
-            getFavoriteTeams()
+            print("Already logged in!")
             return
         }
         
@@ -97,10 +97,12 @@ struct LoginUIView: View {
                 // Handle HTTP request response
                 let loginReturn: LoginReturn = try! JSONDecoder().decode(LoginReturn.self, from: data)
                 UserDefaults.standard.set(loginReturn.accessToken, forKey:"JWT")
+                UserDefaults.standard.set(loginReturn.username, forKey:"Username")
                 self.isLoggedIn = true
                 self.showErrorMessage = false
             } else {
-                print("Unexpected error!")
+                self.errorMessage = "Unexpected error!"
+                self.showErrorMessage = true
             }
         }.resume()
     }

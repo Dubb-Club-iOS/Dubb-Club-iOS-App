@@ -62,6 +62,12 @@ struct LoginReturn: Codable {
     let expiresIn: Int
 }
 
+struct RefreshReturn: Codable {
+    let id: String
+    let accessToken: String
+    let expiresIn: Int
+}
+
 struct FavoriteTeamsParent: Codable {
     let favoriteTeams: FavoriteTeams
 }
