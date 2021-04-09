@@ -30,10 +30,12 @@ struct PredictionCard: View {
                     HStack {
                         Spacer()
                         ZStack {
-                            
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(Color(teamIds[game.away[0].teamId]!))
+                                .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
                             RoundedRectangle(cornerRadius: 10, style: .continuous)
                                 .fill(ColorManager.imageGray)
-                                .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
+                                .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
                             Image(teamIds[game.away[0].teamId]!).resizable()
                             .scaledToFit()
                             .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
@@ -43,8 +45,11 @@ struct PredictionCard: View {
                             .foregroundColor(.white).frame(width: geometry.size.width / 10, height: geometry.size.width / 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         ZStack {
                             RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(ColorManager.imageGray)
+                                .fill(Color(teamIds[game.home[0].teamId]!))
                                 .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(ColorManager.imageGray)
+                                .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
                         Image(teamIds[game.home[0].teamId]!).resizable()
                             .scaledToFit()
                             .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
