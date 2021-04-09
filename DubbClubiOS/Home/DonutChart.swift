@@ -19,18 +19,13 @@ struct ChartData {
 }
 
 class ChartDataContainer : ObservableObject {
-    @Published var chartData =
-        [ChartData(color: Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)), percent: 60, value: 0),
-         //         ChartData(color: Color(#colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)), percent: 25, value: 0),
-         //         ChartData(color: Color(#colorLiteral(red: 0.4508578777, green: 0.9882974029, blue: 0.8376303315, alpha: 1)), percent: 25, value: 0),
-         ChartData(color: Color(#colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1)), percent: 40, value: 0)]
-    
-    //    ChartData(color: AngularGradient(gradient: Gradient(colors: [.red, .yellow]), center: .center, startAngle: .zero, endAngle: .degrees(360)), percent: 40, value: 0)]
-    
-    //    init() {
-    //        //            chartData = chartData.reversed()
-    //        calc()
-    //    }
+    @Published var chartData: [ChartData]
+    //        =
+    //        [ChartData(color: Color(teamIds[11]!), percent: 60, value: 0),
+    //         ChartData(color: Color(teamIds[2]!), percent: 40, value: 0)]
+    init(game: UpcomingGame) {
+        self.chartData = gameToChartData(game: game)
+    }
     func calc() -> Int {
         var winner = -1
         var value : CGFloat = 0
@@ -44,14 +39,31 @@ class ChartDataContainer : ObservableObject {
             value += chartData[i].percent
             chartData[i].value = value
         }
-//        sleep(1)
         return winner
     }
 }
 
+func gameToChartData(game: UpcomingGame) -> [ChartData] {
+    if (game.predictedWinner == game.away[0].teamId) {
+       return
+            [
+                ChartData(color: Color(teamIds[game.away[0].teamId]!), percent: CGFloat(game.confidence * 100), value: 0),
+                ChartData(color: Color(teamIds[game.home[0].teamId]!), percent: CGFloat((1 - game.confidence) * 100), value: 0)
+            ]
+    } else {
+        return
+             [
+                 ChartData(color: Color(teamIds[game.away[0].teamId]!), percent: CGFloat((1 - game.confidence) * 100), value: 0),
+                 ChartData(color: Color(teamIds[game.home[0].teamId]!), percent: CGFloat(game.confidence * 100), value: 0)
+             ]
+    }
+}
+
 struct DonutChart : View {
-    @ObservedObject var charDataObj = ChartDataContainer()
+    var game: UpcomingGame
+    @ObservedObject var charDataObj: ChartDataContainer
     @State var indexOfTappedSlice = -1
+    
     var geometry: GeometryProxy
     
     var body: some View {
@@ -63,10 +75,10 @@ struct DonutChart : View {
                             .trim(from: index == 0 ? 0.0 : charDataObj.chartData[index-1].value/100,
                                   to:   charDataObj.chartData[index].value/100)
                             
-                            .stroke(charDataObj.chartData[index].color,lineWidth: geometry.size.width * 0.1)
+                            .stroke(charDataObj.chartData[index].color,lineWidth: geometry.size.width * 0.075)
                             .rotationEffect(.degrees(-90))
                             .onTapGesture {
-                                indexOfTappedSlice = indexOfTappedSlice == index ? -1 : index
+                                indexOfTappedSlice = index
                             }
                             //Scales the slice when tapped
                             .scaleEffect(index == indexOfTappedSlice ? 1.1 : 1.0)
@@ -74,18 +86,34 @@ struct DonutChart : View {
                     }
                     if indexOfTappedSlice != -1 {
                         Text(String(format: "%.2f", Double(charDataObj.chartData[indexOfTappedSlice].percent))+"%").fontWeight(.bold)
-                            .font(.body).lineLimit(1).minimumScaleFactor(0.08)
+                            .font(.body).lineLimit(1).minimumScaleFactor(0.1)
                             .foregroundColor(.white)
                     }
-                }
+                }.frame(height: geometry.size.height * 0.6)
                 
                 .padding()
                 .onAppear() {
-                   indexOfTappedSlice = self.charDataObj.calc()
-        
+                    indexOfTappedSlice = self.charDataObj.calc()
                 }
+                if (indexOfTappedSlice == 0) {
+                    Text("\(teamIds[game.home[0].teamId]!)").fontWeight(.bold)
+                        .font(.title3).lineLimit(2).minimumScaleFactor(0.3).fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom)
+                        .foregroundColor(.white)
+                } else if (indexOfTappedSlice == 1) {
+                    Text("\(teamIds[game.away[0].teamId]!)").fontWeight(.bold)
+                        .font(.title3).lineLimit(2).minimumScaleFactor(0.3).fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom)
+                        .foregroundColor(.white)
+                        
+                    
+                }
+                Spacer()
+
             }
-            .frame(width: geometry.size.width, height: geometry.size.width)
+            
             
         }
         
@@ -95,10 +123,11 @@ struct DonutChart : View {
 
 struct DonutChart_Previews: PreviewProvider {
     static var previews: some View {
+        let game = DubbClubiOS.UpcomingGame(confidence: 0.5428479, away: [DubbClubiOS.TeamLite(teamId: 15, teamName: "Indiana Pacers", conferenceName: "east", place: 9, wins: 22, losses: 26)], home: [DubbClubiOS.TeamLite(teamId: 26, teamName: "Orlando Magic", conferenceName: "east", place: 14, wins: 17, losses: 33)], predictedWinner: 15, status: "Scheduled", id: 9018, date: "2021-04-09T23:00:00.000Z")
         GeometryReader { geometry in
             ZStack{
                 ColorManager.backgroundGray
-                DonutChart(geometry: geometry)
+                DonutChart(game: game, charDataObj: ChartDataContainer(game: game), geometry: geometry)
             }
         }
     }
