@@ -8,7 +8,26 @@
 import SwiftUI
 
 struct HomeStream: View {
+    @State private var upcomingGames = [UpcomingGame]()
     private var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+    
+    func getUpcomingGames() {
+        do {
+            if let file = URL(string: "https://api.dubb.club/api/nba/getUpcomingGamesFromDb") {
+                let data = try Data(contentsOf: file)
+                let upcomingGames: [UpcomingGame] = try! JSONDecoder().decode([UpcomingGame].self, from: data)
+                self.upcomingGames = upcomingGames
+                print(self.upcomingGames)
+            } else {
+                print("no file")
+                #if DEBUG //this is so previews work
+                self.upcomingGames = testGames
+                #endif
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -23,33 +42,47 @@ struct HomeStream: View {
                 //                .padding()
                 VStack(spacing: 0) {
                     HStack {
-                        Text("Home").font(.largeTitle).fontWeight(.bold)
+                        Text("Upcoming Games").font(.largeTitle).fontWeight(.bold)
                         Spacer()
                     }.padding([.leading, .trailing])
-                    ScrollView {
-                        LazyVGrid(columns: twoColumnGrid, spacing: 4) {
-                            ForEach(0..<10) {_ in
-                                PredictionCard(teamName1: "Minnesota Timberwolves", teamName2: "Sacramento Kings").frame(height: geometry.size.height / 2.2)
-                                PredictionCard(teamName1: "Utah Jazz", teamName2: "Dallas Mavericks").frame(height: geometry.size.height / 2.2)
+                    
+//                    if (upcomingGames.count == 0) {
+//                        Spacer()
+//                        ProgressView()
+//                        Spacer()
+//                    } else {
+                        
+                        ScrollView {
+                            LazyVGrid(columns: twoColumnGrid, spacing: 4) {
+                                ForEach(upcomingGames, id: \.self) { game in
+                                    PredictionCard(game: game).frame(height: geometry.size.height / 2.2)
+                                    
+                                }
                             }
                         }
-                    }
-                }
+//                    }
+                }.onAppear(perform: {
+                    getUpcomingGames()
+                })
             }
         }
+        .navigationTitle("Upcoming Games").navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+        
     }
 }
 
 struct HomeStream_Previews: PreviewProvider {
+    
     static var previews: some View {
         HomeStream()
-                    .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-                    .previewDisplayName("iPhone 12")
-
-//        HomeStream()
-//            .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
-//            .previewDisplayName("iPhone 12 Pro Max")
+            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+            .previewDisplayName("iPhone 12")
         
-//        HomeStream().previewDevice("iPhone SE (2nd generation)")
+        //        HomeStream()
+        //            .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
+        //            .previewDisplayName("iPhone 12 Pro Max")
+        
+        //        HomeStream().previewDevice("iPhone SE (2nd generation)")
     }
 }
