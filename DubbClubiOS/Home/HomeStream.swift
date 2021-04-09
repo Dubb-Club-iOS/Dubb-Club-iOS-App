@@ -17,9 +17,9 @@ struct HomeStream: View {
                 let data = try Data(contentsOf: file)
                 let upcomingGames: [UpcomingGame] = try! JSONDecoder().decode([UpcomingGame].self, from: data)
                 self.upcomingGames = upcomingGames
-                print(self.upcomingGames)
+                print("upcoming games request success")
             } else {
-                print("no file")
+                print("could not get games")
                 #if DEBUG //this is so previews work
                 self.upcomingGames = testGames
                 #endif

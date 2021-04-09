@@ -59,7 +59,7 @@ struct DubbClubiOSApp: App {
 //            } else {
 //                LoginUIView()
 //            }
-            ProfileTab()
+            HomeStream()
         }
     }
     
