@@ -1,11 +1,18 @@
 # Dubb Club iOS
 
 ## Table of Contents
+1. [Sprint_2_Updates](#Sprint-2-Updates)
 1. [Sprint 1 Updates](#Sprint-1-Updates)
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 1. [Schema](#Schema)
+
+## Sprint 2 Updates
+
+Search Page:
+![ezgif-6-f88c340ba9e4](https://user-images.githubusercontent.com/43575529/114326208-ab87ac00-9b01-11eb-942a-69fd0ed6fce4.gif)
+
 
 ## Sprint 1 Updates
 ### Below are the gifs for our week 1 sprint. 
