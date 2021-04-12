@@ -75,7 +75,7 @@ struct DonutChart : View {
                             .trim(from: index == 0 ? 0.0 : charDataObj.chartData[index-1].value/100,
                                   to:   charDataObj.chartData[index].value/100)
                             
-                            .stroke(charDataObj.chartData[index].color,lineWidth: geometry.size.width * 0.07)
+                            .stroke(charDataObj.chartData[index].color,lineWidth: geometry.size.width * 0.075)
                             .rotationEffect(.degrees(-90))
                             .onTapGesture {
                                 indexOfTappedSlice = index
@@ -89,30 +89,28 @@ struct DonutChart : View {
                             .font(.body).lineLimit(1).minimumScaleFactor(0.1)
                             .foregroundColor(.white)
                     }
-                }.frame(height: geometry.size.height * 0.55)
+                }.frame(height: geometry.size.height * 0.6)
                 
                 .padding()
                 .onAppear() {
                     indexOfTappedSlice = self.charDataObj.calc()
                 }
-                Spacer()
                 if (indexOfTappedSlice == 0) {
                     Text("\(teamIds[game.home[0].teamId]!)").fontWeight(.bold)
-                        .font(.title3).lineLimit(2).minimumScaleFactor(0.01).fixedSize(horizontal: false, vertical: true)
+                        .font(.title3).lineLimit(2).minimumScaleFactor(0.3).fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding([.bottom, .leading, .trailing])
+                        .padding(.bottom)
                         .foregroundColor(.white)
                 } else if (indexOfTappedSlice == 1) {
                     Text("\(teamIds[game.away[0].teamId]!)").fontWeight(.bold)
-                        .font(.title3).lineLimit(2).minimumScaleFactor(0.01).fixedSize(horizontal: false, vertical: true)
+                        .font(.title3).lineLimit(2).minimumScaleFactor(0.3).fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding([.bottom, .leading, .trailing])
+                        .padding(.bottom)
                         .foregroundColor(.white)
                         
                     
                 }
                 Spacer()
-                
 
             }
             
