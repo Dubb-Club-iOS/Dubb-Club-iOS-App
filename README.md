@@ -1,7 +1,7 @@
 # Dubb Club iOS
 
 ## Table of Contents
-1. [Sprint_2_Updates](#Sprint-2-Updates)
+1. [Sprint 2 Updates](#Sprint-2-Updates)
 1. [Sprint 1 Updates](#Sprint-1-Updates)
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
