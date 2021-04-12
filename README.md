@@ -12,7 +12,7 @@
 ### Below are the gifs for our week 2 sprint. 
 Search Page:
 
-![ezgif-6-f88c340ba9e4](https://user-images.githubusercontent.com/43575529/114326208-ab87ac00-9b01-11eb-942a-69fd0ed6fce4.gif)
+![ezgif-updated](https://user-images.githubusercontent.com/43575529/114326405-a24b0f00-9b02-11eb-8397-4c5a208a7a50.gif)
 
 
 ## Sprint 1 Updates
