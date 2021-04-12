@@ -49,10 +49,10 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-- [ ]  Make an account.
-- [ ]  Login
+- [x]  Make an account.
+- [x]  Login
 - [ ]  Follow/unfollow teams.
-- [ ]  Search games (by name)
+- [ ]  Search games (by team name and by date)
 - [ ]  View games schedule.
 - [X]  View upcoming game predictions
 - [ ]  View played game stats.
