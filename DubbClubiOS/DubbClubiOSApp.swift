@@ -54,6 +54,7 @@ struct DubbClubiOSApp: App {
     
     var body: some Scene {
         WindowGroup {
+
 //            if isLoggedIn() {
 //                HomeStream()
 //            } else {

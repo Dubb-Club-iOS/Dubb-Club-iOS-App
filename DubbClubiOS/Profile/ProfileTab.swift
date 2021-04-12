@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProfileTab: View {
 
-    let darkMode: Color = Color("Background Gray")
     var body: some View {
         NavigationView {
             /*
