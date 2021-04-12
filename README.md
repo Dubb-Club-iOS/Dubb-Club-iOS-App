@@ -11,6 +11,7 @@
 ## Sprint 2 Updates
 
 Search Page:
+
 ![ezgif-6-f88c340ba9e4](https://user-images.githubusercontent.com/43575529/114326208-ab87ac00-9b01-11eb-942a-69fd0ed6fce4.gif)
 
 
