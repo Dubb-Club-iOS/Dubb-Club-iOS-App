@@ -10,9 +10,15 @@
 
 ## Sprint 2 Updates
 ### Below are the gifs for our week 2 sprint. 
+
+Home Feed (added team assets and game data):
+
+![home-stream-sprint2](https://user-images.githubusercontent.com/43022012/114327230-2fdc2e00-9b06-11eb-83c0-1e9025d2a4f0.gif)
+
 Search Page:
 
-![ezgif-updated](https://user-images.githubusercontent.com/43575529/114326405-a24b0f00-9b02-11eb-8397-4c5a208a7a50.gif)
+![search-bar-sprint2](https://user-images.githubusercontent.com/43022012/114327203-1509b980-9b06-11eb-9c11-3cdef4214aa0.gif)
+
 
 
 ## Sprint 1 Updates
