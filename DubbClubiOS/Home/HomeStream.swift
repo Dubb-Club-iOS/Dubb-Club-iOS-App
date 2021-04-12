@@ -26,6 +26,9 @@ struct HomeStream: View {
             }
         } catch {
             print(error.localizedDescription)
+            #if DEBUG //this is so previews work
+            self.upcomingGames = testGames
+            #endif
         }
     }
     

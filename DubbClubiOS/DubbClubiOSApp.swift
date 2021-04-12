@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct DubbClubiOSApp: App {
+//    @State var loggedIn: Bool = false
     
     init() {
         refreshToken()
+//        UserDefaults.standard.removeObject(forKey: "JWT")
+
     }
     
     func refreshToken() {
@@ -54,12 +57,11 @@ struct DubbClubiOSApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            if isLoggedIn() {
-//                HomeStream()
-//            } else {
-//                LoginUIView()
-//            }
-            HomeStream()
+            if isLoggedIn() {
+                HomeStream()
+            } else {
+                LoginUIView()
+            }
         }
     }
     

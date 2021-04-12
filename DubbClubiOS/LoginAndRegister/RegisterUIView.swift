@@ -53,7 +53,7 @@ struct RegisterUIView: View {
     }
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             ZStack() {
                 ColorManager.backgroundGray.ignoresSafeArea()
                 GeometryReader { geometry in
@@ -83,7 +83,7 @@ struct RegisterUIView: View {
                                 .disableAutocorrection(true)
                                 .padding()
                             
-                            Divider().background(Color.gray).frame(width: 400)
+                            Divider().background(Color.gray)
                             TextField("", text: self.$email)
                                 .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Email"))
                                 .foregroundColor(.gray)
@@ -91,7 +91,7 @@ struct RegisterUIView: View {
                                 .padding()
                             
                             
-                            Divider().background(Color.gray).frame(width: 400)
+                            Divider().background(Color.gray)
                             SecureField("", text: self.$password)
                                 .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
                                 .foregroundColor(.gray)
@@ -147,9 +147,9 @@ struct RegisterUIView: View {
                 }
             }
         }
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
-    }
+//        .navigationBarHidden(true)
+//        .navigationBarBackButtonHidden(true)
+//    }
 }
 
 struct RegisterUIView_Previews: PreviewProvider {
