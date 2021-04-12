@@ -1,11 +1,28 @@
 # Dubb Club iOS
 
 ## Table of Contents
+1. [Sprint 2 Updates](#Sprint-2-Updates)
 1. [Sprint 1 Updates](#Sprint-1-Updates)
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 1. [Schema](#Schema)
+
+## Sprint 2 Updates
+### Below are the gifs for our week 2 sprint. 
+
+Updated Login (unified theme and remember user on reopen):
+
+![updated-login-sprint2](https://user-images.githubusercontent.com/43022012/114328375-69169d00-9b0a-11eb-942b-113fd8563828.gif)
+
+Home Feed (added team assets and game data):
+
+![home-stream-sprint2](https://user-images.githubusercontent.com/43022012/114327230-2fdc2e00-9b06-11eb-83c0-1e9025d2a4f0.gif)
+
+Search Page:
+
+![search-bar-sprint2](https://user-images.githubusercontent.com/43022012/114327203-1509b980-9b06-11eb-9c11-3cdef4214aa0.gif)
+
 
 ## Sprint 1 Updates
 ### Below are the gifs for our week 1 sprint. 
@@ -41,10 +58,10 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-- [ ]  Make an account.
-- [ ]  Login
+- [x]  Make an account.
+- [x]  Login
 - [ ]  Follow/unfollow teams.
-- [ ]  Search games (by name)
+- [ ]  Search games (by team name and by date)
 - [ ]  View games schedule.
 - [X]  View upcoming game predictions
 - [ ]  View played game stats.
