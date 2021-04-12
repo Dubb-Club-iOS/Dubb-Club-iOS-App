@@ -85,7 +85,13 @@ struct SearchTab: View {
  */
                             }
                         }.animation(.easeInOut)
-                            
+                        
+                        VStack {
+                            if searchBy == 0 {
+                                TeamFollowingCell()
+                                
+                            }
+                        }
                     }
                 }
                 .navigationTitle("Search")
