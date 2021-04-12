@@ -11,6 +11,10 @@
 ## Sprint 2 Updates
 ### Below are the gifs for our week 2 sprint. 
 
+Updated Login (unified theme and remember user on reopen):
+
+![updated-login-sprint2](https://user-images.githubusercontent.com/43022012/114328375-69169d00-9b0a-11eb-942b-113fd8563828.gif)
+
 Home Feed (added team assets and game data):
 
 ![home-stream-sprint2](https://user-images.githubusercontent.com/43022012/114327230-2fdc2e00-9b06-11eb-83c0-1e9025d2a4f0.gif)
@@ -18,7 +22,6 @@ Home Feed (added team assets and game data):
 Search Page:
 
 ![search-bar-sprint2](https://user-images.githubusercontent.com/43022012/114327203-1509b980-9b06-11eb-9c11-3cdef4214aa0.gif)
-
 
 
 ## Sprint 1 Updates
