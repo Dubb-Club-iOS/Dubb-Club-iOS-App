@@ -11,7 +11,9 @@ struct LoginUIView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var showSignUp = false
-    @State var isLoggedIn = false
+    @State private var isLoggedIn = false
+    @State private var showErrorMessage = false
+    @State private var errorMessage = ""
     
     // TODO: use elsewhere
     func getFavoriteTeams() {
@@ -52,9 +54,12 @@ struct LoginUIView: View {
     
     func login() {
         
+        UserDefaults.standard.removeObject(forKey: "JWT")
+        
+        
         let token = UserDefaults.standard.object(forKey: "JWT") as? String
         if token != nil {
-            getFavoriteTeams()
+            print("Already logged in!")
             return
         }
         
@@ -73,11 +78,16 @@ struct LoginUIView: View {
         URLSession.shared.dataTask(with: request) { data, response, error in
             
             if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode == 404 {
-                    print("Invalid login!")
+                
+                print(httpResponse.statusCode)
+                
+                if httpResponse.statusCode == 500 {
+                    self.errorMessage = "Database failure"
+                    self.showErrorMessage = true
                     return
-                } else if httpResponse.statusCode == 500 {
-                    print("Database failure!")
+                } else if httpResponse.statusCode != 200 {
+                    self.errorMessage = "Invalid login credentials"
+                    self.showErrorMessage = true
                     return
                 }
             }
@@ -89,11 +99,13 @@ struct LoginUIView: View {
             } else if let data = data {
                 // Handle HTTP request response
                 let loginReturn: LoginReturn = try! JSONDecoder().decode(LoginReturn.self, from: data)
-                print(loginReturn.username)
                 UserDefaults.standard.set(loginReturn.accessToken, forKey:"JWT")
+                UserDefaults.standard.set(loginReturn.username, forKey:"Username")
                 self.isLoggedIn = true
+                self.showErrorMessage = false
             } else {
-                print("Unexpected error!")
+                self.errorMessage = "Unexpected error!"
+                self.showErrorMessage = true
             }
         }.resume()
     }
@@ -101,83 +113,88 @@ struct LoginUIView: View {
     var body: some View {
         NavigationView {
             ZStack() {
-                Color(.black).ignoresSafeArea()
-                VStack() {
-                    Image("DubbClub Logo Black").resizable().scaledToFit().frame(width: 100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center).padding()
-                    
-                    Text("Login")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.white)
-                        .padding()
-                    Text("Welcome back!")
-                        .foregroundColor(.gray)
-                    Text("Sign In to continue")
-                        .foregroundColor(.gray)
-                        .padding(.bottom)
-                    VStack(spacing: 0){
+                ColorManager.backgroundGray.ignoresSafeArea()
+                GeometryReader { geometry in
+                    VStack() {
+                        Image("DubbClub Logo PNG").resizable().scaledToFill().frame(width: geometry.size.width / 3, height: geometry.size.width / 3)
+                            .padding(.top, geometry.size.height * -0.1)
                         
-                        TextField("", text: self.$email)
-                            .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Username or Email"))
+                        Text("Login")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.white)
+                            .padding()
+                        Text("Welcome back!")
                             .foregroundColor(.gray)
-                            .frame(width: 400.0, height: 50.0)
-                            .background(Color(.black))
-                            .fixedSize(horizontal: true/*@END_MENU_TOKEN@*/, vertical: /*@START_MENU_TOKEN@*/true)
-                        
-                        
-                        Divider().background(Color.gray).frame(width: 400)
-                        HStack(){
-                            SecureField("Password", text: self.$password)
-                                .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
+                        Text("Sign In to continue")
+                            .foregroundColor(.gray)
+                            .padding(.bottom)
+                        VStack(spacing: 0){
+                            
+                            TextField("", text: self.$email)
+                                .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Username or Email"))
                                 .foregroundColor(.gray)
-                                .frame(width: 250.0, height: 50.0)
-                                .background(Color(.black))
-                                .fixedSize(horizontal: true/*@END_MENU_TOKEN@*/, vertical: /*@START_MENU_TOKEN@*/true)
+                                .autocapitalization(.none)
+                                .padding()
+                            
+                            
+                            
+                            Divider().background(Color.gray)
+                            HStack(){
+                                SecureField("", text: self.$password)
+                                    .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
+                                    .foregroundColor(.gray)
+                                    .padding([.leading, .top, .bottom])
+                                
+                                Button(action: {}, label: {
+                                    Text("Forgot Password?")
+                                        .font(.headline)
+                                        .foregroundColor(Color.blue)
+                                        .padding()
+                                })
+                            }
+                            Divider().background(Color.gray)
+                        }
+                        
+                        Spacer()
+                        
+                        Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showErrorMessage ? 1 : 0).animation(.easeInOut, value: self.showErrorMessage)
+                        Spacer()
+                        
+                        
+                        NavigationLink(destination: HomeStream(), isActive: $isLoggedIn) {
                             Button(action: {}, label: {
-                                Text("Forgot Password?")
+                                Text("Sign In")
                                     .font(.headline)
-                                    .fontWeight(.regular)
-                                    .foregroundColor(Color.blue)
-                                    .padding(.trailing, 10)
-                                
-                                
-                                
-                                
-                                
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(Color.white)
+                                    .frame(width: geometry.size.width / 3, height: geometry.size.width / 8, alignment: .center)
+                                    .background(Color.blue)
+                                    .cornerRadius(12.0)
+                                    .onTapGesture(perform: {
+                                        showSignUp = true
+                                        self.login()
+                                    })
+                                    .padding()
                             })
                         }
-                        Divider().background(Color.gray).frame(width: 400, height: 0, alignment: .center)
-                    }
-                    
-                    NavigationLink(destination: ProfileTab(), isActive: $isLoggedIn) {
-                        Button(action: {}, label: {
-                            Text("Sign In")
-                                .font(.headline)
-                                .fontWeight(.regular)
-                                .foregroundColor(Color.white)
-                                .frame(width: 200, height: 50, alignment: .center)
-                                .background(Color.blue)
-                                .cornerRadius(12.0)
-                                .onTapGesture(perform: {
-                                    showSignUp = true
-                                    self.login()
+                        
+                        
+                        
+                        HStack(spacing: 4){
+                            Text("Don't have an account?")
+                                .foregroundColor(.gray)
+                            NavigationLink(
+                                destination: RegisterUIView(),
+                                label: {
+                                    Text("Sign Up")
                                 })
-                        }).padding(.bottom, 10.0)
-                    }.padding(.top, 200.0)
-                    
-                    
-                    HStack(spacing: 4){
-                        Text("Don't have an account?")
-                            .foregroundColor(.gray)
-                        NavigationLink(
-                            destination: RegisterUIView(),
-                            label: {
-                                Text("Sign Up")
-                            })
+                        }.padding(.bottom, geometry.size.height / 10)
                     }
                 }
             }
         }.navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

@@ -51,13 +51,11 @@ struct ProfileTab: View {
                     }
                     
                     
-                }
-                .navigationTitle("Profile")
+                }.navigationTitle("Profile").navigationBarHidden(true)
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
     func logout() {
-        print("LOGOUT")
         UserDefaults.standard.set(nil, forKey:"JWT")
     }
 }
