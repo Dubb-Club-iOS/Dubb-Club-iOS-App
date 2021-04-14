@@ -10,13 +10,17 @@ import SwiftUI
 struct TeamFollowingCell: View {
     var body: some View {
         HStack {
+            // team image
             VStack {
                 Text("Team\nLogo")
             }
             .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 10)
             .background(Color.red)
+            
+            //team name
             Text("Team Name")
             Spacer()
+            
             Button(action: {}, label: {
                 Text("Following").foregroundColor(.white)
                     .padding(.all, 8)
