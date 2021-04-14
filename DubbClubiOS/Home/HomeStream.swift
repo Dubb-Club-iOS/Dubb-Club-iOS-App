@@ -30,44 +30,34 @@ struct HomeStream: View {
     }
     
     var body: some View {
+        
         GeometryReader { geometry in
-            ZStack {
-                ColorManager.backgroundGray
-                    .ignoresSafeArea()
-                
-                // Your other content here
-                // Other layers will respect the safe area edges
-                //            Text("Hello, world!")
-                //                .foregroundColor(.white)
-                //                .padding()
-                VStack(spacing: 0) {
-                    HStack {
-                        Text("Upcoming Games").font(.largeTitle).fontWeight(.bold)
-                        Spacer()
-                    }.padding([.leading, .trailing])
+            NavigationView {
+                ZStack {
+                    ColorManager.backgroundGray
+                        .ignoresSafeArea()
                     
-//                    if (upcomingGames.count == 0) {
-//                        Spacer()
-//                        ProgressView()
-//                        Spacer()
-//                    } else {
-                        
-                        ScrollView {
-                            LazyVGrid(columns: twoColumnGrid, spacing: 4) {
-                                ForEach(upcomingGames, id: \.self) { game in
-                                    PredictionCard(game: game).frame(height: geometry.size.height / 2.2)
-                                    
-                                }
+                    ScrollView {
+                        LazyVGrid(columns: twoColumnGrid, spacing: 4) {
+                            ForEach(upcomingGames, id: \.self) { game in
+                                PredictionCard(game: game)
+                                    .frame(height: geometry.size.height / 2.2)
+                                    .cornerRadius(10)
+                                    .aspectRatio(1, contentMode: .fit)
+                                
                             }
                         }
-//                    }
-                }.onAppear(perform: {
-                    getUpcomingGames()
-                })
+                        
+                        //                    }
+                    }.onAppear(perform: {
+                        getUpcomingGames()
+                    })
+                }
+                .navigationTitle("Upcoming Games")//.navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
             }
+            
         }
-        .navigationTitle("Upcoming Games").navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
         
     }
 }
