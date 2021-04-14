@@ -24,6 +24,8 @@
 		8B9D01092615166200CE0190 /* RegisterUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D01082615166200CE0190 /* RegisterUIView.swift */; };
 		8BE32435261E6CFA00552668 /* TabUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE32434261E6CFA00552668 /* TabUIView.swift */; };
 		CA723BEE2627773900847451 /* SearchBarAnimationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA723BED2627773900847451 /* SearchBarAnimationUtility.swift */; };
+		CA723BF32627A27000847451 /* SearchUpcomingGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA723BF22627A27000847451 /* SearchUpcomingGameCell.swift */; };
+		CA723BF82627A33900847451 /* SearchPastGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA723BF72627A33900847451 /* SearchPastGameCell.swift */; };
 		CAAA24B4261BC85000BE72B4 /* SearchTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAA24B3261BC85000BE72B4 /* SearchTeamCell.swift */; };
 		CAAA24B9261BC8C700BE72B4 /* SearchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAA24B8261BC8C700BE72B4 /* SearchTab.swift */; };
 		CACC3B7E261291830034587E /* TeamFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC3B7D261291830034587E /* TeamFollowingCell.swift */; };
@@ -72,6 +74,8 @@
 		8B9D01082615166200CE0190 /* RegisterUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUIView.swift; sourceTree = "<group>"; };
 		8BE32434261E6CFA00552668 /* TabUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabUIView.swift; sourceTree = "<group>"; };
 		CA723BED2627773900847451 /* SearchBarAnimationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarAnimationUtility.swift; sourceTree = "<group>"; };
+		CA723BF22627A27000847451 /* SearchUpcomingGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUpcomingGameCell.swift; sourceTree = "<group>"; };
+		CA723BF72627A33900847451 /* SearchPastGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPastGameCell.swift; sourceTree = "<group>"; };
 		CAAA24B3261BC85000BE72B4 /* SearchTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTeamCell.swift; sourceTree = "<group>"; };
 		CAAA24B8261BC8C700BE72B4 /* SearchTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTab.swift; sourceTree = "<group>"; };
 		CACC3B7D261291830034587E /* TeamFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamFollowingCell.swift; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 				CAAA24B3261BC85000BE72B4 /* SearchTeamCell.swift */,
 				CAAA24B8261BC8C700BE72B4 /* SearchTab.swift */,
 				CA723BED2627773900847451 /* SearchBarAnimationUtility.swift */,
+				CA723BF22627A27000847451 /* SearchUpcomingGameCell.swift */,
+				CA723BF72627A33900847451 /* SearchPastGameCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -354,6 +360,7 @@
 				8B9D01092615166200CE0190 /* RegisterUIView.swift in Sources */,
 				1207D6E326128A1B0045DB2A /* ColorManager.swift in Sources */,
 				42D9605E2612390200E27B9B /* Model.swift in Sources */,
+				CA723BF32627A27000847451 /* SearchUpcomingGameCell.swift in Sources */,
 				120772C6260951CE0024A355 /* ContentView.swift in Sources */,
 				12177C652619012F00C9D4E4 /* HomeStreamList.swift in Sources */,
 				CAAA24B9261BC8C700BE72B4 /* SearchTab.swift in Sources */,
@@ -365,6 +372,7 @@
 				CA723BEE2627773900847451 /* SearchBarAnimationUtility.swift in Sources */,
 				120772C4260951CE0024A355 /* DubbClubiOSApp.swift in Sources */,
 				12177C5D26182C4E00C9D4E4 /* DonutChart.swift in Sources */,
+				CA723BF82627A33900847451 /* SearchPastGameCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
