@@ -10,6 +10,11 @@ import SwiftUI
 struct TabUIView: View {
     var body: some View {
         TabView{
+            SearchTab()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+                }
             HomeStream()
                 .tabItem {
                     Image(systemName: "house")
@@ -20,7 +25,7 @@ struct TabUIView: View {
                     Image(systemName: "person")
                     Text("Profile")
                 }
-        }
+        }.accentColor(.white)
     }
 }
 

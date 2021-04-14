@@ -59,7 +59,6 @@ struct RegisterUIView: View {
     }
     
     var body: some View {
-        NavigationView {
             ZStack() {
                 ColorManager.backgroundGray.ignoresSafeArea()
                 GeometryReader { geometry in
@@ -156,6 +155,7 @@ struct RegisterUIView: View {
 //        .navigationBarHidden(true)
 //        .navigationBarBackButtonHidden(true)
     }
+    
 }
 
 struct RegisterUIView_Previews: PreviewProvider {
