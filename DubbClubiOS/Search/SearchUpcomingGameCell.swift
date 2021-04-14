@@ -58,7 +58,7 @@ struct SearchUpcomingGameCell: View {
                         
                     }
                     
-                    DonutChart(game: game, charDataObj: ChartDataContainer(game: game), geometry: geometry)
+                    DonutChart(game: game, charDataObj: ChartDataContainer(game: game), parentGeo: geometry)
 //                        .frame(width: geometry.size.width, height: geometry.size.width)
                     
                     

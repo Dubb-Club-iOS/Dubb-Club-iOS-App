@@ -76,8 +76,9 @@ struct HomeStream_Previews: PreviewProvider {
     
     static var previews: some View {
         HomeStream()
+            .previewDevice("iPhone 12 Pro")
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-            .previewDisplayName("iPhone 12")
+            .previewDisplayName("iPhone 12 Pro")
         
         //        HomeStream()
         //            .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
