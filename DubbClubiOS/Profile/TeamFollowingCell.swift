@@ -25,10 +25,11 @@ struct TeamFollowingCell: View {
             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             .padding(.trailing, 10)
         }
-            .background(Color.gray)
+        .background(ColorManager.cardGray)
             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
     }
+    
 }
 
 struct TeamFollowingCell_Previews: PreviewProvider {

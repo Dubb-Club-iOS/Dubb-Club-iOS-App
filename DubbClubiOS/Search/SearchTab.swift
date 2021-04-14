@@ -11,6 +11,10 @@ struct SearchTab: View {
     @State private var searchBy = 0 // could be search by team or search by date
     @State var searchInput: String = ""
     @State private var isEditing = false
+    @State private var firstOpen = true
+    @State private var upcomingGames = [UpcomingGame]()
+    //@State private var pastGames = 
+    private var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
     var body: some View {
         NavigationView {
             /*
@@ -89,7 +93,14 @@ struct SearchTab: View {
                         VStack {
                             if searchBy == 0 {
                                 TeamFollowingCell()
-                                
+                            }
+                            LazyVGrid(columns: twoColumnGrid, spacing: 4) {
+                                /*
+                                ForEach(upcomingGames, id: \.self) { game in
+                                    PredictionCard(game: game).frame(height: geometry.size.height / 2.2)
+                                    
+                                }
+                                */
                             }
                         }
                     }
