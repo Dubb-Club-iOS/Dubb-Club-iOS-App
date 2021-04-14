@@ -14,6 +14,7 @@ struct LoginUIView: View {
     @State private var isLoggedIn = false
     @State private var showErrorMessage = false
     @State private var errorMessage = ""
+    @State private var isLoggingIn = false
     
     // TODO: use elsewhere
     func getFavoriteTeams() {
@@ -55,17 +56,19 @@ struct LoginUIView: View {
     func login() {
         
         UserDefaults.standard.removeObject(forKey: "JWT")
-        
+        self.isLoggingIn = true
         
         let token = UserDefaults.standard.object(forKey: "JWT") as? String
         if token != nil {
             print("Already logged in!")
+            self.isLoggingIn = false
             return
         }
         
         let loginInfo = LoginInfo(username: self.email, password: self.password)
         guard let loginEnc = try? JSONEncoder().encode(loginInfo) else {
             print("Failed to encode login information")
+            self.isLoggingIn = false
             return
         }
         
@@ -84,10 +87,12 @@ struct LoginUIView: View {
                 if httpResponse.statusCode == 500 {
                     self.errorMessage = "Database failure"
                     self.showErrorMessage = true
+                    self.isLoggingIn = false
                     return
                 } else if httpResponse.statusCode != 200 {
                     self.errorMessage = "Invalid login credentials"
                     self.showErrorMessage = true
+                    self.isLoggingIn = false
                     return
                 }
             }
@@ -107,6 +112,7 @@ struct LoginUIView: View {
                 self.errorMessage = "Unexpected error!"
                 self.showErrorMessage = true
             }
+            self.isLoggingIn = false
         }.resume()
     }
     
@@ -169,15 +175,14 @@ struct LoginUIView: View {
                                     .fontWeight(.semibold)
                                     .foregroundColor(Color.white)
                                     .frame(width: geometry.size.width / 3, height: geometry.size.width / 8, alignment: .center)
-                                    .background(Color.blue)
+                                    .background((self.isLoggingIn || self.isLoggedIn) ? Color.blue.opacity(0.5) : Color.blue)
                                     .cornerRadius(12.0)
                                     .onTapGesture(perform: {
                                         showSignUp = true
                                         self.login()
                                     })
-                                    .padding()
                             })
-                        }
+                        }.padding()
                         
                         
                         
@@ -192,9 +197,9 @@ struct LoginUIView: View {
                         }.padding(.bottom, geometry.size.height / 10)
                     }
                 }
-            }
-        }.navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
+            }.navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+        }
     }
 }
 
