@@ -156,7 +156,7 @@ struct RegisterUIView: View {
 //        .navigationBarBackButtonHidden(true)
     }
     
-}
+
 
 struct RegisterUIView_Previews: PreviewProvider {
     static var previews: some View {
