@@ -22,6 +22,8 @@
 		42D9605E2612390200E27B9B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9605D2612390200E27B9B /* Model.swift */; };
 		8B9D01042615164700CE0190 /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D01032615164700CE0190 /* LoginUIView.swift */; };
 		8B9D01092615166200CE0190 /* RegisterUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D01082615166200CE0190 /* RegisterUIView.swift */; };
+		CAAA24B4261BC85000BE72B4 /* SearchTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAA24B3261BC85000BE72B4 /* SearchTeamCell.swift */; };
+		CAAA24B9261BC8C700BE72B4 /* SearchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAA24B8261BC8C700BE72B4 /* SearchTab.swift */; };
 		8BE32435261E6CFA00552668 /* TabUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE32434261E6CFA00552668 /* TabUIView.swift */; };
 		CACC3B7E261291830034587E /* TeamFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC3B7D261291830034587E /* TeamFollowingCell.swift */; };
 		CACC3B832612926A0034587E /* TeamsFollowingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC3B822612926A0034587E /* TeamsFollowingList.swift */; };
@@ -67,6 +69,8 @@
 		42D9605D2612390200E27B9B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8B9D01032615164700CE0190 /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIView.swift; sourceTree = "<group>"; };
 		8B9D01082615166200CE0190 /* RegisterUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUIView.swift; sourceTree = "<group>"; };
+		CAAA24B3261BC85000BE72B4 /* SearchTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTeamCell.swift; sourceTree = "<group>"; };
+		CAAA24B8261BC8C700BE72B4 /* SearchTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTab.swift; sourceTree = "<group>"; };
 		8BE32434261E6CFA00552668 /* TabUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabUIView.swift; sourceTree = "<group>"; };
 		CACC3B7D261291830034587E /* TeamFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamFollowingCell.swift; sourceTree = "<group>"; };
 		CACC3B822612926A0034587E /* TeamsFollowingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsFollowingList.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		120772C2260951CE0024A355 /* DubbClubiOS */ = {
 			isa = PBXGroup;
 			children = (
+				CAAA24B2261BC82200BE72B4 /* Search */,
 				8BE32428261E6CD100552668 /* Tabs */,
 				8B9D01022615162900CE0190 /* LoginAndRegister */,
 				CACC3B7C261291740034587E /* Profile */,
@@ -181,6 +186,15 @@
 				8B9D01082615166200CE0190 /* RegisterUIView.swift */,
 			);
 			path = LoginAndRegister;
+			sourceTree = "<group>";
+		};
+		CAAA24B2261BC82200BE72B4 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CAAA24B3261BC85000BE72B4 /* SearchTeamCell.swift */,
+				CAAA24B8261BC8C700BE72B4 /* SearchTab.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		8BE32428261E6CD100552668 /* Tabs */ = {
@@ -339,6 +353,8 @@
 				42D9605E2612390200E27B9B /* Model.swift in Sources */,
 				120772C6260951CE0024A355 /* ContentView.swift in Sources */,
 				12177C652619012F00C9D4E4 /* HomeStreamList.swift in Sources */,
+				CAAA24B9261BC8C700BE72B4 /* SearchTab.swift in Sources */,
+				CAAA24B4261BC85000BE72B4 /* SearchTeamCell.swift in Sources */,
 				CAF1410626152B800019B59C /* ProfileTab.swift in Sources */,
 				8B9D01042615164700CE0190 /* LoginUIView.swift in Sources */,
 				8BE32435261E6CFA00552668 /* TabUIView.swift in Sources */,
