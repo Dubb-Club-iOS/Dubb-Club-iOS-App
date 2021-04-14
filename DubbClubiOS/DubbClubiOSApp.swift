@@ -54,12 +54,13 @@ struct DubbClubiOSApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if isLoggedIn() {
-                HomeStream()
-            } else {
-               LoginUIView()
-            }
-   //         HomeStream()
+
+//            if isLoggedIn() {
+//                HomeStream()
+//            } else {
+//                LoginUIView()
+//            }
+            HomeStream()
         }
     }
     
@@ -67,7 +68,6 @@ struct DubbClubiOSApp: App {
         let token = UserDefaults.standard.object(forKey: "JWT") as? String
         if token == nil {
             return false
-
         }
         return true
     }
