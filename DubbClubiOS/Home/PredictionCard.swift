@@ -57,6 +57,7 @@ struct PredictionCard: View {
                         Spacer()
                         
                     }
+                    Spacer()
                     
                     DonutChart(game: game, charDataObj: ChartDataContainer(game: game), parentGeo: geometry)
 //                        .frame(width: geometry.size.width, height: geometry.size.width)

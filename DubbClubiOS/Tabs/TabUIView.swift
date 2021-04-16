@@ -8,29 +8,35 @@
 import SwiftUI
 
 struct TabUIView: View {
+    @Binding var isLoggedIn: Bool
+    @State private var selection = "home"
     var body: some View {
-        TabView{
+        TabView(selection:$selection) {
             SearchTab()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
+                .tag("search")
             HomeStream()
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            ProfileTab()
+                .tag("home")
+            ProfileTab(isLoggedIn: $isLoggedIn)
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")
                 }
+                .tag("profile")
         }.accentColor(.white)
     }
 }
 
 struct TabUIView_Previews: PreviewProvider {
     static var previews: some View {
-        TabUIView()
+        TabUIView(isLoggedIn: .constant(false))
+        
     }
 }
