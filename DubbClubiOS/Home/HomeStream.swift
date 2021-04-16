@@ -53,7 +53,7 @@ struct HomeStream: View {
                         getUpcomingGames()
                     })
                 }
-                .navigationTitle("Upcoming Games")//.navigationBarHidden(true)
+                .navigationTitle("Upcoming Games")
                 .navigationBarBackButtonHidden(true)
             }
             

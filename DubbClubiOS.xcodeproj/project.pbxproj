@@ -131,6 +131,7 @@
 		120772C2260951CE0024A355 /* DubbClubiOS */ = {
 			isa = PBXGroup;
 			children = (
+				12BD92ED2627A3FB00101568 /* UpcomingGame */,
 				CAAA24B2261BC82200BE72B4 /* Search */,
 				8BE32428261E6CD100552668 /* Tabs */,
 				8B9D01022615162900CE0190 /* LoginAndRegister */,
@@ -183,6 +184,13 @@
 				12177C642619012C00C9D4E4 /* HomeStreamList.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		12BD92ED2627A3FB00101568 /* UpcomingGame */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UpcomingGame;
 			sourceTree = "<group>";
 		};
 		8B9D01022615162900CE0190 /* LoginAndRegister */ = {

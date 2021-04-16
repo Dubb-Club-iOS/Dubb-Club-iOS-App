@@ -31,7 +31,7 @@ class ChartDataContainer : ObservableObject {
         var winner = -1
         var value : CGFloat = 0
         
-        chartData = chartData.reversed()
+//        chartData = chartData.reversed()
         
         for i in 0..<chartData.count {
             if chartData[i].percent > 50 {
@@ -46,17 +46,17 @@ class ChartDataContainer : ObservableObject {
 
 func gameToChartData(game: UpcomingGame) -> [ChartData] {
     if (game.predictedWinner == game.away[0].teamId) {
-       return
+        return
             [
-                ChartData(color: Color(teamIds[game.away[0].teamId]!), percent: CGFloat(game.confidence * 100), value: 0),
-                ChartData(color: Color(teamIds[game.home[0].teamId]!), percent: CGFloat((1 - game.confidence) * 100), value: 0)
+                ChartData(color: Color(teamIds[game.home[0].teamId]!), percent: CGFloat((1 - game.confidence) * 100), value: 0),
+                ChartData(color: Color(teamIds[game.away[0].teamId]!), percent: CGFloat(game.confidence * 100), value: 0)
             ]
     } else {
         return
-             [
-                 ChartData(color: Color(teamIds[game.away[0].teamId]!), percent: CGFloat((1 - game.confidence) * 100), value: 0),
-                 ChartData(color: Color(teamIds[game.home[0].teamId]!), percent: CGFloat(game.confidence * 100), value: 0)
-             ]
+            [
+                ChartData(color: Color(teamIds[game.home[0].teamId]!), percent: CGFloat(game.confidence * 100), value: 0),
+                ChartData(color: Color(teamIds[game.away[0].teamId]!), percent: CGFloat((1 - game.confidence) * 100), value: 0)
+            ]
     }
 }
 
@@ -99,30 +99,30 @@ struct DonutChart : View {
                     indexOfTappedSlice = self.charDataObj.calc()
                 })
                 .padding()
-//                .onAppear() {
-//                    indexOfTappedSlice = self.charDataObj.calc()
-//                }
+                //                .onAppear() {
+                //                    indexOfTappedSlice = self.charDataObj.calc()
+                //                }
                 
                 if (indexOfTappedSlice == 0) {
                     Text("\(teamIds[game.home[0].teamId]!)").fontWeight(.bold)
                         .font(.system(size: fontSize(parentGeo)))
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding(.bottom)
+                        .padding([.bottom, .leading, .trailing])
                         .foregroundColor(.white)
                 } else if (indexOfTappedSlice == 1) {
                     Text("\(teamIds[game.away[0].teamId]!)").fontWeight(.bold)
                         .font(.system(size: fontSize(parentGeo)))
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding(.bottom)
+                        .padding([.bottom, .leading, .trailing])
                         .foregroundColor(.white)
-                        
+                    
                     
                 }
                 Spacer()
                 Spacer()
-
+                
             }
             
             

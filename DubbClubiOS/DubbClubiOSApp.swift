@@ -7,8 +7,19 @@
 
 import SwiftUI
 
+
+func isLoggedIn() -> Bool {
+    let token = UserDefaults.standard.object(forKey: "JWT") as? String
+    if token == nil {
+        return false
+    }
+    return true
+}
+
 @main
 struct DubbClubiOSApp: App {
+    
+    @State var authenticated: Bool = isLoggedIn()
     
     init() {
         refreshToken()
@@ -54,20 +65,15 @@ struct DubbClubiOSApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if isLoggedIn() {
-                HomeStream()
-            } else {
-                LoginUIView()
+            Group {
+                if authenticated {
+                    TabUIView(isLoggedIn: $authenticated)
+                } else {
+                    LoginUIView(isLoggedIn: $authenticated)
+                }
             }
-//            HomeStream()
         }
     }
     
-    func isLoggedIn() -> Bool {
-        let token = UserDefaults.standard.object(forKey: "JWT") as? String
-        if token == nil {
-            return false
-        }
-        return true
-    }
+    
 }

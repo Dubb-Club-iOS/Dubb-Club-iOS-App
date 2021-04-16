@@ -11,7 +11,7 @@ struct LoginUIView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var showSignUp = false
-    @State private var isLoggedIn = false
+    @Binding var isLoggedIn: Bool
     @State private var showErrorMessage = false
     @State private var errorMessage = ""
     @State private var isLoggingIn = false
@@ -153,7 +153,7 @@ struct LoginUIView: View {
                             Text("Don't have an account?")
                                 .foregroundColor(.gray)
                             NavigationLink(
-                                destination: RegisterUIView(),
+                                destination: RegisterUIView(isLoggedIn: $isLoggedIn),
                                 label: {
                                     Text("Sign Up")
                                 })
@@ -168,7 +168,7 @@ struct LoginUIView: View {
 
 struct LoginUIView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginUIView()
+        LoginUIView(isLoggedIn: .constant(false))
     }
 }
 public struct PlaceholderStyle: ViewModifier {

@@ -14,7 +14,9 @@ struct RegisterUIView: View {
     @State private var registrationSuccessful = false
     @State private var showRegistrationError = false
     @State private var errorMessage = ""
+    @Binding var isLoggedIn: Bool
     @State private var isRegistering = false
+
     
     func signup() {
         
@@ -123,7 +125,7 @@ struct RegisterUIView: View {
                         Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showRegistrationError ? 1 : 0).animation(.easeInOut, value: showRegistrationError)
                         Spacer()
                         
-                        NavigationLink(destination: LoginUIView(), isActive: $registrationSuccessful) {
+                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn), isActive: $registrationSuccessful) {
                             Button(action: {}, label: {
                                 Text("Sign Up")
                                     .font(.headline)
@@ -151,6 +153,7 @@ struct RegisterUIView: View {
                     }
                 }
             }
+        
         }
 //        .navigationBarHidden(true)
 //        .navigationBarBackButtonHidden(true)
@@ -160,6 +163,6 @@ struct RegisterUIView: View {
 
 struct RegisterUIView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterUIView()
+        RegisterUIView(isLoggedIn: .constant(false))
     }
 }
