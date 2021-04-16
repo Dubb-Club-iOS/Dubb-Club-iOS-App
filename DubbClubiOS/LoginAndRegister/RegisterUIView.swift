@@ -15,12 +15,17 @@ struct RegisterUIView: View {
     @State private var showRegistrationError = false
     @State private var errorMessage = ""
     @Binding var isLoggedIn: Bool
+    @State private var isRegistering = false
+
     
     func signup() {
+        
+        self.isRegistering = true
         
         let signUpInfo = RegistrationBody(email: self.email, username: self.username, password: self.password)
         guard let signUpEnc = try? JSONEncoder().encode(signUpInfo) else {
             print("Failed to encode login information")
+            self.isRegistering = false
             return
         }
         
@@ -36,6 +41,7 @@ struct RegisterUIView: View {
                 if httpResponse.statusCode != 200 {
                     self.errorMessage = "Invalid registration"
                     self.showRegistrationError = true
+                    self.isRegistering = false
                     return
                 }
             }
@@ -50,6 +56,7 @@ struct RegisterUIView: View {
             } else {
                 print("Unexpected error!")
             }
+            self.isRegistering = false
         }.resume()
     }
     
@@ -125,7 +132,7 @@ struct RegisterUIView: View {
                                     .fontWeight(.semibold)
                                     .frame(width: geometry.size.width / 3, height: geometry.size.width / 8, alignment: .center)
                                     .foregroundColor(Color.white)
-                                    .background(Color.blue)
+                                    .background((self.isRegistering || self.registrationSuccessful) ? Color.blue.opacity(0.5) : Color.blue)
                                     .cornerRadius(12.0)
                                     .onTapGesture(perform: {
                                         self.signup()
@@ -147,9 +154,12 @@ struct RegisterUIView: View {
                 }
             }
         
+        }
+//        .navigationBarHidden(true)
+//        .navigationBarBackButtonHidden(true)
     }
     
-}
+
 
 struct RegisterUIView_Previews: PreviewProvider {
     static var previews: some View {
