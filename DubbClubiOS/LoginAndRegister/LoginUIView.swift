@@ -85,6 +85,7 @@ struct LoginUIView: View {
                 ColorManager.backgroundGray.ignoresSafeArea()
                 GeometryReader { geometry in
                     VStack() {
+                        Spacer()
                         Image("DubbClub Logo PNG").resizable().scaledToFill().frame(width: geometry.size.width / 3, height: geometry.size.width / 3)
                             .padding(.top, geometry.size.height * -0.1)
                         
@@ -125,7 +126,7 @@ struct LoginUIView: View {
                             Divider().background(Color.gray)
                         }
                         
-                        Spacer()
+//                        Spacer()
                         
                         Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showErrorMessage ? 1 : 0).animation(.easeInOut, value: self.showErrorMessage)
                         Spacer()

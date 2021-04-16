@@ -125,7 +125,7 @@ struct RegisterUIView: View {
                         Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showRegistrationError ? 1 : 0).animation(.easeInOut, value: showRegistrationError)
                         Spacer()
                         
-                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn), isActive: $registrationSuccessful) {
+                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn).navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $registrationSuccessful) {
                             Button(action: {}, label: {
                                 Text("Sign Up")
                                     .font(.headline)
