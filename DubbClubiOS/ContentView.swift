@@ -12,8 +12,8 @@ struct ContentView: View {
     @State var standings = [Team]()
     @State var upcomingGames = [UpcomingGame]()
     
-    @State var gameIdsForTeam = [Int]()
-    @State var gameObjsForTeam = [GameFromDb]()
+    @State var gameIds = [Int]()
+    @State var gameObjs = [GameFromDb]()
     
     func getTeams() {
 
@@ -62,7 +62,21 @@ struct ContentView: View {
             if let file = URL(string: "https://api.dubb.club/api/nba/getGamesByTeamFromDb/\(teamId)") {
                 let data = try Data(contentsOf: file)
                 let gameIds: [Int] = try! JSONDecoder().decode([Int].self, from: data)
-                self.gameIdsForTeam = gameIds
+                self.gameIds = gameIds
+            } else {
+                print("no file")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getGameIdsForDate(date: String) {
+        do {
+            if let file = URL(string: "https://api.dubb.club/api/nba/getGamesByDateFromDb/\(date)") {
+                let data = try Data(contentsOf: file)
+                let gameIds: [Int] = try! JSONDecoder().decode([Int].self, from: data)
+                self.gameIds = gameIds
             } else {
                 print("no file")
             }
@@ -77,7 +91,7 @@ struct ContentView: View {
                 let data = try Data(contentsOf: file)
                 print(gameId)
                 let game: GameFromDbParent = try! JSONDecoder().decode(GameFromDbParent.self, from: data)
-                self.gameObjsForTeam.append(game.game)
+                self.gameObjs.append(game.game)
             } else {
                 print("no file")
             }
@@ -88,7 +102,14 @@ struct ContentView: View {
     
     func getGamesForTeam(teamId: Int) {
         getGameIdsForTeam(teamId: teamId)
-        for gameId in gameIdsForTeam {
+        for gameId in gameIds {
+            getGameById(gameId: gameId)
+        }
+    }
+    
+    func getGamesForDate(date: String) {
+        getGameIdsForDate(date: date)
+        for gameId in gameIds {
             getGameById(gameId: gameId)
         }
     }
@@ -168,11 +189,11 @@ struct ContentView: View {
     
     var body: some View {
         // Temp UI
-        List(gameObjsForTeam, id: \.id) { item in
+        List(gameObjs, id: \.id) { item in
             VStack(alignment: .leading) {
                 Text("\(item.home[0].teamName) @ \(item.away[0].teamName)")
             }
-        }.onAppear{ getGamesForTeam(teamId: 2) }
+        }.onAppear{ getGamesForDate(date: "2021-03-29T23:30:00.000Z") }
     }
 }
 
