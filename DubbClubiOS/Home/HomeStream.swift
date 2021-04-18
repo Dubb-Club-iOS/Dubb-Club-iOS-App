@@ -8,26 +8,10 @@
 import SwiftUI
 
 struct HomeStream: View {
-    @State private var upcomingGames = [UpcomingGame]()
-    private var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+    @Binding var upcomingGames: [UpcomingGame]
+    var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
     
-    func getUpcomingGames() {
-        do {
-            if let file = URL(string: "https://api.dubb.club/api/nba/getUpcomingGamesFromDb") {
-                let data = try Data(contentsOf: file)
-                let upcomingGames: [UpcomingGame] = try! JSONDecoder().decode([UpcomingGame].self, from: data)
-                self.upcomingGames = upcomingGames
-                print("upcoming games request success")
-            } else {
-                print("could not get games")
-                #if DEBUG //this is so previews work
-                self.upcomingGames = testGames
-                #endif
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+    
     
     var body: some View {
         
@@ -49,9 +33,10 @@ struct HomeStream: View {
                         }
                         
                         //                    }
-                    }.onAppear(perform: {
-                        getUpcomingGames()
-                    })
+                    }
+                    //                    .onAppear(perform: {
+                    //                        getUpcomingGames()
+                    //                    })
                 }
                 .navigationTitle("Upcoming Games")
                 .navigationBarBackButtonHidden(true)
@@ -65,7 +50,7 @@ struct HomeStream: View {
 struct HomeStream_Previews: PreviewProvider {
     
     static var previews: some View {
-        HomeStream()
+        HomeStream_PreviewWrapper()
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
             .previewDisplayName("iPhone 12")
         
@@ -74,5 +59,12 @@ struct HomeStream_Previews: PreviewProvider {
         //            .previewDisplayName("iPhone 12 Pro Max")
         
         //        HomeStream().previewDevice("iPhone SE (2nd generation)")
+    }
+    struct HomeStream_PreviewWrapper: View {
+        @State var games = getUpcomingGames()
+        
+        var body: some View {
+            HomeStream(upcomingGames: $games)
+        }
     }
 }

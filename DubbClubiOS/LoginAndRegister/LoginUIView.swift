@@ -12,6 +12,7 @@ struct LoginUIView: View {
     @State private var password = ""
     @State private var showSignUp = false
     @Binding var isLoggedIn: Bool
+    @Binding var upcomingGames: [UpcomingGame]
     @State private var showErrorMessage = false
     @State private var errorMessage = ""
     @State private var isLoggingIn = false
@@ -132,7 +133,7 @@ struct LoginUIView: View {
                         Spacer()
                         
                         
-                        NavigationLink(destination: HomeStream(), isActive: $isLoggedIn) {
+                        NavigationLink(destination: HomeStream(upcomingGames: $upcomingGames), isActive: $isLoggedIn) {
                             Button(action: {}, label: {
                                 Text("Sign In")
                                     .font(.headline)
@@ -154,7 +155,7 @@ struct LoginUIView: View {
                             Text("Don't have an account?")
                                 .foregroundColor(.gray)
                             NavigationLink(
-                                destination: RegisterUIView(isLoggedIn: $isLoggedIn),
+                                destination: RegisterUIView(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames),
                                 label: {
                                     Text("Sign Up")
                                 })
@@ -169,9 +170,17 @@ struct LoginUIView: View {
 
 struct LoginUIView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginUIView(isLoggedIn: .constant(false))
+        LoginUIView_PreviewWrapper()
+    }
+    struct LoginUIView_PreviewWrapper: View {
+        @State var games = getUpcomingGames()
+        @State var isLoggedIn = false
+        var body: some View {
+            LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games)
+        }
     }
 }
+
 public struct PlaceholderStyle: ViewModifier {
     var showPlaceHolder: Bool
     var placeholder: String

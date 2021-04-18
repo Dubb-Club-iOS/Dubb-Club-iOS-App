@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TabUIView: View {
     @Binding var isLoggedIn: Bool
+    @Binding var upcomingGames: [UpcomingGame]
     @State private var selection = "home"
     var body: some View {
         TabView(selection:$selection) {
@@ -18,7 +19,7 @@ struct TabUIView: View {
                     Text("Search")
                 }
                 .tag("search")
-            HomeStream()
+            HomeStream(upcomingGames: $upcomingGames)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
@@ -36,7 +37,14 @@ struct TabUIView: View {
 
 struct TabUIView_Previews: PreviewProvider {
     static var previews: some View {
-        TabUIView(isLoggedIn: .constant(false))
+        TabUIView_PreviewWrapper()
         
+    }
+    struct TabUIView_PreviewWrapper: View {
+        @State var games = getUpcomingGames()
+        @State var isLoggedIn = true
+        var body: some View {
+            TabUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games)
+        }
     }
 }
