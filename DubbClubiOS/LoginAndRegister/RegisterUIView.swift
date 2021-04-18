@@ -15,6 +15,7 @@ struct RegisterUIView: View {
     @State private var showRegistrationError = false
     @State private var errorMessage = ""
     @Binding var isLoggedIn: Bool
+    @Binding var upcomingGames: [UpcomingGame]
     @State private var isRegistering = false
 
     
@@ -125,7 +126,7 @@ struct RegisterUIView: View {
                         Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showRegistrationError ? 1 : 0).animation(.easeInOut, value: showRegistrationError)
                         Spacer()
                         
-                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn).navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $registrationSuccessful) {
+                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames).navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $registrationSuccessful) {
                             Button(action: {}, label: {
                                 Text("Sign Up")
                                     .font(.headline)
@@ -163,6 +164,13 @@ struct RegisterUIView: View {
 
 struct RegisterUIView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterUIView(isLoggedIn: .constant(false))
+        RegisterUIView_PreviewWrapper()
+    }
+    struct RegisterUIView_PreviewWrapper: View {
+        @State var games = getUpcomingGames()
+        @State var isLoggedIn = false
+        var body: some View {
+            LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games)
+        }
     }
 }

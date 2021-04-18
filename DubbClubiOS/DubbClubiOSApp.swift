@@ -16,13 +16,17 @@ func isLoggedIn() -> Bool {
     return true
 }
 
+
+
 @main
 struct DubbClubiOSApp: App {
     
     @State var authenticated: Bool = isLoggedIn()
+    @State var upcomingGames = getUpcomingGames()
     
     init() {
         refreshToken()
+//        getUpcomingGames()
     }
     
     func refreshToken() {
@@ -63,13 +67,31 @@ struct DubbClubiOSApp: App {
         }.resume()
     }
     
+//    func getUpcomingGames() {
+//        do {
+//            if let file = URL(string: "https://api.dubb.club/api/nba/getUpcomingGamesFromDb") {
+//                let data = try Data(contentsOf: file)
+//                let upcomingGames: [UpcomingGame] = try! JSONDecoder().decode([UpcomingGame].self, from: data)
+//                self.upcomingGames = upcomingGames
+//                print("upcoming games request success")
+//            } else {
+//                print("could not get games")
+//                #if DEBUG //this is so previews work
+//                self.upcomingGames = testGames
+//                #endif
+//            }
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
+    
     var body: some Scene {
         WindowGroup {
             Group {
                 if authenticated {
-                    TabUIView(isLoggedIn: $authenticated)
+                    TabUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
                 } else {
-                    LoginUIView(isLoggedIn: $authenticated)
+                    LoginUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
                 }
             }
         }
