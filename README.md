@@ -8,6 +8,13 @@
 1. [Wireframes](#Wireframes)
 1. [Schema](#Schema)
 
+## Sprint 3 Updates
+### Below are the gifs for our week 3 sprint.
+
+Tab Bar:
+
+<img src="http://g.recordit.co/NwHu9MBsi5.gif" width=250><br>
+
 ## Sprint 2 Updates
 ### Below are the gifs for our week 2 sprint. 
 
