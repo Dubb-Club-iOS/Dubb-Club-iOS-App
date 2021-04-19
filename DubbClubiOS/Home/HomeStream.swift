@@ -8,66 +8,41 @@
 import SwiftUI
 
 struct HomeStream: View {
-    @State private var upcomingGames = [UpcomingGame]()
-    private var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+    @Binding var upcomingGames: [UpcomingGame]
+    var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
     
-    func getUpcomingGames() {
-        do {
-            if let file = URL(string: "https://api.dubb.club/api/nba/getUpcomingGamesFromDb") {
-                let data = try Data(contentsOf: file)
-                let upcomingGames: [UpcomingGame] = try! JSONDecoder().decode([UpcomingGame].self, from: data)
-                self.upcomingGames = upcomingGames
-                print("upcoming games request success")
-            } else {
-                print("could not get games")
-                #if DEBUG //this is so previews work
-                self.upcomingGames = testGames
-                #endif
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+    
     
     var body: some View {
+        
         GeometryReader { geometry in
-            ZStack {
-                ColorManager.backgroundGray
-                    .ignoresSafeArea()
-                
-                // Your other content here
-                // Other layers will respect the safe area edges
-                //            Text("Hello, world!")
-                //                .foregroundColor(.white)
-                //                .padding()
-                VStack(spacing: 0) {
-                    HStack {
-                        Text("Upcoming Games").font(.largeTitle).fontWeight(.bold)
-                        Spacer()
-                    }.padding([.leading, .trailing])
+            NavigationView {
+                ZStack {
+                    ColorManager.backgroundGray
+                        .ignoresSafeArea()
                     
-//                    if (upcomingGames.count == 0) {
-//                        Spacer()
-//                        ProgressView()
-//                        Spacer()
-//                    } else {
-                        
-                        ScrollView {
-                            LazyVGrid(columns: twoColumnGrid, spacing: 4) {
-                                ForEach(upcomingGames, id: \.self) { game in
-                                    PredictionCard(game: game).frame(height: geometry.size.height / 2.2)
-                                    
-                                }
+                    ScrollView {
+                        LazyVGrid(columns: twoColumnGrid, spacing: 4) {
+                            ForEach(upcomingGames, id: \.self) { game in
+                                PredictionCard(game: game)
+                                    .frame(height: geometry.size.height / 2.2)
+                                    .cornerRadius(10)
+                                    .aspectRatio(1, contentMode: .fit)
+                                
                             }
                         }
-//                    }
-                }.onAppear(perform: {
-                    getUpcomingGames()
-                })
+                        
+                        //                    }
+                    }
+                    //                    .onAppear(perform: {
+                    //                        getUpcomingGames()
+                    //                    })
+                }
+                .navigationTitle("Upcoming Games")
+                .navigationBarBackButtonHidden(true)
             }
+            
         }
-        .navigationTitle("Upcoming Games").navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
         
     }
 }
@@ -75,8 +50,8 @@ struct HomeStream: View {
 struct HomeStream_Previews: PreviewProvider {
     
     static var previews: some View {
-        HomeStream()
-            .previewDevice("iPhone 12 Pro")
+
+        HomeStream_PreviewWrapper()
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
             .previewDisplayName("iPhone 12 Pro")
         
@@ -85,5 +60,12 @@ struct HomeStream_Previews: PreviewProvider {
         //            .previewDisplayName("iPhone 12 Pro Max")
         
         //        HomeStream().previewDevice("iPhone SE (2nd generation)")
+    }
+    struct HomeStream_PreviewWrapper: View {
+        @State var games = getUpcomingGames()
+        
+        var body: some View {
+            HomeStream(upcomingGames: $games)
+        }
     }
 }

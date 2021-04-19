@@ -1,12 +1,24 @@
 # Dubb Club iOS
 
 ## Table of Contents
+1. [Sprint 3 Updates](#Sprint-3-Updates)
 1. [Sprint 2 Updates](#Sprint-2-Updates)
 1. [Sprint 1 Updates](#Sprint-1-Updates)
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 1. [Schema](#Schema)
+
+## Sprint 3 Updates
+### Below are the gifs for our week 3 sprint.
+
+Launch Screen:
+
+![launch-screen-sprint3](https://user-images.githubusercontent.com/43022012/115166134-7b9b5400-a07f-11eb-9aaa-a180d3c9aa8b.gif)
+
+Tab Bar:
+
+<img src="http://g.recordit.co/NwHu9MBsi5.gif" width=250><br>
 
 ## Sprint 2 Updates
 ### Below are the gifs for our week 2 sprint. 

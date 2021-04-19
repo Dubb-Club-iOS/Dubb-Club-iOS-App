@@ -57,8 +57,9 @@ struct PredictionCard: View {
                         Spacer()
                         
                     }
+                    Spacer()
                     
-                    DonutChart(game: game, charDataObj: ChartDataContainer(game: game), geometry: geometry)
+                    DonutChart(game: game, charDataObj: ChartDataContainer(game: game), parentGeo: geometry)
 //                        .frame(width: geometry.size.width, height: geometry.size.width)
                     
                     
@@ -66,7 +67,8 @@ struct PredictionCard: View {
                     Spacer()
                     ZStack {
                         Rectangle()
-                            .fill(LinearGradient(gradient: Gradient(colors: [ColorManager.dateGradientStart, ColorManager.dateGradientEnd]), startPoint: .leading, endPoint: .trailing))
+                            .fill(LinearGradient(gradient: Gradient(colors: [ColorManager.dateGradientStart, Color.blue]), startPoint: .leading, endPoint: .trailing))
+//                            .fill(Color.blue)
                             .frame(width: geometry.size.width, height: geometry.size.height / 10, alignment: .center)
                         Text(getDate(date: game.date)).fontWeight(.bold) .font(.title).lineLimit(1).minimumScaleFactor(0.1)
                             .foregroundColor(.white)

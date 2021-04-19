@@ -7,11 +7,26 @@
 
 import SwiftUI
 
+
+func isLoggedIn() -> Bool {
+    let token = UserDefaults.standard.object(forKey: "JWT") as? String
+    if token == nil {
+        return false
+    }
+    return true
+}
+
+
+
 @main
 struct DubbClubiOSApp: App {
     
+    @State var authenticated: Bool = isLoggedIn()
+    @State var upcomingGames = getUpcomingGames()
+    
     init() {
         refreshToken()
+//        getUpcomingGames()
     }
     
     func refreshToken() {
@@ -52,23 +67,36 @@ struct DubbClubiOSApp: App {
         }.resume()
     }
     
+//    func getUpcomingGames() {
+//        do {
+//            if let file = URL(string: "https://api.dubb.club/api/nba/getUpcomingGamesFromDb") {
+//                let data = try Data(contentsOf: file)
+//                let upcomingGames: [UpcomingGame] = try! JSONDecoder().decode([UpcomingGame].self, from: data)
+//                self.upcomingGames = upcomingGames
+//                print("upcoming games request success")
+//            } else {
+//                print("could not get games")
+//                #if DEBUG //this is so previews work
+//                self.upcomingGames = testGames
+//                #endif
+//            }
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
+    
     var body: some Scene {
         WindowGroup {
-
-//            if isLoggedIn() {
-//                HomeStream()
-//            } else {
-//                LoginUIView()
-//            }
-            HomeStream()
+            Group {
+//                if authenticated {
+//                    TabUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
+//                } else {
+//                    LoginUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
+//                }
+                ContentView()
+            }
         }
     }
     
-    func isLoggedIn() -> Bool {
-        let token = UserDefaults.standard.object(forKey: "JWT") as? String
-        if token == nil {
-            return false
-        }
-        return true
-    }
+    
 }

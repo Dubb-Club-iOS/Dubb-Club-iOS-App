@@ -26,11 +26,12 @@ class ChartDataContainer : ObservableObject {
     init(game: UpcomingGame) {
         self.chartData = gameToChartData(game: game)
     }
+    
     func calc() -> Int {
         var winner = -1
         var value : CGFloat = 0
         
-        chartData = chartData.reversed()
+//        chartData = chartData.reversed()
         
         for i in 0..<chartData.count {
             if chartData[i].percent > 50 {
@@ -45,17 +46,17 @@ class ChartDataContainer : ObservableObject {
 
 func gameToChartData(game: UpcomingGame) -> [ChartData] {
     if (game.predictedWinner == game.away[0].teamId) {
-       return
+        return
             [
-                ChartData(color: Color(teamIds[game.away[0].teamId]!), percent: CGFloat(game.confidence * 100), value: 0),
-                ChartData(color: Color(teamIds[game.home[0].teamId]!), percent: CGFloat((1 - game.confidence) * 100), value: 0)
+                ChartData(color: Color(teamIds[game.home[0].teamId]!), percent: CGFloat((1 - game.confidence) * 100), value: 0),
+                ChartData(color: Color(teamIds[game.away[0].teamId]!), percent: CGFloat(game.confidence * 100), value: 0)
             ]
     } else {
         return
-             [
-                 ChartData(color: Color(teamIds[game.away[0].teamId]!), percent: CGFloat((1 - game.confidence) * 100), value: 0),
-                 ChartData(color: Color(teamIds[game.home[0].teamId]!), percent: CGFloat(game.confidence * 100), value: 0)
-             ]
+            [
+                ChartData(color: Color(teamIds[game.home[0].teamId]!), percent: CGFloat(game.confidence * 100), value: 0),
+                ChartData(color: Color(teamIds[game.away[0].teamId]!), percent: CGFloat((1 - game.confidence) * 100), value: 0)
+            ]
     }
 }
 
@@ -64,7 +65,11 @@ struct DonutChart : View {
     @ObservedObject var charDataObj: ChartDataContainer
     @State var indexOfTappedSlice = -1
     
-    var geometry: GeometryProxy
+    var parentGeo: GeometryProxy
+    
+    func fontSize(_ geo: GeometryProxy) -> CGFloat {
+        return geo.size.height * 0.05
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -75,7 +80,7 @@ struct DonutChart : View {
                             .trim(from: index == 0 ? 0.0 : charDataObj.chartData[index-1].value/100,
                                   to:   charDataObj.chartData[index].value/100)
                             
-                            .stroke(charDataObj.chartData[index].color,lineWidth: geometry.size.width * 0.075)
+                            .stroke(charDataObj.chartData[index].color,lineWidth: parentGeo.size.width * 0.075)
                             .rotationEffect(.degrees(-90))
                             .onTapGesture {
                                 indexOfTappedSlice = index
@@ -89,29 +94,35 @@ struct DonutChart : View {
                             .font(.body).lineLimit(1).minimumScaleFactor(0.1)
                             .foregroundColor(.white)
                     }
-                }.frame(height: geometry.size.height * 0.6)
-                
-                .padding()
-                .onAppear() {
+                }.frame(height: parentGeo.size.height * 0.32)
+                .onAppear(perform: {
                     indexOfTappedSlice = self.charDataObj.calc()
-                }
+                })
+                .padding()
+                //                .onAppear() {
+                //                    indexOfTappedSlice = self.charDataObj.calc()
+                //                }
+                
                 if (indexOfTappedSlice == 0) {
                     Text("\(teamIds[game.home[0].teamId]!)").fontWeight(.bold)
-                        .font(.title3).lineLimit(2).minimumScaleFactor(0.3).fixedSize(horizontal: false, vertical: true)
+                        .font(.system(size: fontSize(parentGeo)))
+                        .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding(.bottom)
+                        .padding([.bottom, .leading, .trailing])
                         .foregroundColor(.white)
                 } else if (indexOfTappedSlice == 1) {
                     Text("\(teamIds[game.away[0].teamId]!)").fontWeight(.bold)
-                        .font(.title3).lineLimit(2).minimumScaleFactor(0.3).fixedSize(horizontal: false, vertical: true)
+                        .font(.system(size: fontSize(parentGeo)))
+                        .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding(.bottom)
+                        .padding([.bottom, .leading, .trailing])
                         .foregroundColor(.white)
-                        
+                    
                     
                 }
                 Spacer()
-
+                Spacer()
+                
             }
             
             
@@ -127,7 +138,7 @@ struct DonutChart_Previews: PreviewProvider {
         GeometryReader { geometry in
             ZStack{
                 ColorManager.backgroundGray
-                DonutChart(game: game, charDataObj: ChartDataContainer(game: game), geometry: geometry)
+                DonutChart(game: game, charDataObj: ChartDataContainer(game: game), parentGeo: geometry)
             }
         }
     }
