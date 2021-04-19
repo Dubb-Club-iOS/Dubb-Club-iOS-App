@@ -13,19 +13,19 @@ struct TabUIView: View {
     @State private var selection = "home"
     var body: some View {
         TabView(selection:$selection) {
-            SearchTab()
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Search")
-                }
-                .tag("search")
             HomeStream(upcomingGames: $upcomingGames)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
                 .tag("home")
-            ProfileTab(isLoggedIn: $isLoggedIn)
+            SearchTab()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+                }
+                .tag("search")
+            ProfileTab(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames)
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")
