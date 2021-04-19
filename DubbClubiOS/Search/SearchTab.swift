@@ -34,7 +34,7 @@ func findTeamId(input:String) -> Int {
 }
 
 struct SearchTab: View {
-
+    
     @State var gameIds = [Int]()
     @State var gameObjs = [GameFromDb]()
     @State private var searchBy = 0 // could be search by team or search by date
@@ -58,7 +58,7 @@ struct SearchTab: View {
             print(error.localizedDescription)
         }
     }
-
+    
     func getGameIdsForDate(date: String) {
         do {
             if let file = URL(string: "https://api.dubb.club/api/nba/getGamesByDateFromDb/\(date)") {
@@ -72,7 +72,7 @@ struct SearchTab: View {
             print(error.localizedDescription)
         }
     }
-
+    
     func getGameById(gameId: Int) {
         do {
             if let file = URL(string: "https://api.dubb.club/api/nba/getGameFromDb/\(gameId)") {
@@ -119,19 +119,19 @@ struct SearchTab: View {
                                         .onTapGesture {
                                             self.isEditing = true
                                         }
-                                        if searchInput.count != 0 {
-                                            Button(action: {
-                                                self.isEditing = false
-                                                self.searchInput = ""
-                             
-                                            }) {
-                                                Text("Cancel")
-                                            }
-                                            .padding(.trailing, 10)
-                                            .transition(.move(edge: .trailing))
-                                            //.animation(.easeInOut)
-                                            .animation(.easeInOut)
+                                    if searchInput.count != 0 {
+                                        Button(action: {
+                                            self.isEditing = false
+                                            self.searchInput = ""
+                                            
+                                        }) {
+                                            Text("Cancel")
                                         }
+                                        .padding(.trailing, 10)
+                                        .transition(.move(edge: .trailing))
+                                        //.animation(.easeInOut)
+                                        .animation(.easeInOut)
+                                    }
                                 } else {
                                     DatePicker(selection: .constant(Date()), displayedComponents: [.date], label: { Text("Game Date") })
                                         .padding(7)
@@ -142,21 +142,21 @@ struct SearchTab: View {
                                         .onTapGesture {
                                             self.isEditing = true
                                         }
-                                        /*
-                                        if searchInput.count != 0 {
-                                            Button(action: {
-                                                self.isEditing = false
-                                                self.searchInput = ""
-                             
-                                            }) {
-                                                Text("Cancel")
-                                            }
-                                            .padding(.trailing, 10)
-                                            .transition(.move(edge: .trailing))
-                                            //.animation(.easeInOut)
-                                            .animation(.easeInOut)
-                                        }
-     */
+                                    /*
+                                     if searchInput.count != 0 {
+                                     Button(action: {
+                                     self.isEditing = false
+                                     self.searchInput = ""
+                                     
+                                     }) {
+                                     Text("Cancel")
+                                     }
+                                     .padding(.trailing, 10)
+                                     .transition(.move(edge: .trailing))
+                                     //.animation(.easeInOut)
+                                     .animation(.easeInOut)
+                                     }
+                                     */
                                 }
                             }
                             .maybe(animate) { content in
@@ -173,18 +173,19 @@ struct SearchTab: View {
                                     
                                     getGameIdsForTeam(teamId: teamSearchedFor)
                                     
+                                    
                                 } else {
                                     
                                 }
                                 
-                                TeamFollowingCell()
+                                //TeamFollowingCell()
                                 LazyVGrid(columns: twoColumnGrid, spacing: 4) {
-                                    /*
-                                    ForEach(upcomingGames, id: \.self) { game in
-                                        PredictionCard(game: game).frame(height: geometry.size.height / 2.2)
-                                        
-                                    }
-                                    */
+                                    
+                                     ForEach(upcomingGames, id: \.self) { game in
+                                     PredictionCard(game: game).frame(height: geometry.size.height / 2.2)
+                                     
+                                     }
+                                     
                                 }
                             }
                             
