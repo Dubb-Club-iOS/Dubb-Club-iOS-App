@@ -13,6 +13,21 @@ struct ProfileTab: View {
     var body: some View {
         NavigationView {
             /*
+            .navigationTitle("Profile")
+            .navigationBarItems(trailing: {
+                Button(action: {
+                    NavigationLink(destination: LoginUIView()) {
+                        Text("Log Out")
+                    }.simultaneousGesture(TapGesture().onEnded{
+                        self.logout()
+                    })
+                }, label: {
+                    Text("Logout").foregroundColor(.white)
+                        .padding(.all, 8)
+                })
+            })
+            */
+            /*
              NavigationLink(destination: Text("Destination")/*@END_MENU_TOKEN@*/) { /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Navigate") }
              */
             ZStack {
@@ -44,24 +59,41 @@ struct ProfileTab: View {
                             Spacer()
                         }
                         TeamsFollowingList()
+
+                        /*
+                        
+
 //                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn)) {
 //                            Text("Log Out")
 //                        }.simultaneousGesture(TapGesture().onEnded{
 //                            self.logout()
 //                        })
                         Button(action: {self.logout()}, label: {
+
                             Text("Log Out")
                                 .font(.headline)
                                 .foregroundColor(Color.blue)
                                 .padding()
                         })
-                        Spacer()
+
+                        */
                     }
                     
                     
-                }.navigationTitle("Profile")//.navigationBarHidden(true)
+                }.navigationTitle("Profile").navigationBarItems(trailing: Button(action: {
+                        NavigationLink(destination: LoginUIView()) {
+                            Text("Log Out")
+                        }.simultaneousGesture(TapGesture().onEnded{
+                            self.logout()
+                        })
+                    }, label: {
+                        Text("Logout").foregroundColor(.white)
+                            //.padding(.all, 8)
+                    }))
+
             }
         }.navigationBarBackButtonHidden(true)
+        
     }
     func logout() {
         UserDefaults.standard.set(nil, forKey:"JWT")

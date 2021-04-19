@@ -26,6 +26,8 @@ struct TeamsFollowingList: View {
             TeamFollowingCell()
             TeamFollowingCell()
             TeamFollowingCell()
+            TeamFollowingCell()
+            TeamFollowingCell()
         }
     }
 }
