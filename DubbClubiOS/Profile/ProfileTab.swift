@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileTab: View {
     @Binding var isLoggedIn: Bool
+    @Binding var upcomingGames: [UpcomingGame]
 
     var body: some View {
         NavigationView {
@@ -80,16 +81,17 @@ struct ProfileTab: View {
                     }
                     
                     
-                }.navigationTitle("Profile").navigationBarItems(trailing: Button(action: {
-                        NavigationLink(destination: LoginUIView()) {
-                            Text("Log Out")
+                }.navigationTitle("Profile").navigationBarItems(trailing:
+                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames)) {
+                            Button(action:  {self.logout()}, label: {
+                                Text("Log Out").foregroundColor(.white)
+                            })
+                            
                         }.simultaneousGesture(TapGesture().onEnded{
-                            self.logout()
+                           
                         })
-                    }, label: {
-                        Text("Logout").foregroundColor(.white)
-                            //.padding(.all, 8)
-                    }))
+                )
+                    
 
             }
         }.navigationBarBackButtonHidden(true)
@@ -103,6 +105,13 @@ struct ProfileTab: View {
 
 struct ProfileTab_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileTab(isLoggedIn: .constant(true))
+        ProfileTab_PreviewWrapper()
+    }
+    struct ProfileTab_PreviewWrapper: View {
+        @State var games = getUpcomingGames()
+        @State var isLoggedIn = true
+        var body: some View {
+            ProfileTab(isLoggedIn: $isLoggedIn, upcomingGames: $games)
+        }
     }
 }
