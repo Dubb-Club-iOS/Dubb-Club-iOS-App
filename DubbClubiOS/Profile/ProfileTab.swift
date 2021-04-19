@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileTab: View {
     @Binding var isLoggedIn: Bool
-
+    
     var body: some View {
         NavigationView {
             /*

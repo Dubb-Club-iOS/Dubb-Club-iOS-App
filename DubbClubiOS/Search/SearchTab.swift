@@ -8,16 +8,86 @@
 import SwiftUI
 
 
+
+
+
+func searchTeamNamesArray(input: String) -> Bool {
+    let allPossibleResults = searchTeamName
+    let inputTrimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
+    for result in allPossibleResults {
+        if inputTrimmed.caseInsensitiveCompare(result.key) == ComparisonResult.orderedSame {
+            return true
+        }
+    }
+    return false
+}
+
+func findTeamId(input:String) -> Int {
+    let allPossibleResults = searchTeamName
+    let inputTrimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
+    for result in allPossibleResults {
+        if inputTrimmed.caseInsensitiveCompare(result.key) == ComparisonResult.orderedSame {
+            return result.value
+        }
+    }
+    return -1
+}
+
 struct SearchTab: View {
 
-    
+    @State var gameIds = [Int]()
+    @State var gameObjs = [GameFromDb]()
     @State private var searchBy = 0 // could be search by team or search by date
     @State var searchInput: String = ""
     @State private var isEditing = false
     @State private var animate = false
-    @State private var upcomingGames = [UpcomingGame]()
-    //@State private var pastGames = 
+    @State private var searchMatchesTeam: Bool = false
+    //@State private var upcomingGames = [UpcomingGame]()
     private var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+    
+    func getGameIdsForTeam(teamId: Int) {
+        do {
+            if let file = URL(string: "https://api.dubb.club/api/nba/getGamesByTeamFromDb/\(teamId)") {
+                let data = try Data(contentsOf: file)
+                let gameIds: [Int] = try! JSONDecoder().decode([Int].self, from: data)
+                self.gameIds = gameIds
+            } else {
+                print("no file")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    func getGameIdsForDate(date: String) {
+        do {
+            if let file = URL(string: "https://api.dubb.club/api/nba/getGamesByDateFromDb/\(date)") {
+                let data = try Data(contentsOf: file)
+                let gameIds: [Int] = try! JSONDecoder().decode([Int].self, from: data)
+                self.gameIds = gameIds
+            } else {
+                print("no file")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    func getGameById(gameId: Int) {
+        do {
+            if let file = URL(string: "https://api.dubb.club/api/nba/getGameFromDb/\(gameId)") {
+                let data = try Data(contentsOf: file)
+                print(gameId)
+                let game: GameFromDbParent = try! JSONDecoder().decode(GameFromDbParent.self, from: data)
+                self.gameObjs.append(game.game)
+            } else {
+                print("no file")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     var body: some View {
         NavigationView {
             /*
@@ -34,14 +104,7 @@ struct SearchTab: View {
                             }
                             .pickerStyle(SegmentedPickerStyle())
                             .padding(.all, 10)
-                            /*
-                            var searchPlaceholder: String
-                            if (searchBy == 0) {
-                                searchPlaceholder = "Search by Team"
-                            } else {
-                                searchPlaceholder = "Search by Date"
-                            }
-                            */
+                            
                             HStack {
                                 if searchBy == 0 {
                                     TextField("Search...", text: $searchInput)
@@ -100,10 +163,21 @@ struct SearchTab: View {
                                 content.animation(.easeInOut)
                             }
                             
-                            VStack {
-                                if searchBy == 0 {
-                                    TeamFollowingCell()
+                            
+                            if (searchBy == 0 && searchInput.count != 0) {
+                                var inputtedTeam: String = searchInput
+                                searchMatchesTeam = searchTeamNamesArray(input: inputtedTeam)
+                                
+                                if searchMatchesTeam {
+                                    let teamSearchedFor: Int = findTeamId(input: inputtedTeam)
+                                    
+                                    getGameIdsForTeam(teamId: teamSearchedFor)
+                                    
+                                } else {
+                                    
                                 }
+                                
+                                TeamFollowingCell()
                                 LazyVGrid(columns: twoColumnGrid, spacing: 4) {
                                     /*
                                     ForEach(upcomingGames, id: \.self) { game in
@@ -113,6 +187,7 @@ struct SearchTab: View {
                                     */
                                 }
                             }
+                            
                         }
                     }
                 }

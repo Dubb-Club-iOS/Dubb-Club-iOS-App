@@ -29,6 +29,7 @@
 		CA723BF82627A33900847451 /* SearchPastGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA723BF72627A33900847451 /* SearchPastGameCell.swift */; };
 		CAAA24B4261BC85000BE72B4 /* SearchTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAA24B3261BC85000BE72B4 /* SearchTeamCell.swift */; };
 		CAAA24B9261BC8C700BE72B4 /* SearchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAA24B8261BC8C700BE72B4 /* SearchTab.swift */; };
+		CAAC06EB262E329500A6472C /* SearchTeamInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAC06EA262E329500A6472C /* SearchTeamInput.swift */; };
 		CACC3B7E261291830034587E /* TeamFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC3B7D261291830034587E /* TeamFollowingCell.swift */; };
 		CACC3B832612926A0034587E /* TeamsFollowingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC3B822612926A0034587E /* TeamsFollowingList.swift */; };
 		CAF1410626152B800019B59C /* ProfileTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF1410526152B800019B59C /* ProfileTab.swift */; };
@@ -80,6 +81,7 @@
 		CA723BF72627A33900847451 /* SearchPastGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPastGameCell.swift; sourceTree = "<group>"; };
 		CAAA24B3261BC85000BE72B4 /* SearchTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTeamCell.swift; sourceTree = "<group>"; };
 		CAAA24B8261BC8C700BE72B4 /* SearchTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTab.swift; sourceTree = "<group>"; };
+		CAAC06EA262E329500A6472C /* SearchTeamInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTeamInput.swift; sourceTree = "<group>"; };
 		CACC3B7D261291830034587E /* TeamFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamFollowingCell.swift; sourceTree = "<group>"; };
 		CACC3B822612926A0034587E /* TeamsFollowingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsFollowingList.swift; sourceTree = "<group>"; };
 		CAF1410526152B800019B59C /* ProfileTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTab.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				CA723BED2627773900847451 /* SearchBarAnimationUtility.swift */,
 				CA723BF22627A27000847451 /* SearchUpcomingGameCell.swift */,
 				CA723BF72627A33900847451 /* SearchPastGameCell.swift */,
+				CAAC06EA262E329500A6472C /* SearchTeamInput.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				42D9605E2612390200E27B9B /* Model.swift in Sources */,
 				CA723BF32627A27000847451 /* SearchUpcomingGameCell.swift in Sources */,
 				120772C6260951CE0024A355 /* ContentView.swift in Sources */,
+				CAAC06EB262E329500A6472C /* SearchTeamInput.swift in Sources */,
 				12177C652619012F00C9D4E4 /* HomeStreamList.swift in Sources */,
 				CAAA24B9261BC8C700BE72B4 /* SearchTab.swift in Sources */,
 				CAAA24B4261BC85000BE72B4 /* SearchTeamCell.swift in Sources */,
