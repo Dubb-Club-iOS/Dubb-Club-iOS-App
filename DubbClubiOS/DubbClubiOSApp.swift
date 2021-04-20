@@ -88,13 +88,12 @@ struct DubbClubiOSApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-//                if authenticated {
-//                    TabUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
-//                } else {
-//                    LoginUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
-//                }
+                if authenticated {
+                    TabUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
+                } else {
+                    LoginUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
+                }
 //                ContentView()
-                Standings()
             }
         }
     }

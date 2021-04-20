@@ -68,7 +68,7 @@ struct DonutChart : View {
     var parentGeo: GeometryProxy
     
     func fontSize(_ geo: GeometryProxy) -> CGFloat {
-        return geo.size.height * 0.05
+        return geo.size.height * 0.06
     }
     
     var body: some View {
