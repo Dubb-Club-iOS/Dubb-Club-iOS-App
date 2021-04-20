@@ -10,6 +10,7 @@ import SwiftUI
 struct TabUIView: View {
     @Binding var isLoggedIn: Bool
     @Binding var upcomingGames: [UpcomingGame]
+    @Binding var standings: [[Team]]
     @State private var selection = "home"
     var body: some View {
         TabView(selection:$selection) {
@@ -25,6 +26,11 @@ struct TabUIView: View {
                     Text("Search")
                 }
                 .tag("search")
+            Standings(eastStandings: standings[0], westStandings: standings[1])
+                .tabItem {
+                    Image(systemName: "list.number")
+                    Text("Standings")
+                }
             ProfileTab(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames)
                 .tabItem {
                     Image(systemName: "person")
@@ -42,9 +48,10 @@ struct TabUIView_Previews: PreviewProvider {
     }
     struct TabUIView_PreviewWrapper: View {
         @State var games = getUpcomingGames()
+        @State var standings = getTeams()
         @State var isLoggedIn = true
         var body: some View {
-            TabUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games)
+            TabUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games, standings: $standings)
         }
     }
 }

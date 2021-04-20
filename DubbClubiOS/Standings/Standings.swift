@@ -13,30 +13,7 @@ struct Standings: View {
     @State var westStandings = [Team]()
     @State var hasLoaded = false
     @State private var width: CGFloat? = nil
-    
-    func getTeams() {
-        do {
-            if let file = URL(string: "https://api.dubb.club/api/nba/getTeamsFromDb") {
-                let data = try Data(contentsOf: file)
-                let teamStandings: [Team] = try! JSONDecoder().decode([Team].self, from: data)
-                for team in teamStandings {
-                    if team.conference == "east" {
-                        self.eastStandings.append(team)
-                    } else {
-                        self.westStandings.append(team)
-                    }
-                }
-                self.eastStandings = self.eastStandings.sorted(by: { $0.standing < $1.standing })
-                self.westStandings = self.westStandings.sorted(by: { $0.standing < $1.standing })
-                self.hasLoaded = true
-            } else {
-                print("no file")
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    //                            Image(teamIds[game.away[0].teamId]!).resizable().scaledToFit()
+
     var columns: [GridItem] =
         [
             GridItem(.flexible()),
@@ -47,11 +24,9 @@ struct Standings: View {
         ]
     
     var body: some View {
-        if !self.hasLoaded {
-            ProgressView().onAppear {
-                getTeams()
-            }
-        } else {
+//        if !self.hasLoaded {
+//            ProgressView()
+//        } else {
             GeometryReader { geometry in
                 NavigationView {
                     ScrollView(.vertical, showsIndicators: false) {
@@ -102,11 +77,12 @@ struct Standings: View {
                         }
                         .padding(.leading, 10)
                         .padding(.trailing, 10)
+                        .padding(.bottom, 20)
                     }.navigationBarTitle(Text("Standings"))
                 }
             }
         }
-    }
+    
 }
 
 struct Standings_Previews: PreviewProvider {
