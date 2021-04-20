@@ -20,6 +20,7 @@
 		12177C652619012F00C9D4E4 /* HomeStreamList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12177C642619012C00C9D4E4 /* HomeStreamList.swift */; };
 		12177C76261E6E1700C9D4E4 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12177C75261E6E1400C9D4E4 /* Teams.swift */; };
 		12DA41D3262CE48E0041BBAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12DA41D2262CE48E0041BBAC /* LaunchScreen.storyboard */; };
+		422789F4262E39A80008D674 /* Standings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422789F3262E39A80008D674 /* Standings.swift */; };
 		42D9605E2612390200E27B9B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9605D2612390200E27B9B /* Model.swift */; };
 		8B9D01042615164700CE0190 /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D01032615164700CE0190 /* LoginUIView.swift */; };
 		8B9D01092615166200CE0190 /* RegisterUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D01082615166200CE0190 /* RegisterUIView.swift */; };
@@ -71,6 +72,7 @@
 		12177C642619012C00C9D4E4 /* HomeStreamList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStreamList.swift; sourceTree = "<group>"; };
 		12177C75261E6E1400C9D4E4 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		12DA41D2262CE48E0041BBAC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		422789F3262E39A80008D674 /* Standings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standings.swift; sourceTree = "<group>"; };
 		42D9605D2612390200E27B9B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8B9D01032615164700CE0190 /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIView.swift; sourceTree = "<group>"; };
 		8B9D01082615166200CE0190 /* RegisterUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUIView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,8 @@
 		120772C2260951CE0024A355 /* DubbClubiOS */ = {
 			isa = PBXGroup;
 			children = (
+				422789EA262E37740008D674 /* Standings */,
+				12BD92ED2627A3FB00101568 /* UpcomingGame */,
 				CAAA24B2261BC82200BE72B4 /* Search */,
 				8BE32428261E6CD100552668 /* Tabs */,
 				8B9D01022615162900CE0190 /* LoginAndRegister */,
@@ -186,6 +190,21 @@
 				12177C642619012C00C9D4E4 /* HomeStreamList.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		12BD92ED2627A3FB00101568 /* UpcomingGame */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UpcomingGame;
+			sourceTree = "<group>";
+		};
+		422789EA262E37740008D674 /* Standings */ = {
+			isa = PBXGroup;
+			children = (
+				422789F3262E39A80008D674 /* Standings.swift */,
+			);
+			path = Standings;
 			sourceTree = "<group>";
 		};
 		8B9D01022615162900CE0190 /* LoginAndRegister */ = {
@@ -365,6 +384,7 @@
 				1207D6E326128A1B0045DB2A /* ColorManager.swift in Sources */,
 				42D9605E2612390200E27B9B /* Model.swift in Sources */,
 				CA723BF32627A27000847451 /* SearchUpcomingGameCell.swift in Sources */,
+				422789F4262E39A80008D674 /* Standings.swift in Sources */,
 				120772C6260951CE0024A355 /* ContentView.swift in Sources */,
 				12177C652619012F00C9D4E4 /* HomeStreamList.swift in Sources */,
 				CAAA24B9261BC8C700BE72B4 /* SearchTab.swift in Sources */,
