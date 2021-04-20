@@ -12,7 +12,7 @@ import SwiftUI
 //    let teams: [TeamStanding]
 //}
 
-struct Team: Codable {
+struct Team: Codable, Hashable {
     let teamId: Int
     let teamName: String
     let conference: String

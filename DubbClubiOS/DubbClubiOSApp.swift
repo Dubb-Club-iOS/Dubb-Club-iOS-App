@@ -93,7 +93,8 @@ struct DubbClubiOSApp: App {
 //                } else {
 //                    LoginUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
 //                }
-                ContentView()
+//                ContentView()
+                Standings()
             }
         }
     }
