@@ -25,11 +25,14 @@
 		8B9D01042615164700CE0190 /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D01032615164700CE0190 /* LoginUIView.swift */; };
 		8B9D01092615166200CE0190 /* RegisterUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D01082615166200CE0190 /* RegisterUIView.swift */; };
 		8BE32435261E6CFA00552668 /* TabUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE32434261E6CFA00552668 /* TabUIView.swift */; };
+		CA48194F26309C09009986AC /* SearchTeamResultCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48194E26309C09009986AC /* SearchTeamResultCells.swift */; };
+		CA48195C2630C417009986AC /* SearchDateResultCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48195B2630C417009986AC /* SearchDateResultCells.swift */; };
 		CA723BEE2627773900847451 /* SearchBarAnimationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA723BED2627773900847451 /* SearchBarAnimationUtility.swift */; };
 		CA723BF32627A27000847451 /* SearchUpcomingGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA723BF22627A27000847451 /* SearchUpcomingGameCell.swift */; };
 		CA723BF82627A33900847451 /* SearchPastGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA723BF72627A33900847451 /* SearchPastGameCell.swift */; };
 		CAAA24B4261BC85000BE72B4 /* SearchTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAA24B3261BC85000BE72B4 /* SearchTeamCell.swift */; };
 		CAAA24B9261BC8C700BE72B4 /* SearchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAA24B8261BC8C700BE72B4 /* SearchTab.swift */; };
+		CAAC06EB262E329500A6472C /* SearchTeamInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAC06EA262E329500A6472C /* SearchTeamInput.swift */; };
 		CACC3B7E261291830034587E /* TeamFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC3B7D261291830034587E /* TeamFollowingCell.swift */; };
 		CACC3B832612926A0034587E /* TeamsFollowingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC3B822612926A0034587E /* TeamsFollowingList.swift */; };
 		CAF1410626152B800019B59C /* ProfileTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF1410526152B800019B59C /* ProfileTab.swift */; };
@@ -77,11 +80,14 @@
 		8B9D01032615164700CE0190 /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIView.swift; sourceTree = "<group>"; };
 		8B9D01082615166200CE0190 /* RegisterUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUIView.swift; sourceTree = "<group>"; };
 		8BE32434261E6CFA00552668 /* TabUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabUIView.swift; sourceTree = "<group>"; };
+		CA48194E26309C09009986AC /* SearchTeamResultCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTeamResultCells.swift; sourceTree = "<group>"; };
+		CA48195B2630C417009986AC /* SearchDateResultCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDateResultCells.swift; sourceTree = "<group>"; };
 		CA723BED2627773900847451 /* SearchBarAnimationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarAnimationUtility.swift; sourceTree = "<group>"; };
 		CA723BF22627A27000847451 /* SearchUpcomingGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUpcomingGameCell.swift; sourceTree = "<group>"; };
 		CA723BF72627A33900847451 /* SearchPastGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPastGameCell.swift; sourceTree = "<group>"; };
 		CAAA24B3261BC85000BE72B4 /* SearchTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTeamCell.swift; sourceTree = "<group>"; };
 		CAAA24B8261BC8C700BE72B4 /* SearchTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTab.swift; sourceTree = "<group>"; };
+		CAAC06EA262E329500A6472C /* SearchTeamInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTeamInput.swift; sourceTree = "<group>"; };
 		CACC3B7D261291830034587E /* TeamFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamFollowingCell.swift; sourceTree = "<group>"; };
 		CACC3B822612926A0034587E /* TeamsFollowingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsFollowingList.swift; sourceTree = "<group>"; };
 		CAF1410526152B800019B59C /* ProfileTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTab.swift; sourceTree = "<group>"; };
@@ -232,6 +238,9 @@
 				CA723BED2627773900847451 /* SearchBarAnimationUtility.swift */,
 				CA723BF22627A27000847451 /* SearchUpcomingGameCell.swift */,
 				CA723BF72627A33900847451 /* SearchPastGameCell.swift */,
+				CAAC06EA262E329500A6472C /* SearchTeamInput.swift */,
+				CA48194E26309C09009986AC /* SearchTeamResultCells.swift */,
+				CA48195B2630C417009986AC /* SearchDateResultCells.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -381,11 +390,13 @@
 				CACC3B7E261291830034587E /* TeamFollowingCell.swift in Sources */,
 				CACC3B832612926A0034587E /* TeamsFollowingList.swift in Sources */,
 				8B9D01092615166200CE0190 /* RegisterUIView.swift in Sources */,
+				CA48194F26309C09009986AC /* SearchTeamResultCells.swift in Sources */,
 				1207D6E326128A1B0045DB2A /* ColorManager.swift in Sources */,
 				42D9605E2612390200E27B9B /* Model.swift in Sources */,
 				CA723BF32627A27000847451 /* SearchUpcomingGameCell.swift in Sources */,
 				422789F4262E39A80008D674 /* Standings.swift in Sources */,
 				120772C6260951CE0024A355 /* ContentView.swift in Sources */,
+				CAAC06EB262E329500A6472C /* SearchTeamInput.swift in Sources */,
 				12177C652619012F00C9D4E4 /* HomeStreamList.swift in Sources */,
 				CAAA24B9261BC8C700BE72B4 /* SearchTab.swift in Sources */,
 				CAAA24B4261BC85000BE72B4 /* SearchTeamCell.swift in Sources */,
@@ -394,6 +405,7 @@
 				8BE32435261E6CFA00552668 /* TabUIView.swift in Sources */,
 				1207D6F026128A890045DB2A /* PredictionCard.swift in Sources */,
 				CA723BEE2627773900847451 /* SearchBarAnimationUtility.swift in Sources */,
+				CA48195C2630C417009986AC /* SearchDateResultCells.swift in Sources */,
 				120772C4260951CE0024A355 /* DubbClubiOSApp.swift in Sources */,
 				12177C5D26182C4E00C9D4E4 /* DonutChart.swift in Sources */,
 				CA723BF82627A33900847451 /* SearchPastGameCell.swift in Sources */,

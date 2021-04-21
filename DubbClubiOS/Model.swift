@@ -54,7 +54,7 @@ struct GameFromDbParent: Codable {
     let game: GameFromDb
 }
 
-struct GameFromDb: Codable {
+struct GameFromDb: Codable, Hashable {
     let confidence: Float
     let away: [TeamLite]
     let home: [TeamLite]
@@ -70,27 +70,30 @@ struct GameFromDb: Codable {
     }
 }
 
-struct PastGameForTeam: Codable {
+struct PastGameForTeam: Codable, Hashable {
     let gameId: String
     let date: String
     let home: TeamLite
     let away: TeamLite
     let gameStats: GameStats
+    func getPastGameAsStr() -> String {
+        return "\(home.teamName) at \(away.teamName)"
+    }
 }
 
-struct GameStats: Codable {
+struct GameStats: Codable, Hashable {
     let home: TeamGameSummary
     let away: TeamGameSummary
 }
 
-struct TeamGameSummary: Codable {
+struct TeamGameSummary: Codable, Hashable {
     let teamId: String
     let points: String
     let lineScore: [String]
     let leaders: [PlayerStat]
 }
 
-struct PlayerStat: Codable {
+struct PlayerStat: Codable, Hashable {
     let points: String?
     let rebounds: String?
     let assists: String?
