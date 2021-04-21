@@ -16,7 +16,9 @@ struct TabUIView: View {
         TabView(selection:$selection) {
             HomeStream(upcomingGames: $upcomingGames)
                 .tabItem {
-                    Image(systemName: "house")
+//                    Image(systemName: "house")
+                    Image("logo_png")
+                        .renderingMode(.template)
                     Text("Home")
                 }
                 .tag("home")
