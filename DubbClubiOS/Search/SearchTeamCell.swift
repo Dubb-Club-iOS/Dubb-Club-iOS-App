@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchTeamCell: View {
+    @Binding var teamId: Int
     @State private var isFollowing = true
     var body: some View {
         HStack {
