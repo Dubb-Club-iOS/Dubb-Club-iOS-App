@@ -145,7 +145,8 @@ struct SearchDateResultCells: View {
                     
                     
                 }
-            }.onAppear(perform: {
+            }
+            .onAppear(perform: {
                 let formatter = DateFormatter()
                 formatter.dateStyle = .short
                 let dateInput = formatter.string(from: inputDate)

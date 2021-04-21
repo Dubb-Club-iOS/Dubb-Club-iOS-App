@@ -170,12 +170,15 @@ struct SearchTab: View {
                             }
                             
                             if searchBy == 0 {
+                                
                                 if searchMatchesTeam != -1 {
                                     SearchTeamResultCells(inputTeamId: searchMatchesTeam)
                                 }
+                                
                             } else {
                                 SearchDateResultCells(inputDate: datePicked)
                             }
+                            
                             
                         }
                     }
