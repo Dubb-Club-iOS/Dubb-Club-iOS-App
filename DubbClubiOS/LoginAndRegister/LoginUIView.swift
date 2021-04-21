@@ -72,6 +72,7 @@ struct LoginUIView: View {
                 UserDefaults.standard.set(loginReturn.username, forKey:"Username")
                 self.isLoggedIn = true
                 self.showErrorMessage = false
+//                self.upcomingGames = getUpcomingGames()
             } else {
                 self.errorMessage = "Unexpected error!"
                 self.showErrorMessage = true
@@ -111,19 +112,19 @@ struct LoginUIView: View {
                             
                             
                             Divider().background(Color.gray)
-                            HStack(){
+//                            HStack(){
                                 SecureField("", text: self.$password)
                                     .modifier(PlaceholderStyle(showPlaceHolder: password.isEmpty, placeholder: "Password"))
                                     .foregroundColor(.gray)
                                     .padding([.leading, .top, .bottom])
                                 
-                                Button(action: {}, label: {
-                                    Text("Forgot Password?")
-                                        .font(.headline)
-                                        .foregroundColor(Color.blue)
-                                        .padding()
-                                })
-                            }
+//                                Button(action: {}, label: {
+//                                    Text("Forgot Password?")
+//                                        .font(.headline)
+//                                        .foregroundColor(Color.blue)
+//                                        .padding()
+//                                })
+//                            }
                             Divider().background(Color.gray)
                         }
                         

@@ -23,6 +23,7 @@ struct DubbClubiOSApp: App {
     
     @State var authenticated: Bool = isLoggedIn()
     @State var upcomingGames = getUpcomingGames()
+    @State var standings = getTeams()
     
     init() {
         refreshToken()
@@ -88,12 +89,12 @@ struct DubbClubiOSApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-//                if authenticated {
-//                    TabUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
-//                } else {
-//                    LoginUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
-//                }
-                ContentView()
+                if authenticated {
+                    TabUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames, standings: $standings)
+                } else {
+                    LoginUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
+                }
+//                ContentView()
             }
         }
     }
