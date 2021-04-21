@@ -26,6 +26,7 @@
 		8BE32435261E6CFA00552668 /* TabUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE32434261E6CFA00552668 /* TabUIView.swift */; };
 		CA48194A26308F43009986AC /* SearchGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48194926308F43009986AC /* SearchGameCell.swift */; };
 		CA48194F26309C09009986AC /* SearchTeamResultCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48194E26309C09009986AC /* SearchTeamResultCells.swift */; };
+		CA48195C2630C417009986AC /* SearchDateResultCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48195B2630C417009986AC /* SearchDateResultCells.swift */; };
 		CA723BEE2627773900847451 /* SearchBarAnimationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA723BED2627773900847451 /* SearchBarAnimationUtility.swift */; };
 		CA723BF32627A27000847451 /* SearchUpcomingGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA723BF22627A27000847451 /* SearchUpcomingGameCell.swift */; };
 		CA723BF82627A33900847451 /* SearchPastGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA723BF72627A33900847451 /* SearchPastGameCell.swift */; };
@@ -80,6 +81,7 @@
 		8BE32434261E6CFA00552668 /* TabUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabUIView.swift; sourceTree = "<group>"; };
 		CA48194926308F43009986AC /* SearchGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameCell.swift; sourceTree = "<group>"; };
 		CA48194E26309C09009986AC /* SearchTeamResultCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTeamResultCells.swift; sourceTree = "<group>"; };
+		CA48195B2630C417009986AC /* SearchDateResultCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDateResultCells.swift; sourceTree = "<group>"; };
 		CA723BED2627773900847451 /* SearchBarAnimationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarAnimationUtility.swift; sourceTree = "<group>"; };
 		CA723BF22627A27000847451 /* SearchUpcomingGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUpcomingGameCell.swift; sourceTree = "<group>"; };
 		CA723BF72627A33900847451 /* SearchPastGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPastGameCell.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				CAAC06EA262E329500A6472C /* SearchTeamInput.swift */,
 				CA48194926308F43009986AC /* SearchGameCell.swift */,
 				CA48194E26309C09009986AC /* SearchTeamResultCells.swift */,
+				CA48195B2630C417009986AC /* SearchDateResultCells.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				8BE32435261E6CFA00552668 /* TabUIView.swift in Sources */,
 				1207D6F026128A890045DB2A /* PredictionCard.swift in Sources */,
 				CA723BEE2627773900847451 /* SearchBarAnimationUtility.swift in Sources */,
+				CA48195C2630C417009986AC /* SearchDateResultCells.swift in Sources */,
 				120772C4260951CE0024A355 /* DubbClubiOSApp.swift in Sources */,
 				12177C5D26182C4E00C9D4E4 /* DonutChart.swift in Sources */,
 				CA723BF82627A33900847451 /* SearchPastGameCell.swift in Sources */,

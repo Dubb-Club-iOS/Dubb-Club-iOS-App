@@ -1,5 +1,5 @@
 //
-//  SearchTeamResultCells.swift
+//  SearchDateResultCells.swift
 //  DubbClubiOS
 //
 //  Created by Brandon Lamer-Connolly on 4/21/21.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct SearchTeamResultCells: View {
-    var inputTeamId: Int
+struct SearchDateResultCells: View {
+    
+    var inputDate: Date
     var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
     @State var gameIds = [Int]()
     @State var gameObjs = [GameFromDb]()
@@ -26,9 +27,9 @@ struct SearchTeamResultCells: View {
         return UTCToCurrentFormat
     }
     
-    func getGameIdsForTeam(teamId: Int) {
+    func getGameIdsForDate(date: String) {
         do {
-            if let file = URL(string: "https://api.dubb.club/api/nba/getGamesByTeamFromDb/\(teamId)") {
+            if let file = URL(string: "https://api.dubb.club/api/nba/getGamesByDateFromDb/\(date)") {
                 let data = try Data(contentsOf: file)
                 let gameIds: [Int] = try! JSONDecoder().decode([Int].self, from: data)
                 self.gameIds = gameIds
@@ -55,8 +56,8 @@ struct SearchTeamResultCells: View {
         }
     }
     
-    func getGamesForTeam(teamId: Int) {
-        getGameIdsForTeam(teamId: teamId)
+    func getGamesForDate(date: String) {
+        getGameIdsForDate(date: date)
         for gameId in gameIds {
             getGameById(gameId: gameId)
         }
@@ -120,11 +121,7 @@ struct SearchTeamResultCells: View {
             }
         }
     }
-            
-            
-            
-            
-            
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -145,19 +142,26 @@ struct SearchTeamResultCells: View {
                             .aspectRatio(1, contentMode: .fit)
                         
                     }
-                }.onAppear(perform: {
-                    getGamesForTeam(teamId: inputTeamId)
-                    getUpcomingGamesFromGameList()
-                    getPastGamesFromGameList()
-                })
+                    
+                    
+                }
+            }.onAppear(perform: {
+                let formatter = DateFormatter()
+                formatter.dateStyle = .short
+                let dateInput = formatter.string(from: inputDate)
+                let formattedDate = getDate(date: dateInput)
+                getGamesForDate(date: formattedDate)
+                getUpcomingGamesFromGameList()
+                getPastGamesFromGameList()
                 
-            }
+            })
+            
         }
     }
 }
-    
-struct SearchTeamResultCells_Previews: PreviewProvider {
+
+struct SearchDateResultCells_Previews: PreviewProvider {
     static var previews: some View {
-        SearchTeamResultCells(inputTeamId: 2)
+        SearchDateResultCells(inputDate: Date())
     }
 }

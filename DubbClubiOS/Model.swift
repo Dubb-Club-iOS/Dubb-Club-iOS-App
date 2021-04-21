@@ -54,7 +54,7 @@ struct GameFromDbParent: Codable {
     let game: GameFromDb
 }
 
-struct GameFromDb: Codable {
+struct GameFromDb: Codable, Hashable {
     let confidence: Float
     let away: [TeamLite]
     let home: [TeamLite]

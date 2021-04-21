@@ -14,7 +14,7 @@ struct TeamFollowingCell: View {
             VStack {
                 Text("Team\nLogo")
             }
-            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 10)
+            .padding(.all, 10)
             .background(Color.red)
             
             //team name

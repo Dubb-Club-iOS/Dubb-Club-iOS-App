@@ -7,18 +7,15 @@
 
 import SwiftUI
 
-
-
-
-
-
 struct SearchTab: View {
     
     @State var gameIds = [Int]()
     @State var gameObjs = [GameFromDb]()
-    @State private var searchBy = 0 // could be search by team or search by date
+    @State var searchBy = 0 // could be search by team or search by date
     @State var searchInput: String = ""
-    @State private var isEditing = false
+    @State var searchOutput: String = ""
+    @State var datePicked = Date()
+    @State var isEditing = false
     @State private var animate = false
     @State private var searchMatchesTeam = -1
     
@@ -34,7 +31,7 @@ struct SearchTab: View {
         }
         return -1
     }
-
+    
     func findTeamId(input:String) -> Int {
         let allPossibleResults = searchTeamName
         let inputTrimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -108,22 +105,26 @@ struct SearchTab: View {
                             
                             HStack {
                                 if searchBy == 0 {
-                                    TextField("Search...", text: $searchInput)
-                                        .onAppear(perform: {
-                                            self.animate = true
-                                        })
-                                        .onChange(of: searchInput, perform: { value in
-                                            self.searchMatchesTeam = searchTeamNamesArray(input: searchInput)
-                                            print(searchMatchesTeam)
-                                        })
-                                        .padding(7)
-                                        .padding(.horizontal, 25)
-                                        .background(Color(.systemGray4))
-                                        .cornerRadius(8)
-                                        .padding(.horizontal, 10)
-                                        .onTapGesture {
-                                            self.isEditing = true
-                                        }
+                                    TextField("Search...", text: $searchInput, onEditingChanged: { (edit) in
+                                        self.isEditing = true
+                                    }, onCommit: {
+                                        self.searchOutput = self.searchInput
+                                        self.searchMatchesTeam = searchTeamNamesArray(input: searchOutput)
+                                        print("committed!")
+                                        print(searchInput)
+                                        print(searchMatchesTeam)
+                                    })
+                                    .onAppear(perform: {
+                                        self.animate = true
+                                    })
+                                    .padding(7)
+                                    .padding(.horizontal, 25)
+                                    .background(Color(.systemGray4))
+                                    .cornerRadius(8)
+                                    .padding(.horizontal, 10)
+                                    .onTapGesture {
+                                        self.isEditing = true
+                                    }
                                     if searchInput.count != 0 {
                                         Button(action: {
                                             self.isEditing = false
@@ -138,7 +139,7 @@ struct SearchTab: View {
                                         .animation(.easeInOut)
                                     }
                                 } else {
-                                    DatePicker(selection: .constant(Date()), displayedComponents: [.date], label: { Text("Game Date") })
+                                    DatePicker(selection: $datePicked, displayedComponents: [.date], label: { Text("Game Date") })
                                         .padding(7)
                                         .padding(.horizontal, 25)
                                         .background(Color(.systemGray4))
@@ -167,10 +168,15 @@ struct SearchTab: View {
                             .maybe(animate) { content in
                                 content.animation(.easeInOut)
                             }
-                            if searchMatchesTeam != -1 {
-                                SearchTeamResultCells(inputTeamId: searchMatchesTeam)
+                            
+                            if searchBy == 0 {
+                                if searchMatchesTeam != -1 {
+                                    SearchTeamResultCells(inputTeamId: searchMatchesTeam)
+                                }
+                            } else {
+                                SearchDateResultCells(inputDate: datePicked)
                             }
-                        
+                            
                         }
                     }
                 }
