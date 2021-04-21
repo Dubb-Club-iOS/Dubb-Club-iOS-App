@@ -21,51 +21,15 @@ struct SearchTab: View {
     @State private var isEditing = false
     @State private var animate = false
     @State private var searchMatchesTeam = -1
-    @Binding private var upcomingGames = [UpcomingGame]()
-    @Binding private var pastGames = [PastGameForTeam]()
-    private var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
     
-    func getGames() {
-        if searchBy == 0 {
-            var inputtedTeam: String = searchInput
-            searchMatchesTeam = searchTeamNamesArray(input: inputtedTeam)
-            
-            if searchMatchesTeam == 1 {
-                let teamSearchedFor: Int = findTeamId(input: inputtedTeam)
-                
-                getGameIdsForTeam(teamId: teamSearchedFor)
-                //gameIds should have all the info we need
-                
-                for game in gameIds {
-                    getGameById(gameId: game)
-                }
-                
-                
-                
-            } else {
-                Text("No results found :(")
-            }
-            
-            //TeamFollowingCell()
-            LazyVGrid(columns: twoColumnGrid, spacing: 4) {
-                
-                 ForEach(upcomingGames, id: \.self) { game in
-                 PredictionCard(game: game).frame(height: geometry.size.height / 2.2)
-                 
-                 }
-                 
-            }
-        } else {
-            
-        }
-    }
     
     func searchTeamNamesArray(input: String) -> Int {
         let allPossibleResults = searchTeamName
         let inputTrimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         for result in allPossibleResults {
             if inputTrimmed.caseInsensitiveCompare(result.key) == ComparisonResult.orderedSame {
-                return 1
+                return result.value
+                
             }
         }
         return -1
@@ -148,6 +112,10 @@ struct SearchTab: View {
                                         .onAppear(perform: {
                                             self.animate = true
                                         })
+                                        .onChange(of: searchInput, perform: { value in
+                                            self.searchMatchesTeam = searchTeamNamesArray(input: searchInput)
+                                            print(searchMatchesTeam)
+                                        })
                                         .padding(7)
                                         .padding(.horizontal, 25)
                                         .background(Color(.systemGray4))
@@ -199,9 +167,10 @@ struct SearchTab: View {
                             .maybe(animate) { content in
                                 content.animation(.easeInOut)
                             }
-                            
-                    
-                            
+                            if searchMatchesTeam != -1 {
+                                SearchTeamResultCells(inputTeamId: searchMatchesTeam)
+                            }
+                        
                         }
                     }
                 }

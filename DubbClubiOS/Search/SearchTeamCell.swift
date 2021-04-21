@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchTeamCell: View {
-    @Binding var teamId: Int
+    var teamId: Int
     @State private var isFollowing = true
     var body: some View {
         HStack {
@@ -55,6 +55,6 @@ struct SearchTeamCell: View {
 
 struct SearchTeamCell_Previews: PreviewProvider {
     static var previews: some View {
-        SearchTeamCell()
+        SearchTeamCell(teamId: 2)
     }
 }

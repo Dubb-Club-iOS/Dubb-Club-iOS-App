@@ -9,7 +9,7 @@ import Foundation
 
 let searchTeamName: [String : Int] = [
     "Atlanta Hawks" : 1, "Atlanta" : 1, "Hawks" : 1, "ATL" : 1,
-    "Boston Celtics" : 2, "Boston": 2, "Celtics" : 2, "BOS" : 2,
+    "Boston Celtics" : 2, "Boston" : 2, "Celtics" : 2, "BOS" : 2,
     "Brooklyn Nets" : 4, "Brooklyn" : 4, "Nets" : 4, "BKN" : 4,
     "Charlotte Hornets" : 5, "Charlotte" : 5, "Hornets" : 5, "CHA" : 5,
     "Chicago Bulls" : 6, "Chicago" : 6, "Bulls" : 6, "CHI" : 6,

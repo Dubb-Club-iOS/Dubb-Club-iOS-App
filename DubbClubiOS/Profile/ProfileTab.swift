@@ -81,11 +81,13 @@ struct ProfileTab: View {
                     
                     
                 }.navigationTitle("Profile").navigationBarItems(trailing: Button(action: {
-                        NavigationLink(destination: LoginUIView()) {
+                    /*
+                    NavigationLink(destination: LoginUIView()) {
                             Text("Log Out")
                         }.simultaneousGesture(TapGesture().onEnded{
                             self.logout()
                         })
+                    */
                     }, label: {
                         Text("Logout").foregroundColor(.white)
                             //.padding(.all, 8)
