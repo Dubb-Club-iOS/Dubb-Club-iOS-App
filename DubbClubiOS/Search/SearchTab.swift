@@ -23,9 +23,9 @@ struct SearchTab: View {
     func searchTeamNamesArray(input: String) -> Int {
         let allPossibleResults = searchTeamName
         let inputTrimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        for result in allPossibleResults {
-            if inputTrimmed.caseInsensitiveCompare(result.key) == ComparisonResult.orderedSame {
-                return result.value
+        for (name, id) in allPossibleResults {
+            if inputTrimmed.caseInsensitiveCompare(name) == ComparisonResult.orderedSame {
+                return id
                 
             }
         }
