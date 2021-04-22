@@ -7,15 +7,23 @@
 
 import SwiftUI
 
+func setEmail() -> String {
+    let token = UserDefaults.standard.object(forKey: "Username") as? String
+    if token == nil {
+        return ""
+    }
+    return token!
+}
+
 struct LoginUIView: View {
-    @State private var email = ""
+    @State private var email = setEmail()
     @State private var password = ""
     @State private var showSignUp = false
-    @Binding var isLoggedIn: Bool
-    @Binding var upcomingGames: [UpcomingGame]
     @State private var showErrorMessage = false
     @State private var errorMessage = ""
     @State private var isLoggingIn = false
+    
+    @EnvironmentObject var life: Life
     
     func login() {
         
@@ -70,7 +78,9 @@ struct LoginUIView: View {
                 let loginReturn: LoginReturn = try! JSONDecoder().decode(LoginReturn.self, from: data)
                 UserDefaults.standard.set(loginReturn.accessToken, forKey:"JWT")
                 UserDefaults.standard.set(loginReturn.username, forKey:"Username")
-                self.isLoggedIn = true
+                DispatchQueue.main.async {
+                    self.life.authenticated = true
+                }
                 self.showErrorMessage = false
 //                self.upcomingGames = getUpcomingGames()
             } else {
@@ -78,7 +88,8 @@ struct LoginUIView: View {
                 self.showErrorMessage = true
             }
             self.isLoggingIn = false
-        }.resume()
+        }
+        .resume()
     }
     
     var body: some View {
@@ -134,14 +145,14 @@ struct LoginUIView: View {
                         Spacer()
                         
                         
-                        NavigationLink(destination: HomeStream(upcomingGames: $upcomingGames), isActive: $isLoggedIn) {
+                        NavigationLink(destination: HomeStream()) {
                             Button(action: {}, label: {
                                 Text("Sign In")
                                     .font(.headline)
                                     .fontWeight(.semibold)
                                     .foregroundColor(Color.white)
                                     .frame(width: geometry.size.width / 3, height: geometry.size.width / 8, alignment: .center)
-                                    .background((self.isLoggingIn || self.isLoggedIn) ? Color.blue.opacity(0.5) : Color.blue)
+                                    .background((self.isLoggingIn || self.life.authenticated) ? Color.blue.opacity(0.5) : Color.blue)
                                     .cornerRadius(12.0)
                                     .onTapGesture(perform: {
                                         showSignUp = true
@@ -156,7 +167,7 @@ struct LoginUIView: View {
                             Text("Don't have an account?")
                                 .foregroundColor(.gray)
                             NavigationLink(
-                                destination: RegisterUIView(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames),
+                                destination: RegisterUIView(),
                                 label: {
                                     Text("Sign Up")
                                 })
@@ -177,7 +188,7 @@ struct LoginUIView_Previews: PreviewProvider {
         @State var games = getUpcomingGames()
         @State var isLoggedIn = false
         var body: some View {
-            LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games)
+            LoginUIView().environmentObject(Life(authenticated: false, upcomingGames: getUpcomingGames(), standings: getTeams()))
         }
     }
 }

@@ -161,29 +161,3 @@ func getUpcomingGames() -> [UpcomingGame] {
         return []
     }
 }
-
-func getTeams() -> [[Team]] {
-    do {
-        if let file = URL(string: "https://api.dubb.club/api/nba/getTeamsFromDb") {
-            let data = try Data(contentsOf: file)
-            let teamStandings: [Team] = try! JSONDecoder().decode([Team].self, from: data)
-            var eastStandings = [Team]()
-            var westStandings = [Team]()
-            for team in teamStandings {
-                if team.conference == "east" {
-                    eastStandings.append(team)
-                } else {
-                    westStandings.append(team)
-                }
-            }
-            eastStandings = eastStandings.sorted(by: { $0.standing < $1.standing })
-            westStandings = westStandings.sorted(by: { $0.standing < $1.standing })
-            return [eastStandings, westStandings]
-        } else {
-            return []
-        }
-    } catch {
-        print(error.localizedDescription)
-        return []
-    }
-}

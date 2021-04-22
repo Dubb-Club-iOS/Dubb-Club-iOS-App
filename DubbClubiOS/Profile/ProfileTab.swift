@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ProfileTab: View {
-    @Binding var isLoggedIn: Bool
-    @Binding var upcomingGames: [UpcomingGame]
+    @EnvironmentObject var life: Life
 
     var body: some View {
         NavigationView {
@@ -83,7 +82,7 @@ struct ProfileTab: View {
                     
 
                 }.navigationTitle("Profile").navigationBarItems(trailing:
-                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames)) {
+                        NavigationLink(destination: LoginUIView()) {
                             Button(action:  {self.logout()}, label: {
                                 Text("Log Out").foregroundColor(.white)
                             })
@@ -101,7 +100,8 @@ struct ProfileTab: View {
     }
     func logout() {
         UserDefaults.standard.set(nil, forKey:"JWT")
-        self.isLoggedIn = false
+        self.life.authenticated = false
+        self.life.favorites = []
     }
 }
 
@@ -110,10 +110,8 @@ struct ProfileTab_Previews: PreviewProvider {
         ProfileTab_PreviewWrapper()
     }
     struct ProfileTab_PreviewWrapper: View {
-        @State var games = getUpcomingGames()
-        @State var isLoggedIn = true
         var body: some View {
-            ProfileTab(isLoggedIn: $isLoggedIn, upcomingGames: $games)
+            ProfileTab().environmentObject(Life(authenticated: true, upcomingGames: getUpcomingGames(), standings: getTeams()))
         }
     }
 }

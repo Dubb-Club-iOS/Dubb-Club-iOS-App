@@ -14,9 +14,9 @@ struct RegisterUIView: View {
     @State private var registrationSuccessful = false
     @State private var showRegistrationError = false
     @State private var errorMessage = ""
-    @Binding var isLoggedIn: Bool
-    @Binding var upcomingGames: [UpcomingGame]
     @State private var isRegistering = false
+
+    @EnvironmentObject var life: Life
 
     
     func signup() {
@@ -126,7 +126,7 @@ struct RegisterUIView: View {
                         Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showRegistrationError ? 1 : 0).animation(.easeInOut, value: showRegistrationError)
                         Spacer()
                         
-                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames).navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $registrationSuccessful) {
+                        NavigationLink(destination: LoginUIView().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $registrationSuccessful) {
                             Button(action: {}, label: {
                                 Text("Sign Up")
                                     .font(.headline)
@@ -170,7 +170,7 @@ struct RegisterUIView_Previews: PreviewProvider {
         @State var games = getUpcomingGames()
         @State var isLoggedIn = false
         var body: some View {
-            LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games)
+            RegisterUIView().environmentObject(Life(authenticated: false, upcomingGames: getUpcomingGames(), standings: getTeams()))
         }
     }
 }

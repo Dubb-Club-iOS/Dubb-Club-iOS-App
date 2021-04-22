@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct TabUIView: View {
-    @Binding var isLoggedIn: Bool
-    @Binding var upcomingGames: [UpcomingGame]
-    @Binding var standings: [[Team]]
-    @State private var selection = "home"
+    @EnvironmentObject var life: Life
+    @State var selection = "home"
     var body: some View {
         TabView(selection:$selection) {
-            HomeStream(upcomingGames: $upcomingGames)
+            HomeStream()
                 .tabItem {
 //                    Image(systemName: "house")
                     Image("logo_png")
@@ -28,18 +26,21 @@ struct TabUIView: View {
                     Text("Search")
                 }
                 .tag("search")
-            Standings(eastStandings: standings[0], westStandings: standings[1])
+            Standings(eastStandings: life.standings[0], westStandings: life.standings[1])
                 .tabItem {
                     Image(systemName: "list.number")
                     Text("Standings")
                 }
-            ProfileTab(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames)
+            ProfileTab()
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")
                 }
                 .tag("profile")
         }.accentColor(.white)
+        .onAppear() {
+            self.selection = "home"
+        }.transition(.slide)
     }
 }
 
@@ -53,7 +54,7 @@ struct TabUIView_Previews: PreviewProvider {
         @State var standings = getTeams()
         @State var isLoggedIn = true
         var body: some View {
-            TabUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games, standings: $standings)
+            TabUIView().environmentObject(Life(authenticated: true, upcomingGames: getUpcomingGames(), standings: getTeams()))
         }
     }
 }

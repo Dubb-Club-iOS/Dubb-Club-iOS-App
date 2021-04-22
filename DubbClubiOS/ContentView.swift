@@ -199,41 +199,6 @@ struct ContentView: View {
     }
     
     // TODO: use elsewhere
-    func getFavoriteTeams() {
-        let url = URL(string: "https://api.dubb.club/api/user/favoriteteamlist")!
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "GET"
-        request.addValue(UserDefaults.standard.object(forKey: "JWT") as! String, forHTTPHeaderField: "x-access-token")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode == 404 {
-                    print("Invalid login!")
-                    return
-                } else if httpResponse.statusCode == 500 {
-                    print("Database failure!")
-                    return
-                }
-            }
-            
-            
-            if let error = error {
-                // Handle HTTP request error
-                print("Error: \(error.localizedDescription)")
-            } else if let data = data {
-                // Handle HTTP request response
-                let ret: FavoriteTeamsParent = try! JSONDecoder().decode(FavoriteTeamsParent.self, from: data)
-                print("Fav Teams: ")
-                for team in ret.favoriteTeams.NBA {
-                    print(team)
-                }
-            } else {
-                print("Unexpected error!")
-            }
-        }.resume()
-    }
     
     func getPastGameDetailsById(gameId: Int) {
         do {

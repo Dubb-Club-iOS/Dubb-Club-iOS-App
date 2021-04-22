@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeStream: View {
-    @Binding var upcomingGames: [UpcomingGame]
+    @EnvironmentObject var life: Life
     var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
     
     
@@ -23,7 +23,7 @@ struct HomeStream: View {
                     
                     ScrollView {
                         LazyVGrid(columns: twoColumnGrid, spacing: 4) {
-                            ForEach(upcomingGames, id: \.self) { game in
+                            ForEach(life.upcomingGames, id: \.self) { game in
                                 PredictionCard(game: game)
                                     .frame(height: geometry.size.height / 2.2)
                                     .cornerRadius(10)
@@ -65,7 +65,7 @@ struct HomeStream_Previews: PreviewProvider {
         @State var games = getUpcomingGames()
         
         var body: some View {
-            HomeStream(upcomingGames: $games)
+            HomeStream().environmentObject(Life(authenticated: true, upcomingGames: getUpcomingGames(), standings: getTeams()))
         }
     }
 }

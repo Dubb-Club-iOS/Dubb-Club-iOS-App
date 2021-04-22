@@ -8,22 +8,10 @@
 import SwiftUI
 
 
-func isLoggedIn() -> Bool {
-    let token = UserDefaults.standard.object(forKey: "JWT") as? String
-    if token == nil {
-        return false
-    }
-    return true
-}
-
-
-
 @main
 struct DubbClubiOSApp: App {
     
-    @State var authenticated: Bool = isLoggedIn()
-    @State var upcomingGames = getUpcomingGames()
-    @State var standings = getTeams()
+    @StateObject var life = Life()
     
     init() {
         refreshToken()
@@ -89,10 +77,10 @@ struct DubbClubiOSApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if authenticated {
-                    TabUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames, standings: $standings)
+                if life.authenticated {
+                    TabUIView().environmentObject(life)
                 } else {
-                    LoginUIView(isLoggedIn: $authenticated, upcomingGames: $upcomingGames)
+                    LoginUIView().environmentObject(life)
                 }
 //                ContentView()
             }
