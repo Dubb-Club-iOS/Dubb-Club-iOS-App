@@ -182,7 +182,7 @@ struct SearchTab: View {
                 }
                 .navigationTitle("Search")
             }
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

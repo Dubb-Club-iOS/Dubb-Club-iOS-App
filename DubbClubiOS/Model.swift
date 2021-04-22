@@ -187,3 +187,41 @@ func getTeams() -> [[Team]] {
         return []
     }
 }
+
+func followTeamFunc(urlStr: String, teamId: Int) {
+    
+    let followInfo = FollowBody(league: "NBA", teamId: teamId)
+    guard let followEnc = try? JSONEncoder().encode(followInfo) else {
+        print("Failed to encode login information")
+        return
+    }
+    
+    let url = URL(string: urlStr)!
+    var request = URLRequest(url: url)
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpMethod = "POST"
+    request.httpBody = followEnc
+    request.addValue(UserDefaults.standard.object(forKey: "JWT") as! String, forHTTPHeaderField: "x-access-token")
+    
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        
+        if let httpResponse = response as? HTTPURLResponse {
+            if httpResponse.statusCode != 200 {
+                print("Unable to follow!")
+                return
+            }
+        }
+        
+        
+        if let error = error {
+            // Handle HTTP request error
+            print("Error: \(error.localizedDescription)")
+        } else if let data = data {
+            // Handle HTTP request response
+            print("Followed team!")
+        } else {
+            print("Unexpected error!")
+        }
+    }.resume()
+}
+

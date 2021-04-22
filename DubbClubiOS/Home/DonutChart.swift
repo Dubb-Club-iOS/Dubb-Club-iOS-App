@@ -110,6 +110,8 @@ struct DonutChart : View {
                         .multilineTextAlignment(.center)
                         .padding([.bottom, .leading, .trailing])
                         .foregroundColor(.white)
+                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
+
                 } else if (indexOfTappedSlice == 1) {
                     Text("\(teamIds[game.away[0].teamId]!)").fontWeight(.bold)
                         .font(.system(size: fontSize(parentGeo)))
@@ -117,6 +119,8 @@ struct DonutChart : View {
                         .multilineTextAlignment(.center)
                         .padding([.bottom, .leading, .trailing])
                         .foregroundColor(.white)
+                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
+
                     
                     
                 }

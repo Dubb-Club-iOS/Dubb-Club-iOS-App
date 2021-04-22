@@ -7,15 +7,26 @@
 
 import SwiftUI
 
+func setEmail() -> String {
+    let token = UserDefaults.standard.object(forKey: "Username") as? String
+    if token == nil {
+        return ""
+    }
+    return token!
+}
+
 struct LoginUIView: View {
-    @State private var email = ""
+    @State private var email = setEmail()
     @State private var password = ""
     @State private var showSignUp = false
-    @Binding var isLoggedIn: Bool
-    @Binding var upcomingGames: [UpcomingGame]
     @State private var showErrorMessage = false
     @State private var errorMessage = ""
     @State private var isLoggingIn = false
+    
+    @Binding var isLoggedIn: Bool
+    @Binding var upcomingGames: [UpcomingGame]
+    @ObservedObject var userFaves: UserFaves
+
     
     func login() {
         
@@ -72,6 +83,7 @@ struct LoginUIView: View {
                 UserDefaults.standard.set(loginReturn.username, forKey:"Username")
                 self.isLoggedIn = true
                 self.showErrorMessage = false
+                self.userFaves.getFavoriteTeams()
 //                self.upcomingGames = getUpcomingGames()
             } else {
                 self.errorMessage = "Unexpected error!"
@@ -156,7 +168,7 @@ struct LoginUIView: View {
                             Text("Don't have an account?")
                                 .foregroundColor(.gray)
                             NavigationLink(
-                                destination: RegisterUIView(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames),
+                                destination: RegisterUIView(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames, userFaves: userFaves),
                                 label: {
                                     Text("Sign Up")
                                 })
@@ -176,8 +188,9 @@ struct LoginUIView_Previews: PreviewProvider {
     struct LoginUIView_PreviewWrapper: View {
         @State var games = getUpcomingGames()
         @State var isLoggedIn = false
+        @StateObject var userFaves = UserFaves()
         var body: some View {
-            LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games)
+            LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games, userFaves: userFaves)
         }
     }
 }

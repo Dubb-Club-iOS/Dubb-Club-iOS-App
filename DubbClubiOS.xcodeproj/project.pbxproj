@@ -141,6 +141,7 @@
 		120772C2260951CE0024A355 /* DubbClubiOS */ = {
 			isa = PBXGroup;
 			children = (
+				1293CDB02632277300929FC6 /* TeamDetail */,
 				422789EA262E37740008D674 /* Standings */,
 				CAAA24B2261BC82200BE72B4 /* Search */,
 				8BE32428261E6CD100552668 /* Tabs */,
@@ -195,6 +196,13 @@
 				12177C642619012C00C9D4E4 /* HomeStreamList.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		1293CDB02632277300929FC6 /* TeamDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TeamDetail;
 			sourceTree = "<group>";
 		};
 		422789EA262E37740008D674 /* Standings */ = {

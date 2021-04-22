@@ -79,7 +79,7 @@ struct Standings: View {
                         .padding(.trailing, 10)
                         .padding(.bottom, 20)
                     }.navigationBarTitle(Text("Standings"))
-                }
+                }.navigationViewStyle(StackNavigationViewStyle())
             }
         }
     
