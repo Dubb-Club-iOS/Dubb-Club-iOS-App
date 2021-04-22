@@ -18,16 +18,16 @@ struct TeamsFollowingList: View {
     
     var body: some View {
         VStack {
-            TeamFollowingCell()
-            TeamFollowingCell()
-            TeamFollowingCell()
-            TeamFollowingCell()
-            TeamFollowingCell()
-            TeamFollowingCell()
-            TeamFollowingCell()
-            TeamFollowingCell()
-            TeamFollowingCell()
-            TeamFollowingCell()
+//            TeamFollowingCell()
+//            TeamFollowingCell()
+//            TeamFollowingCell()
+//            TeamFollowingCell()
+//            TeamFollowingCell()
+//            TeamFollowingCell()
+//            TeamFollowingCell()
+//            TeamFollowingCell()
+//            TeamFollowingCell()
+//            TeamFollowingCell()
         }
     }
 }

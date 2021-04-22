@@ -40,9 +40,10 @@ struct HomeStream: View {
                 }
                 .navigationTitle("Upcoming Games")
                 .navigationBarBackButtonHidden(true)
+                
             }
             
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
         
     }
 }
@@ -53,7 +54,7 @@ struct HomeStream_Previews: PreviewProvider {
 
         HomeStream_PreviewWrapper()
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-            .previewDisplayName("iPhone 12 Pro")
+            .previewDisplayName("iPhone 12")
         
         //        HomeStream()
         //            .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
