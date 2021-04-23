@@ -49,7 +49,7 @@ struct ProfileTab: View {
                                     .padding(.leading, 10)
                             } else {
                                 HStack {
-                                    Text("Favorite:")
+                                    Text("Favorite Teams:")
                                         .fontWeight(.semibold)
                                         .multilineTextAlignment(.leading)
                                         .padding(.leading, 10)
