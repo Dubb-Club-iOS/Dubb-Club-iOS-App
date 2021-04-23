@@ -147,10 +147,10 @@ class UserFaves: ObservableObject {
             } else if let data = data {
                 // Handle HTTP request response
                 let ret: FavoriteTeamsParent = try! JSONDecoder().decode(FavoriteTeamsParent.self, from: data)
-                print("Fav Teams: ")
-                for team in ret.favoriteTeams.NBA {
-                    print(team)
-                }
+//                print("Fav Teams: ")
+//                for team in ret.favoriteTeams.NBA {
+//                    print(team)
+//                }
                 DispatchQueue.main.async {
                     self.nba = ret.favoriteTeams.NBA
                 }

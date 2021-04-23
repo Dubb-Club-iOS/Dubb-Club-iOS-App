@@ -19,6 +19,9 @@
 		12177C5D26182C4E00C9D4E4 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12177C5C26182C4E00C9D4E4 /* DonutChart.swift */; };
 		12177C652619012F00C9D4E4 /* HomeStreamList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12177C642619012C00C9D4E4 /* HomeStreamList.swift */; };
 		12177C76261E6E1700C9D4E4 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12177C75261E6E1400C9D4E4 /* Teams.swift */; };
+		1293CDBB26324AC600929FC6 /* TeamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1293CDBA26324AC600929FC6 /* TeamDetail.swift */; };
+		1293CDC026325BF900929FC6 /* TestGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1293CDBF26325BF800929FC6 /* TestGames.swift */; };
+		1293CDD0263335DC00929FC6 /* StandingsLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1293CDCF263335DC00929FC6 /* StandingsLink.swift */; };
 		12DA41D3262CE48E0041BBAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12DA41D2262CE48E0041BBAC /* LaunchScreen.storyboard */; };
 		422789F4262E39A80008D674 /* Standings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422789F3262E39A80008D674 /* Standings.swift */; };
 		42D9605E2612390200E27B9B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9605D2612390200E27B9B /* Model.swift */; };
@@ -78,6 +81,9 @@
 		12177C5C26182C4E00C9D4E4 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 		12177C642619012C00C9D4E4 /* HomeStreamList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStreamList.swift; sourceTree = "<group>"; };
 		12177C75261E6E1400C9D4E4 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
+		1293CDBA26324AC600929FC6 /* TeamDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetail.swift; sourceTree = "<group>"; };
+		1293CDBF26325BF800929FC6 /* TestGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGames.swift; sourceTree = "<group>"; };
+		1293CDCF263335DC00929FC6 /* StandingsLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsLink.swift; sourceTree = "<group>"; };
 		12DA41D2262CE48E0041BBAC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		422789F3262E39A80008D674 /* Standings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standings.swift; sourceTree = "<group>"; };
 		42D9605D2612390200E27B9B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 				1207D6E226128A1B0045DB2A /* ColorManager.swift */,
 				12177C75261E6E1400C9D4E4 /* Teams.swift */,
 				12DA41D2262CE48E0041BBAC /* LaunchScreen.storyboard */,
+				1293CDBF26325BF800929FC6 /* TestGames.swift */,
 			);
 			path = DubbClubiOS;
 			sourceTree = "<group>";
@@ -211,6 +218,7 @@
 		1293CDB02632277300929FC6 /* TeamDetail */ = {
 			isa = PBXGroup;
 			children = (
+				1293CDBA26324AC600929FC6 /* TeamDetail.swift */,
 			);
 			path = TeamDetail;
 			sourceTree = "<group>";
@@ -219,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				422789F3262E39A80008D674 /* Standings.swift */,
+				1293CDCF263335DC00929FC6 /* StandingsLink.swift */,
 			);
 			path = Standings;
 			sourceTree = "<group>";
@@ -407,11 +416,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				12177C76261E6E1700C9D4E4 /* Teams.swift in Sources */,
+				1293CDD0263335DC00929FC6 /* StandingsLink.swift in Sources */,
 				1207D6DE261289E40045DB2A /* HomeStream.swift in Sources */,
 				CACC3B7E261291830034587E /* TeamFollowingCell.swift in Sources */,
 				CACC3B832612926A0034587E /* TeamsFollowingList.swift in Sources */,
 				8B9D01092615166200CE0190 /* RegisterUIView.swift in Sources */,
 				CA48194F26309C09009986AC /* SearchTeamResultCells.swift in Sources */,
+				1293CDBB26324AC600929FC6 /* TeamDetail.swift in Sources */,
 				1207D6E326128A1B0045DB2A /* ColorManager.swift in Sources */,
 				42D9605E2612390200E27B9B /* Model.swift in Sources */,
 				CA723BF32627A27000847451 /* SearchUpcomingGameCell.swift in Sources */,
@@ -434,6 +445,7 @@
 				12177C5D26182C4E00C9D4E4 /* DonutChart.swift in Sources */,
 				8BFB1C692631F96500717F3F /* GameLeaders.swift in Sources */,
 				CA723BF82627A33900847451 /* SearchPastGameCell.swift in Sources */,
+				1293CDC026325BF900929FC6 /* TestGames.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

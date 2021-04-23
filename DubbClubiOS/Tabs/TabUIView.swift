@@ -15,7 +15,7 @@ struct TabUIView: View {
     
     var body: some View {
         TabView {
-            HomeStream(upcomingGames: $upcomingGames)
+            HomeStream(upcomingGames: $upcomingGames, userFaves: userFaves)
                 .tabItem {
 //                    Image(systemName: "house")
                     Image("logo_png")
@@ -27,14 +27,14 @@ struct TabUIView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
-            Standings(eastStandings: standings[0], westStandings: standings[1])
+            Standings(eastStandings: standings[0], westStandings: standings[1], userFaves: userFaves)
                 .tabItem {
                     Image(systemName: "list.number")
                     Text("Standings")
                 }
             ProfileTab(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames, userFaves: userFaves)
                 .tabItem {
-                    Image(systemName: "person")
+                    Image(systemName: "person.fill")
                     Text("Profile")
                 }
         }.accentColor(.white)
