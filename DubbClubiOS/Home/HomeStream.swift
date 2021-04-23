@@ -40,16 +40,22 @@ struct HomeStream: View {
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.all, 10)
-                        LazyVGrid(columns: twoColumnGrid, spacing: 4) {
-                            if selection == 0 {
+                        if selection == 0 {
+                            LazyVGrid(columns: twoColumnGrid, spacing: 4) {
                                 ForEach(upcomingGames, id: \.self) { game in
                                     PredictionCard(game: game, userFaves: userFaves)
                                         .frame(height: geometry.size.height / 2.2)
                                         .cornerRadius(10)
                                         .aspectRatio(1, contentMode: .fit)
-                                    
                                 }
-                            } else {
+                            }
+                        } else if userFaves.nba.count == 0 {
+                            Text("It doesn't look like you have any favorite teams...")
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.leading)
+                                .padding()
+                        } else {
+                            LazyVGrid(columns: twoColumnGrid, spacing: 4) {
                                 ForEach(myGames, id: \.self) { game in
                                     PredictionCard(game: game, userFaves: userFaves)
                                         .frame(height: geometry.size.height / 2.2)
