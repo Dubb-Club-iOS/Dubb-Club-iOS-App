@@ -58,7 +58,7 @@ struct SearchUpcomingGameCell: View {
                         
                     }
                     
-                    DonutChart(game: game, charDataObj: ChartDataContainer(game: game), parentGeo: geometry)
+                    DonutChart(game: game, parentGeo: geometry)
                     
                     Spacer()
                     ZStack {

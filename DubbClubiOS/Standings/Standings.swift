@@ -13,22 +13,26 @@ struct Standings: View {
     @State var westStandings = [Team]()
     @State var hasLoaded = false
     @State private var width: CGFloat? = nil
-
+    @ObservedObject var userFaves: UserFaves
+        
     var columns: [GridItem] =
         [
             GridItem(.flexible()),
-            GridItem(.flexible(minimum: 200), alignment: .leading),
+            GridItem(.flexible(minimum: 190), alignment: .leading),
             GridItem(.flexible()),
             GridItem(.flexible()),
             GridItem(.flexible()),
         ]
     
     var body: some View {
-//        if !self.hasLoaded {
-//            ProgressView()
-//        } else {
-            GeometryReader { geometry in
-                NavigationView {
+        //        if !self.hasLoaded {
+        //            ProgressView()
+        //        } else {
+        GeometryReader { geometry in
+            NavigationView {
+                ZStack {
+                    ColorManager.backgroundGray
+                        .ignoresSafeArea()
                     ScrollView(.vertical, showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 16) {
                             Section(header: Text("EAST")
@@ -42,9 +46,7 @@ struct Standings: View {
                                 Text("L").bold()
                                 Text("GB").bold()
                                 ForEach(self.eastStandings, id: \.self) { team in
-                                    Image(team.teamName)
-                                        .resizable()
-                                        .scaledToFit()
+                                    StandingsLink(team: team, userFaves: userFaves)
                                         .frame(width: geometry.size.width / 12, height: geometry.size.width / 12)
                                     Text(team.teamName)
                                     Text("\(team.wins)")
@@ -64,9 +66,7 @@ struct Standings: View {
                                 Text("L").bold()
                                 Text("GB").bold()
                                 ForEach(self.westStandings, id: \.self) { team in
-                                    Image(team.teamName)
-                                        .resizable()
-                                        .scaledToFit()
+                                    StandingsLink(team: team, userFaves: userFaves)
                                         .frame(width: geometry.size.width / 12, height: geometry.size.width / 12)
                                     Text(team.teamName)
                                     Text("\(team.wins)")
@@ -75,18 +75,28 @@ struct Standings: View {
                                 }
                             }
                         }
-                        .padding(.leading, 10)
                         .padding(.trailing, 10)
                         .padding(.bottom, 20)
                     }.navigationBarTitle(Text("Standings"))
-                }.navigationViewStyle(StackNavigationViewStyle())
-            }
+                }
+            }.navigationViewStyle(StackNavigationViewStyle())
         }
+        
+    }
     
 }
 
 struct Standings_Previews: PreviewProvider {
     static var previews: some View {
-        Standings()
+        Standings_PreviewWrapper()
+        //            .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro"))
+    }
+    struct Standings_PreviewWrapper: View {
+        @State var allTeams = getTeams()
+        @StateObject var userFaves = UserFaves(nba: [1, 22])
+        
+        var body: some View {
+            Standings(eastStandings: allTeams[0], westStandings: allTeams[1], userFaves: userFaves)
+        }
     }
 }

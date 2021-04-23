@@ -146,7 +146,7 @@ struct LoginUIView: View {
                         Spacer()
                         
                         
-                        NavigationLink(destination: HomeStream(upcomingGames: $upcomingGames), isActive: $isLoggedIn) {
+                        NavigationLink(destination: HomeStream(upcomingGames: $upcomingGames, userFaves: userFaves), isActive: $isLoggedIn) {
                             Button(action: {}, label: {
                                 Text("Sign In")
                                     .font(.headline)

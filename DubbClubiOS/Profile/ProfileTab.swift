@@ -12,6 +12,8 @@ struct ProfileTab: View {
     @Binding var upcomingGames: [UpcomingGame]
     @ObservedObject var userFaves: UserFaves
     
+    @State var showingPopover = false
+    
     var body: some View {
         GeometryReader { geometry in
             
@@ -41,13 +43,13 @@ struct ProfileTab: View {
                             
                             
                             if userFaves.nba.count == 0 {
-                                Text("It doesn't look like you're following any teams right now...")
+                                Text("It doesn't look like you have any favorite teams...")
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.leading)
                                     .padding(.leading, 10)
                             } else {
                                 HStack {
-                                    Text("Teams Following:")
+                                    Text("Favorite:")
                                         .fontWeight(.semibold)
                                         .multilineTextAlignment(.leading)
                                         .padding(.leading, 10)
@@ -57,29 +59,14 @@ struct ProfileTab: View {
                                 ForEach(userFaves.nba, id: \.self) { team in
                                     HStack() {
                                         // team image
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                                .fill(Color(teamIds[team]!))
-                                                .frame(width: geometry.size.width / 4.7, height: geometry.size.width / 4.7, alignment: .leading)
-                                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                                .fill(ColorManager.imageGray)
-                                                .frame(width: geometry.size.width / 4.8, height: geometry.size.width / 4.8)
-                                            Image(teamIds[team]!).resizable()
-                                                .scaledToFit()
-                                                .frame(width: geometry.size.width / 4.9, height: geometry.size.width / 4.9)
-                                        }
-                                        
-                                        //team name
-                                        Text(teamIds[team]!).fontWeight(.regular).font(.title3)
-                                        Spacer()
+                                        TeamFollowingButton(team: team, userFaves: userFaves, parentGeo: geometry)
                                         Button(action: {
                                             unfollowTeam(teamId: team)
                                         }, label: {
-                                            Image(systemName: "star.fill").foregroundColor(.blue).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                            Image(systemName: "star.fill").foregroundColor(.blue).font(.title)
                                         }).padding(.trailing)
-                                     
+                                        
                                     }
-                               
 
                                     .background(ColorManager.cardGray)
                                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
@@ -118,14 +105,61 @@ struct ProfileTab: View {
     
     func unfollowTeam(teamId: Int) {
         withAnimation(.spring()){
-        userFaves.nba.removeAll { team in
-            team == teamId
-        }
+            userFaves.nba.removeAll { team in
+                team == teamId
+            }
         }
         followTeamFunc(urlStr: "https://api.dubb.club/api/user/unfavoriteteam", teamId: teamId)
     }
-
+    
 }
+
+
+struct TeamFollowingButton: View {
+    var team: Int
+    @ObservedObject var userFaves: UserFaves
+    var parentGeo: GeometryProxy
+    @State var showingPopover = false
+    
+    
+    var body: some View {
+        
+        Button(action: {
+            self.showingPopover = true
+        }) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(Color(teamIds[team]!))
+                    .frame(width: parentGeo.size.width / 4.7, height: parentGeo.size.width / 4.7, alignment: .leading)
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(ColorManager.imageGray)
+                    .frame(width: parentGeo.size.width / 4.8, height: parentGeo.size.width / 4.8)
+                Image(teamIds[team]!).resizable()
+                    .scaledToFit()
+                    .frame(width: parentGeo.size.width / 4.9, height: parentGeo.size.width / 4.9)
+            }
+            
+            //team name
+            Text(teamIds[team]!).fontWeight(.regular).font(.title3)
+            Spacer()
+        }.popover(isPresented: $showingPopover) {
+            TeamDetail(userFaves: userFaves, teamId: team)
+        }
+        
+        
+    }
+    
+    func unfollowTeam(teamId: Int) {
+        withAnimation(.spring()){
+            userFaves.nba.removeAll { team in
+                team == teamId
+            }
+        }
+        followTeamFunc(urlStr: "https://api.dubb.club/api/user/unfavoriteteam", teamId: teamId)
+    }
+}
+
+
 
 struct ProfileTab_Previews: PreviewProvider {
     static var previews: some View {
