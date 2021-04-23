@@ -11,22 +11,14 @@ struct HomeStream: View {
     
     @Binding var upcomingGames: [UpcomingGame]
     @ObservedObject var userFaves: UserFaves
-    var myGames: [UpcomingGame]
+    @State var myGames: [UpcomingGame]
     @State var selection:Int = 0
     
     init(upcomingGames: Binding<[UpcomingGame]>, userFaves: UserFaves) {
         _upcomingGames = upcomingGames
         self.userFaves = userFaves
-        var myGames: [UpcomingGame] = []
-        for fave in userFaves.nba {
-            let filtered = upcomingGames.wrappedValue.filter {
-                ($0.away[0].teamId == fave || $0.home[0].teamId == fave) && !myGames.contains($0)
-            }
-            //            print(upcomingGames.wrappedValue)
-            myGames.append(contentsOf: filtered)
-        }
-        myGames.sort{ $0.date < $1.date }
-        self.myGames = myGames
+        let myGames: [UpcomingGame] = getMyGames(upcomingGames: upcomingGames, userFaves: userFaves)
+        _myGames = State(initialValue: myGames)
         
     }
     
@@ -52,7 +44,7 @@ struct HomeStream: View {
                             if selection == 0 {
                                 ForEach(upcomingGames, id: \.self) { game in
                                     PredictionCard(game: game, userFaves: userFaves)
-                                        .frame(height: geometry.size.height / 2.3)
+                                        .frame(height: geometry.size.height / 2.2)
                                         .cornerRadius(10)
                                         .aspectRatio(1, contentMode: .fit)
                                     
@@ -64,7 +56,9 @@ struct HomeStream: View {
                                         .cornerRadius(10)
                                         .aspectRatio(1, contentMode: .fit)
                                     
-                                }
+                                }.onReceive(self.userFaves.$nba, perform: { _ in
+                                    self.myGames = getMyGames(upcomingGames: $upcomingGames, userFaves: userFaves)
+                                })
                             }
                         }
                         
@@ -82,6 +76,19 @@ struct HomeStream: View {
         }.navigationViewStyle(StackNavigationViewStyle())
         
     }
+}
+
+func getMyGames(upcomingGames: Binding<[UpcomingGame]>, userFaves: UserFaves) -> [UpcomingGame] {
+    var myGames: [UpcomingGame] = []
+    for fave in userFaves.nba {
+        let filtered = upcomingGames.wrappedValue.filter {
+            ($0.away[0].teamId == fave || $0.home[0].teamId == fave) && !myGames.contains($0)
+        }
+        //            print(upcomingGames.wrappedValue)
+        myGames.append(contentsOf: filtered)
+    }
+    myGames.sort{ $0.date < $1.date }
+    return myGames
 }
 
 struct HomeStream_Previews: PreviewProvider {
