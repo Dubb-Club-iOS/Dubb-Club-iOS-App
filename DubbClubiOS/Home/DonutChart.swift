@@ -106,7 +106,7 @@ struct DonutChart : View {
 //                .onAppear(perform: {
 //                    indexOfTappedSlice = self.charDataObj.calc()
 //                })
-                .padding()
+                .padding([.bottom, .leading, .trailing])
                 //                .onAppear() {
                 //                    indexOfTappedSlice = self.charDataObj.calc()
                 //                }
@@ -116,7 +116,9 @@ struct DonutChart : View {
                         .font(.system(size: fontSize(parentGeo)))
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding([.bottom, .leading, .trailing])
+                        .padding(.bottom, 4)
+                        .padding(.leading, 4)
+                        .padding(.trailing, 4)
                         .foregroundColor(.white)
                         .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
 
@@ -125,7 +127,9 @@ struct DonutChart : View {
                         .font(.system(size: fontSize(parentGeo)))
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding([.bottom, .leading, .trailing])
+                        .padding(.bottom, 4)
+                        .padding(.leading, 4)
+                        .padding(.trailing, 4)
                         .foregroundColor(.white)
                         .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
 

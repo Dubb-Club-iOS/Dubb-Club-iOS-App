@@ -60,7 +60,7 @@ struct HomeStream: View {
                             } else {
                                 ForEach(myGames, id: \.self) { game in
                                     PredictionCard(game: game, userFaves: userFaves)
-                                        .frame(height: geometry.size.height / 2.3)
+                                        .frame(height: geometry.size.height / 2.2)
                                         .cornerRadius(10)
                                         .aspectRatio(1, contentMode: .fit)
                                     
