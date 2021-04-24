@@ -30,70 +30,112 @@ struct SearchPastGameCell: View {
                 ColorManager.cardGray
                 
                 VStack {
-                    HStack {
-                        Spacer()
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(Color(teamIds[game.away.teamId]!))
-                                .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(ColorManager.imageGray)
-                                .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
-                            Image(teamIds[game.away.teamId]!).resizable()
-                            .scaledToFit()
-                            .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
-                        }
-                        Text("@").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                            .font(.title).lineLimit(1).minimumScaleFactor(0.1)
-                            .foregroundColor(.white).frame(width: geometry.size.width / 10, height: geometry.size.width / 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(Color(teamIds[game.home.teamId]!))
-                                .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(ColorManager.imageGray)
-                                .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
-                        Image(teamIds[game.home.teamId]!).resizable()
-                            .scaledToFit()
-                            .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
-                        }
-                        Spacer()
+                    //Spacer()
+                    VStack {
+                        HStack {
+                            Spacer()
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .fill(Color(teamIds[game.away.teamId]!))
+                                    .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .fill(ColorManager.imageGray)
+                                    .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
+                                Image(teamIds[game.away.teamId]!).resizable()
+                                    .scaledToFit()
+                                    .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                            }
+                            Spacer()
+                            let homeScore = game.gameStats.home.points
+                            /*
+                            Text(homeScore)
+                                .fontWeight(.bold)
+                                
+                                .font(.system(size: 500))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.01)
+                                .foregroundColor(.white)
+                                .scaledToFit()
+                                .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                            */
+                            if homeScore.count == 0 {
+                                Text("Not Available")
+                                    .fontWeight(.bold)
+                                    //.padding([.leading, .trailing], 4)
+                                    .font(.system(size: geometry.size.width / 2.9))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.01)
+                            } else {
+                                Text(homeScore)
+                                    .fontWeight(.bold)
+                                    //.padding([.leading, .trailing], 4)
+                                    .font(.system(size: geometry.size.width / 2.9))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.01)
+                            }
+                            
+                            
+                            Spacer()
+                        }.padding([.bottom], 4)
                         
-                    }
-                    
-                    HStack {
-                        let homeScore = game.gameStats.home.points
-                        let awayScore = game.gameStats.away.points
-                        
-                        Text(homeScore)
-                            .fontWeight(.bold)
-                            .padding(.all, 8)
-                            .font(.system(size: 500))
+                        Text("@")
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .padding(.all, 4)
+                            .font(.system(size: geometry.size.width / 9.3))
+                            //.font(.title)
                             .lineLimit(1)
-                            .minimumScaleFactor(0.01)
-                            .foregroundColor(.white)
-                            .scaledToFit()
-                            .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                            .minimumScaleFactor(0.1)
+                            //.foregroundColor(.white).frame(width: geometry.size.width / 10, height: geometry.size.width / 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         
-                        Text("-")
-                            .fontWeight(.bold)
-                            .padding(.all, 1)
-                            .font(.system(size:500)).lineLimit(1).minimumScaleFactor(0.1)
-                            .foregroundColor(.white).frame(width: geometry.size.width / 10, height: geometry.size.width / 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        HStack {
+                            Spacer()
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .fill(Color(teamIds[game.home.teamId]!))
+                                    .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .fill(ColorManager.imageGray)
+                                    .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
+                                Image(teamIds[game.home.teamId]!).resizable()
+                                    .scaledToFit()
+                                    .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                            }
+                            Spacer()
+                            let awayScore = game.gameStats.away.points
+                            /*
+                            Text(awayScore)
+                                .fontWeight(.bold)
+                                .padding(.all, 8)
+                                .font(.system(size: 500))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.01)
+                                .foregroundColor(.white)
+                                .scaledToFit()
+                                .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                            */
+                            if awayScore.count == 0 {
+                                Text("Not Available")
+                                    .fontWeight(.bold)
+                                    //.padding([.leading, .trailing], 4)
+                                    .font(.system(size: geometry.size.width / 2.9))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.01)
+                            } else {
+                                Text(awayScore)
+                                    .fontWeight(.bold)
+                                    //.padding([.leading, .trailing], 4)
+                                    .font(.system(size: geometry.size.width / 2.9))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.01)
+                            }
+                            
+                            
+                            Spacer()
+                        }.padding([.top], 4)
                         
-                        Text(awayScore)
-                            .fontWeight(.bold)
-                            .padding(.all, 8)
-                            .font(.system(size: 500))
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.01)
-                            .foregroundColor(.white)
-                            .scaledToFit()
-                            .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
-                    }
-                    
-                    
-                    
+                    }.padding([.top, .bottom], 4)
+                    //Spacer()
+                    //Text(game.date)
                     Spacer()
                     ZStack {
                         Rectangle()
@@ -104,7 +146,7 @@ struct SearchPastGameCell: View {
                             .padding([.leading, .trailing])
                     }
                 }.padding([.top])
-            }
+            }//.padding([.top])
         }
     }
 }
@@ -112,12 +154,46 @@ struct SearchPastGameCell: View {
 struct SearchPastGameCell_Previews: PreviewProvider {
     
     static var previews: some View {
-        let stats = DubbClubiOS.GameStats(home: TeamGameSummary(teamId: "2", points: "26", lineScore: [String](), leaders: [PlayerStat]()), away: TeamGameSummary(teamId: "15", points: "42", lineScore: [String](), leaders: [PlayerStat]()))
+        let stats = DubbClubiOS.GameStats(home: TeamGameSummary(teamId: "2", points: "116", lineScore: [String](), leaders: [PlayerStat]()), away: TeamGameSummary(teamId: "15", points: "89", lineScore: [String](), leaders: [PlayerStat]()))
         SearchPastGameCell(game: DubbClubiOS.PastGameForTeam(gameId: String(9018), date: "2021-04-09T23:00:00.000Z", home: DubbClubiOS.TeamLite(teamId: 26, teamName: "Orlando Magic", conferenceName: "east", place: 14, wins: 17, losses: 33), away: DubbClubiOS.TeamLite(teamId: 15, teamName: "Indiana Pacers", conferenceName: "east", place: 9, wins: 22, losses: 26), gameStats: stats))
     }
 }
+
 /*
-DubbClubiOS.UpcomingGame(confidence: 0.5428479, away: [DubbClubiOS.TeamLite(teamId: 15, teamName: "Indiana Pacers", conferenceName: "east", place: 9, wins: 22, losses: 26)], home: [DubbClubiOS.TeamLite(teamId: 26, teamName: "Orlando Magic", conferenceName: "east", place: 14, wins: 17, losses: 33)], predictedWinner: 15, status: "Scheduled", id: 9018, date: "2021-04-09T23:00:00.000Z")
+ Spacer()
+ HStack {
+ let homeScore = game.gameStats.home.points
+ let awayScore = game.gameStats.away.points
+ 
+ Text(homeScore)
+ .fontWeight(.bold)
+ .padding(.all, 8)
+ .font(.system(size: 500))
+ .lineLimit(1)
+ .minimumScaleFactor(0.01)
+ .foregroundColor(.white)
+ .scaledToFit()
+ .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+ 
+ Text("-")
+ .fontWeight(.bold)
+ .padding(.all, 1)
+ .font(.system(size:500)).lineLimit(1).minimumScaleFactor(0.1)
+ .foregroundColor(.white).frame(width: geometry.size.width / 10, height: geometry.size.width / 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+ 
+ Text(awayScore)
+ .fontWeight(.bold)
+ .padding(.all, 8)
+ .font(.system(size: 500))
+ .lineLimit(1)
+ .minimumScaleFactor(0.01)
+ .foregroundColor(.white)
+ .scaledToFit()
+ .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+ }
+ */
+/*
+ DubbClubiOS.UpcomingGame(confidence: 0.5428479, away: [DubbClubiOS.TeamLite(teamId: 15, teamName: "Indiana Pacers", conferenceName: "east", place: 9, wins: 22, losses: 26)], home: [DubbClubiOS.TeamLite(teamId: 26, teamName: "Orlando Magic", conferenceName: "east", place: 14, wins: 17, losses: 33)], predictedWinner: 15, status: "Scheduled", id: 9018, date: "2021-04-09T23:00:00.000Z")
  */
 
 //                    HStack {
