@@ -30,6 +30,7 @@ struct SearchPastGameCell: View {
                 ColorManager.cardGray
                 
                 VStack {
+                    //Spacer()
                     VStack {
                         HStack {
                             Spacer()
@@ -57,25 +58,35 @@ struct SearchPastGameCell: View {
                                 .scaledToFit()
                                 .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
                             */
-                            Text(homeScore)
-                                .fontWeight(.bold)
-                                //.padding([.leading, .trailing], 4)
-                                .font(.system(size: geometry.size.width / 2.9))
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.01)
+                            if homeScore.count == 0 {
+                                Text("Not Available")
+                                    .fontWeight(.bold)
+                                    //.padding([.leading, .trailing], 4)
+                                    .font(.system(size: geometry.size.width / 2.9))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.01)
+                            } else {
+                                Text(homeScore)
+                                    .fontWeight(.bold)
+                                    //.padding([.leading, .trailing], 4)
+                                    .font(.system(size: geometry.size.width / 2.9))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.01)
+                            }
+                            
                             
                             Spacer()
-                        }.padding([.top, .bottom], 4)
-                        //Spacer()
+                        }.padding([.bottom], 4)
+                        
                         Text("@")
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                            .padding(.all,1)
+                            .padding(.all, 4)
                             .font(.system(size: geometry.size.width / 9.3))
                             //.font(.title)
                             .lineLimit(1)
                             .minimumScaleFactor(0.1)
                             //.foregroundColor(.white).frame(width: geometry.size.width / 10, height: geometry.size.width / 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        //Spacer()
+                        
                         HStack {
                             Spacer()
                             ZStack {
@@ -102,17 +113,29 @@ struct SearchPastGameCell: View {
                                 .scaledToFit()
                                 .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
                             */
-                            Text(awayScore)
-                                .fontWeight(.bold)
-                                //.padding([.leading, .trailing], 4)
-                                .font(.system(size: geometry.size.width / 2.9))
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.01)
+                            if awayScore.count == 0 {
+                                Text("Not Available")
+                                    .fontWeight(.bold)
+                                    //.padding([.leading, .trailing], 4)
+                                    .font(.system(size: geometry.size.width / 2.9))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.01)
+                            } else {
+                                Text(awayScore)
+                                    .fontWeight(.bold)
+                                    //.padding([.leading, .trailing], 4)
+                                    .font(.system(size: geometry.size.width / 2.9))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.01)
+                            }
+                            
                             
                             Spacer()
-                        }.padding([.top, .bottom], 4)
+                        }.padding([.top], 4)
                         
-                    }
+                    }.padding([.top, .bottom], 4)
+                    //Spacer()
+                    //Text(game.date)
                     Spacer()
                     ZStack {
                         Rectangle()

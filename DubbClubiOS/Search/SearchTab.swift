@@ -7,20 +7,28 @@
 
 import SwiftUI
 
+class DateModel: ObservableObject {
+    @Published var dateSelect: Date = Date()
+}
+
 struct SearchTab: View {
     
+    @ObservedObject var dateModel = DateModel()
     @State var gameIds = [Int]()
     @State var gameObjs = [GameFromDb]()
     @State var searchBy = 0 // could be search by team or search by date
     @State var searchInput: String = ""
     @State var searchOutput: String = ""
-    @State var datePicked = Date()
+    //let defaultDate = Date()
+    //@State var datePicked = Date()
+    //@State var datePickedString = ""
     @State var isEditing = false
     @State private var animate = false
     @State private var searchMatchesTeam = -1
     var twoColumnGrid = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
     @State var upcomingGames = [UpcomingGame]()
     @State var pastGames = [PastGameForTeam]()
+    
     
     func getDate(date: String) -> String {
         let dateFormatter = DateFormatter()
@@ -73,6 +81,33 @@ struct SearchTab: View {
         for gameId in gameIds {
             getGameById(gameId: gameId)
         }
+    }
+    
+    func getGameIdsForDate(date: String) {
+        do {
+            if let file = URL(string: "https://api.dubb.club/api/nba/getGamesByDateFromDb/\(date)") {
+                let data = try Data(contentsOf: file)
+                let gameIds: [Int] = try! JSONDecoder().decode([Int].self, from: data)
+                self.gameIds = gameIds
+            } else {
+                print("no file")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getGamesForDate(date: Date) {
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd"
+        let datePickedString = format.string(from: date)
+        print("Date Picked String", datePickedString)
+        getGameIdsForDate(date: datePickedString)
+        for gameId in gameIds {
+            getGameById(gameId: gameId)
+        }
+        getUpcomingGamesFromGameList()
+        getPastGamesFromGameList()
     }
     
     func getUpcomingGamesFromGameList() {
@@ -129,7 +164,7 @@ struct SearchTab: View {
              }
              */
             if game.status == "Finished" {
-                let gameToAdd = DubbClubiOS.PastGameForTeam(gameId: String(game.id), date: game.date, home: game.home[0], away: game.away[0], gameStats: game.playedGameStats!)
+                let gameToAdd = DubbClubiOS.PastGameForTeam(gameId: String(game.id), date: game.date, home: game.home[0], away: game.away[0], gameStats: game.playedGameStats ?? DubbClubiOS.GameStats(home: TeamGameSummary(teamId: String(game.home[0].teamId), points: "Not Available", lineScore: [String](), leaders: [PlayerStat]()), away: TeamGameSummary(teamId: String(game.away[0].teamId), points: "Not Available", lineScore: [String](), leaders: [PlayerStat]())))
                 self.pastGames.append(gameToAdd)
             }
         }
@@ -175,6 +210,7 @@ struct SearchTab: View {
                                     TextField("Search...", text: $searchInput, onEditingChanged: { (edit) in
                                         self.isEditing = true
                                     }, onCommit: {
+                                        reset()
                                         self.isEditing = false
                                         self.searchOutput = self.searchInput
                                         self.searchMatchesTeam = searchTeamNamesArray(input: searchOutput)
@@ -212,15 +248,19 @@ struct SearchTab: View {
                                         .animation(.easeInOut)
                                     }
                                 } else {
-                                    DatePicker(selection: $datePicked, displayedComponents: [.date], label: { Text("Game Date") })
+                                    DatePicker(selection: $dateModel.dateSelect, displayedComponents: [.date], label: { Text("Game Date") })
+                                        .onReceive(dateModel.$dateSelect, perform: { _ in
+                                            reset()
+                                            //print(dateModel.dateSelect)
+                                            getGamesForDate(date: dateModel.dateSelect)
+                                        })
                                         .padding(7)
                                         .padding(.horizontal, 25)
                                         .background(Color(.systemGray4))
                                         .cornerRadius(8)
                                         .padding(.horizontal, 10)
-                                        .onTapGesture {
-                                            self.isEditing = true
-                                        }
+                                        
+                                    
                                     /*
                                      if searchInput.count != 0 {
                                      Button(action: {
@@ -242,14 +282,14 @@ struct SearchTab: View {
                                 content.animation(.easeInOut)
                             }
                         }
-                        
+                        //Text(String(pastGames.count))
                         LazyVGrid(columns: twoColumnGrid, spacing: 4) {
                             ForEach(upcomingGames, id: \.self) { gameItem in
                                 SearchUpcomingGameCell(game: gameItem)
                                     .frame(height: geometry.size.height / 2.5)
                                     .cornerRadius(10)
                                     .aspectRatio(1, contentMode: .fit)
-
+                                
                             }
                             ForEach(pastGames, id: \.self) { gameItem in
                                 SearchPastGameCell(game: gameItem)
@@ -260,17 +300,7 @@ struct SearchTab: View {
                             
                         }
                         
-                        //                        if searchBy == 0 {
-                        //                            if searchOutput.count > 0 {
-                        //                                if searchMatchesTeam != -1 {
-                        //                                    SearchTeamResultCells(inputTeamId: searchMatchesTeam)
-                        //                                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-                        //                                }
-                        //                            }
-                        //
-                        //                        } else {
-                        //                            SearchDateResultCells(inputDate: datePicked)
-                        //                        }
+                        
                     }
                     
                 }
