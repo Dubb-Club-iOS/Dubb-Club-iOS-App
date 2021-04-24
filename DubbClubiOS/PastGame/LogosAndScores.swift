@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct LogosAndScores: View {
-    private var away = "Atlanta Hawks"
-    private var home = "Indiana Pacers"
+    var game: PastGameForTeam
+    
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center){
@@ -19,12 +19,12 @@ struct LogosAndScores: View {
                         HStack{
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(Color(away))
+                                    .fill(Color(teamIds[game.away.teamId]!))
                                     .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                                     .fill(ColorManager.imageGray)
                                     .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
-                                Image(away).resizable()
+                                Image(teamIds[game.away.teamId]!).resizable()
                                     .scaledToFit()
                                     .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
                             }
@@ -33,20 +33,23 @@ struct LogosAndScores: View {
                                 .foregroundColor(.white).frame(width: geometry.size.width / 10, height: geometry.size.width / 10, alignment: .center)
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(Color(home))
+                                    .fill(Color(teamIds[game.home.teamId]!))
                                     .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                                     .fill(ColorManager.imageGray)
                                     .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
-                                Image(home).resizable()
+                                Image(teamIds[game.home.teamId]!).resizable()
                                     .scaledToFit()
                                     .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
                             }
                         }// end of HStack of team logos
                         HStack{
-                            Text("110").font(.largeTitle).fontWeight(.bold).frame(width: geometry.size.width / 2.8, height: geometry.size.width / 4)
+                            let homeScore = game.gameStats.home.points
+                            let awayScore = game.gameStats.away.points
+                            
+                            Text(awayScore).font(.largeTitle).fontWeight(.bold).frame(width: geometry.size.width / 2.8, height: geometry.size.width / 4)
                             Text("-").font(.largeTitle).frame(width: geometry.size.width / 10, height: geometry.size.width / 10, alignment: .center)
-                            Text("104").font(.largeTitle).fontWeight(.bold).frame(width: geometry.size.width / 2.8, height: geometry.size.width / 4)
+                            Text(homeScore).font(.largeTitle).fontWeight(.bold).frame(width: geometry.size.width / 2.8, height: geometry.size.width / 4)
                         }
                     }
                 }
@@ -57,6 +60,7 @@ struct LogosAndScores: View {
 
 struct LogosAndScores_Previews: PreviewProvider {
     static var previews: some View {
-        LogosAndScores()
+        let stats = DubbClubiOS.GameStats(home: TeamGameSummary(teamId: "2", points: "26", lineScore: [String](), leaders: [PlayerStat]()), away: TeamGameSummary(teamId: "15", points: "42", lineScore: [String](), leaders: [PlayerStat]()))
+        LogosAndScores(game: DubbClubiOS.PastGameForTeam(gameId: String(9018), date: "2021-04-09T23:00:00.000Z", home: DubbClubiOS.TeamLite(teamId: 26, teamName: "Orlando Magic", conferenceName: "east", place: 14, wins: 17, losses: 33), away: DubbClubiOS.TeamLite(teamId: 15, teamName: "Indiana Pacers", conferenceName: "east", place: 9, wins: 22, losses: 26), gameStats: stats))
     }
 }
