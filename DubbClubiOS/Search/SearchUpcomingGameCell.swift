@@ -58,7 +58,7 @@ struct SearchUpcomingGameCell: View {
                             Spacer()
                             
                         }.padding([.top, .bottom], 4)
-                        DonutChart(game: game, charDataObj: ChartDataContainer(game: game), parentGeo: geometry)
+                        DonutChart(game: game, parentGeo: geometry)
                             .padding([.top, .bottom], 4)
                         
                     }
