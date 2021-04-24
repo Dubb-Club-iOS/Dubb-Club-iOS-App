@@ -30,9 +30,6 @@
 		8B9D01042615164700CE0190 /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D01032615164700CE0190 /* LoginUIView.swift */; };
 		8B9D01092615166200CE0190 /* RegisterUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D01082615166200CE0190 /* RegisterUIView.swift */; };
 		8BE32435261E6CFA00552668 /* TabUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE32434261E6CFA00552668 /* TabUIView.swift */; };
-
-		CA48194F26309C09009986AC /* SearchTeamResultCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48194E26309C09009986AC /* SearchTeamResultCells.swift */; };
-		CA48195C2630C417009986AC /* SearchDateResultCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48195B2630C417009986AC /* SearchDateResultCells.swift */; };
 		8BFB1C642630E48D00717F3F /* LogosAndScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB1C632630E48D00717F3F /* LogosAndScores.swift */; };
 		8BFB1C692631F96500717F3F /* GameLeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB1C682631F96500717F3F /* GameLeaders.swift */; };
 
