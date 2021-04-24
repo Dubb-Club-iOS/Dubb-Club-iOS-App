@@ -14,7 +14,7 @@ struct LogosAndScores: View {
         GeometryReader { geometry in
             VStack(alignment: .center){
                 ZStack{
-                    ColorManager.backgroundGray
+                    ColorManager.cardGray.ignoresSafeArea()
                     VStack{
                         HStack{
                             ZStack {

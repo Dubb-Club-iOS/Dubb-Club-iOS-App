@@ -28,7 +28,7 @@ struct GameLeaders: View {
                     Text(game.gameStats.home.leaders[0].name).font(.headline).frame(width: geometry.size.width / 1.7, height: geometry.size.width / 10, alignment: .leading)
                     Text(game.gameStats.home.leaders[0].points!).fontWeight(.bold).frame(width: geometry.size.width / 5, height: geometry.size.width / 10).font(.title3)
                 }
-                Text("Asist Leaders").font(.title2).fontWeight(.bold).padding(.trailing, geometry.size.width / 1.6)
+                Text("Assist Leaders").font(.title2).fontWeight(.bold).padding(.trailing, geometry.size.width / 1.7)
                 HStack{
                     Image(teamIds[game.away.teamId]!).resizable()
                         .scaledToFit()
