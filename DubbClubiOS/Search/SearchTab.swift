@@ -9,7 +9,13 @@ import SwiftUI
 
 class DateModel: ObservableObject {
     @Published var dateSelect: Date = Date()
+    @Published var dateEdit: Date = Date()
+    
+    
+    
 }
+
+
 
 struct SearchTab: View {
     
@@ -249,8 +255,24 @@ struct SearchTab: View {
                                     }
                                 } else {
                                     DatePicker(selection: $dateModel.dateSelect, displayedComponents: [.date], label: { Text("Game Date") })
-                                        .onReceive(dateModel.$dateSelect, perform: { _ in
+                                        .onAppear(perform: {
                                             reset()
+                                            getGamesForDate(date: dateModel.dateEdit)
+                                            reset()
+                                        })
+//                                        .onReceive(dateModel.$dateEdit, perform: { _ in
+//                                            dateModel.dateSelect = dateModel.dateEdit
+//                                            reset()
+//                                            //print("date select below:")
+//                                            //print(dateModel.dateSelect)
+//                                            getGamesForDate(date: dateModel.dateSelect)
+//                                        })
+                                        .onDisappear(perform: {
+                                            reset()
+                                        })
+                                        .onChange(of: dateModel.dateSelect, perform: { value in
+                                            reset()
+                                            //print("date select below:")
                                             //print(dateModel.dateSelect)
                                             getGamesForDate(date: dateModel.dateSelect)
                                         })
@@ -259,7 +281,7 @@ struct SearchTab: View {
                                         .background(Color(.systemGray4))
                                         .cornerRadius(8)
                                         .padding(.horizontal, 10)
-                                        
+                                    
                                     
                                     /*
                                      if searchInput.count != 0 {
@@ -282,7 +304,7 @@ struct SearchTab: View {
                                 content.animation(.easeInOut)
                             }
                         }
-                        //Text(String(pastGames.count))
+                        //Text(String(gameObjs.count))
                         LazyVGrid(columns: twoColumnGrid, spacing: 4) {
                             ForEach(upcomingGames, id: \.self) { gameItem in
                                 SearchUpcomingGameCell(game: gameItem)
