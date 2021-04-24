@@ -17,6 +17,9 @@ struct SearchTeamResultCells: View {
     
     init(inputTeamId: Int) {
         self.inputTeamId = inputTeamId
+        getGamesForTeam(teamId: inputTeamId)
+        getUpcomingGamesFromGameList()
+        getPastGamesFromGameList()
     }
     
     func getDate(date: String) -> String {
@@ -132,39 +135,46 @@ struct SearchTeamResultCells: View {
     
     
     var body: some View {
-    
+        //Text("Hello Test")
         GeometryReader { geometry in
-            VStack {
-                //Text("Hello Test")
-                //teamCell
-                
-                LazyVGrid(columns: twoColumnGrid, spacing: 4) {
-                    ForEach(upcomingGames, id: \.self) { gameItem in
-                        SearchUpcomingGameCell(game: gameItem)
-                            .frame(height: geometry.size.height / 2.2)
-                            .cornerRadius(10)
-                            .aspectRatio(1, contentMode: .fit)
+            
+            ZStack{
+                ColorManager.backgroundGray
+                ScrollView {
+                    //Text("Hello Test")
+                    //teamCell
+                    
+                    LazyVGrid(columns: twoColumnGrid, spacing: 4) {
+                        ForEach(upcomingGames, id: \.self) { gameItem in
+                            SearchUpcomingGameCell(game: gameItem)
+                                .frame(height: geometry.size.height / 2.5)
+                                .cornerRadius(10)
+                                .aspectRatio(1, contentMode: .fit)
 
+                        }
+                        ForEach(pastGames, id: \.self) { gameItem in
+                            SearchPastGameCell(game: gameItem)
+                                .frame(height: geometry.size.height / 2.5)
+                                .cornerRadius(10)
+                                .aspectRatio(1, contentMode: .fit)
+                        }
+                        
                     }
+                    
+//                    Spacer()
+//                    Spacer()
+//                    Spacer()
+//                    Text("")
                 }
                 
-                LazyVGrid(columns: twoColumnGrid, spacing: 4) {
-                    ForEach(pastGames, id: \.self) { gameItem in
-                        SearchPastGameCell(game: gameItem)
-                            .frame(height: geometry.size.height / 2.2)
-                            .cornerRadius(10)
-                            .aspectRatio(1, contentMode: .fit)
-                    }
-
-                }
                 
-
             }.onAppear(perform: {
                 print(inputTeamId)
                 getGamesForTeam(teamId: inputTeamId)
                 getUpcomingGamesFromGameList()
                 getPastGamesFromGameList()
             })
+            
         }
     }
 }
