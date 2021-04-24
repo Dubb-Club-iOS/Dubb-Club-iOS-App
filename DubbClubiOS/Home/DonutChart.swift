@@ -63,18 +63,26 @@ func gameToChartData(game: UpcomingGame) -> [ChartData] {
 struct DonutChart : View {
     var game: UpcomingGame
     @ObservedObject var charDataObj: ChartDataContainer
-    @State var indexOfTappedSlice = -1
-    
+    @State var indexOfTappedSlice: Int
     var parentGeo: GeometryProxy
     
     func fontSize(_ geo: GeometryProxy) -> CGFloat {
-        return geo.size.height * 0.06
+        return geo.size.height * 0.05
+    }
+    init(game: UpcomingGame, parentGeo: GeometryProxy) {
+        self.game = game
+        let container = ChartDataContainer(game: game)
+        self.charDataObj = container
+        self.parentGeo = parentGeo
+        _indexOfTappedSlice = State(initialValue: container.calc())
+        
     }
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 ZStack {
+                    
                     ForEach(0..<charDataObj.chartData.count) { index in
                         Circle()
                             .trim(from: index == 0 ? 0.0 : charDataObj.chartData[index-1].value/100,
@@ -95,10 +103,10 @@ struct DonutChart : View {
                             .foregroundColor(.white)
                     }
                 }.frame(height: parentGeo.size.height * 0.32)
-                .onAppear(perform: {
-                    indexOfTappedSlice = self.charDataObj.calc()
-                })
-                .padding()
+//                .onAppear(perform: {
+//                    indexOfTappedSlice = self.charDataObj.calc()
+//                })
+                .padding([.bottom, .leading, .trailing])
                 //                .onAppear() {
                 //                    indexOfTappedSlice = self.charDataObj.calc()
                 //                }
@@ -108,16 +116,24 @@ struct DonutChart : View {
                         .font(.system(size: fontSize(parentGeo)))
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding([.bottom, .leading, .trailing])
+                        .padding(.bottom, 4)
+                        .padding(.leading, 4)
+                        .padding(.trailing, 4)
                         .foregroundColor(.white)
+                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
+
                 } else if (indexOfTappedSlice == 1) {
                     Text("\(teamIds[game.away[0].teamId]!)").fontWeight(.bold)
                         .font(.system(size: fontSize(parentGeo)))
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding([.bottom, .leading, .trailing])
+                        .padding(.bottom, 4)
+                        .padding(.leading, 4)
+                        .padding(.trailing, 4)
                         .foregroundColor(.white)
-                    
+                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
+
+//                   Spacer()
                     
                 }
                 Spacer()
@@ -138,7 +154,7 @@ struct DonutChart_Previews: PreviewProvider {
         GeometryReader { geometry in
             ZStack{
                 ColorManager.backgroundGray
-                DonutChart(game: game, charDataObj: ChartDataContainer(game: game), parentGeo: geometry)
+                DonutChart(game: game, parentGeo: geometry)
             }
         }
     }

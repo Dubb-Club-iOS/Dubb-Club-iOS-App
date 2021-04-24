@@ -14,9 +14,11 @@ struct RegisterUIView: View {
     @State private var registrationSuccessful = false
     @State private var showRegistrationError = false
     @State private var errorMessage = ""
+    @State private var isRegistering = false
+
     @Binding var isLoggedIn: Bool
     @Binding var upcomingGames: [UpcomingGame]
-    @State private var isRegistering = false
+    @ObservedObject var userFaves: UserFaves
 
     
     func signup() {
@@ -126,7 +128,8 @@ struct RegisterUIView: View {
                         Text(self.errorMessage).padding(.top, 20).foregroundColor(Color.red).opacity(self.showRegistrationError ? 1 : 0).animation(.easeInOut, value: showRegistrationError)
                         Spacer()
                         
-                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames).navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $registrationSuccessful) {
+                        NavigationLink(destination: LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames, userFaves: userFaves)
+                                        .navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $registrationSuccessful) {
                             Button(action: {}, label: {
                                 Text("Sign Up")
                                     .font(.headline)
@@ -169,8 +172,9 @@ struct RegisterUIView_Previews: PreviewProvider {
     struct RegisterUIView_PreviewWrapper: View {
         @State var games = getUpcomingGames()
         @State var isLoggedIn = false
+        @StateObject var userFaves = UserFaves()
         var body: some View {
-            LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games)
+            LoginUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games, userFaves: userFaves)
         }
     }
 }

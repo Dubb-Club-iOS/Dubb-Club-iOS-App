@@ -62,7 +62,9 @@ struct SearchUpcomingGameCell: View {
                             .padding([.top, .bottom], 4)
                         
                     }
+
                     //Text(game.status)
+
                     ZStack {
                         Rectangle()
                             .fill(LinearGradient(gradient: Gradient(colors: [ColorManager.dateGradientStart, ColorManager.dateGradientEnd]), startPoint: .leading, endPoint: .trailing))

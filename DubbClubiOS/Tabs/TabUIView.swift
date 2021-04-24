@@ -11,32 +11,32 @@ struct TabUIView: View {
     @Binding var isLoggedIn: Bool
     @Binding var upcomingGames: [UpcomingGame]
     @Binding var standings: [[Team]]
-    @State private var selection = "home"
+    @ObservedObject var userFaves: UserFaves
+    
     var body: some View {
-        TabView(selection:$selection) {
-            HomeStream(upcomingGames: $upcomingGames)
+        TabView {
+            HomeStream(upcomingGames: $upcomingGames, userFaves: userFaves)
                 .tabItem {
-                    Image(systemName: "house")
+//                    Image(systemName: "house")
+                    Image("logo_png")
+                        .renderingMode(.template)
                     Text("Home")
                 }
-                .tag("home")
             SearchTab()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
-                .tag("search")
-            Standings(eastStandings: standings[0], westStandings: standings[1])
+            Standings(eastStandings: standings[0], westStandings: standings[1], userFaves: userFaves)
                 .tabItem {
                     Image(systemName: "list.number")
                     Text("Standings")
                 }
-            ProfileTab(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames)
+            ProfileTab(isLoggedIn: $isLoggedIn, upcomingGames: $upcomingGames, userFaves: userFaves)
                 .tabItem {
-                    Image(systemName: "person")
+                    Image(systemName: "person.fill")
                     Text("Profile")
                 }
-                .tag("profile")
         }.accentColor(.white)
     }
 }
@@ -50,8 +50,9 @@ struct TabUIView_Previews: PreviewProvider {
         @State var games = getUpcomingGames()
         @State var standings = getTeams()
         @State var isLoggedIn = true
+        @StateObject var userFaves = UserFaves()
         var body: some View {
-            TabUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games, standings: $standings)
+            TabUIView(isLoggedIn: $isLoggedIn, upcomingGames: $games, standings: $standings, userFaves: userFaves)
         }
     }
 }
