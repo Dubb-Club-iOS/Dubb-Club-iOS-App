@@ -118,6 +118,7 @@ struct LoginUIView: View {
                             TextField("", text: self.$email)
                                 .modifier(PlaceholderStyle(showPlaceHolder: email.isEmpty, placeholder: "Username or Email"))
                                 .foregroundColor(.gray)
+                                .disableAutocorrection(true)
                                 .autocapitalization(.none)
                                 .padding()
                             
