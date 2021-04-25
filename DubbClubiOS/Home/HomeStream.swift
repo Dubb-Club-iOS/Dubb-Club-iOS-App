@@ -13,13 +13,17 @@ struct HomeStream: View {
     @ObservedObject var userFaves: UserFaves
     @State var myGames: [UpcomingGame]
     @State var selection:Int = 0
+    @State var byConfidence: [UpcomingGame]
     
     init(upcomingGames: Binding<[UpcomingGame]>, userFaves: UserFaves) {
         _upcomingGames = upcomingGames
         self.userFaves = userFaves
         let myGames: [UpcomingGame] = getMyGames(upcomingGames: upcomingGames, userFaves: userFaves)
         _myGames = State(initialValue: myGames)
-        
+        let byConfidence = upcomingGames.wrappedValue.sorted{
+            $0.confidence > $1.confidence
+        }
+        _byConfidence = State(initialValue: byConfidence)
     }
     
     
@@ -36,7 +40,8 @@ struct HomeStream: View {
                     ScrollView {
                         Picker(selection: $selection, label: Text("SearchFilter")) {
                             Text("All Games").tag(0)
-                            Text("Favorites Only").tag(1)
+                            Text("By Confidence").tag(1)
+                            Text("Favorites Only").tag(2)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.all, 10)
@@ -49,24 +54,36 @@ struct HomeStream: View {
                                         .aspectRatio(1, contentMode: .fit)
                                 }
                             }
-                        } else if userFaves.nba.count == 0 {
-                            Text("It doesn't look like you have any favorite teams...")
-                                .fontWeight(.semibold)
-                                .multilineTextAlignment(.leading)
-                                .padding()
-                        } else {
+                        } else if selection == 1 {
                             LazyVGrid(columns: twoColumnGrid, spacing: 4) {
-                                ForEach(myGames, id: \.self) { game in
+                                ForEach(byConfidence, id: \.self) { game in
                                     PredictionCard(game: game, userFaves: userFaves)
                                         .frame(height: geometry.size.height / 2.2)
                                         .cornerRadius(10)
                                         .aspectRatio(1, contentMode: .fit)
-                                    
-                                }.onReceive(self.userFaves.$nba, perform: { _ in
-                                    self.myGames = getMyGames(upcomingGames: $upcomingGames, userFaves: userFaves)
-                                })
+                                }
+                            }
+                        } else {
+                            if userFaves.nba.count == 0 {
+                                Text("It doesn't look like you have any favorite teams...")
+                                    .fontWeight(.semibold)
+                                    .multilineTextAlignment(.leading)
+                                    .padding()
+                            } else {
+                                LazyVGrid(columns: twoColumnGrid, spacing: 4) {
+                                    ForEach(myGames, id: \.self) { game in
+                                        PredictionCard(game: game, userFaves: userFaves)
+                                            .frame(height: geometry.size.height / 2.2)
+                                            .cornerRadius(10)
+                                            .aspectRatio(1, contentMode: .fit)
+                                        
+                                    }.onReceive(self.userFaves.$nba, perform: { _ in
+                                        self.myGames = getMyGames(upcomingGames: $upcomingGames, userFaves: userFaves)
+                                    })
+                                }
                             }
                         }
+                        
                         
                         //                    }
                     }
