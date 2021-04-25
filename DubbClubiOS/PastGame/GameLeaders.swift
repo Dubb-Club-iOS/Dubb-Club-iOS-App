@@ -9,6 +9,12 @@ import SwiftUI
 
 struct GameLeaders: View {
     var game: GameStats
+    var columns: [GridItem] =
+            [
+                GridItem(.flexible(), alignment: .leading),
+                GridItem(.flexible(minimum: 190), alignment: .leading),
+                GridItem(.flexible(), alignment: .leading),
+            ]
     
     func getHomeLeaders() -> [PlayerStat] {
         
@@ -16,9 +22,9 @@ struct GameLeaders: View {
         
         // [points, assists, rebounds]
         for player in game.home.leaders {
-            var playerPoints = Int(player.points ?? "-1")
-            var playerAssists = Int(player.assists ?? "-1")
-            var playerRebounds = Int(player.rebounds ?? "-1")
+            //            var playerPoints = Int(player.points ?? "-1")
+            //            var playerAssists = Int(player.assists ?? "-1")
+            //            var playerRebounds = Int(player.rebounds ?? "-1")
             
             if (ret.count == 0) {
                 ret.append(player)
@@ -51,9 +57,9 @@ struct GameLeaders: View {
         
         // [points, assists, rebounds]
         for player in game.away.leaders {
-            var playerPoints = Int(player.points ?? "-1")
-            var playerAssists = Int(player.assists ?? "-1")
-            var playerRebounds = Int(player.rebounds ?? "-1")
+            //            var playerPoints = Int(player.points ?? "-1")
+            //            var playerAssists = Int(player.assists ?? "-1")
+            //            var playerRebounds = Int(player.rebounds ?? "-1")
             
             if (ret.count == 0) {
                 ret.append(player)
@@ -82,72 +88,119 @@ struct GameLeaders: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ColorManager.backgroundGray
-            VStack{
-                Text("Point Leaders").font(.title2).fontWeight(.bold).padding(.trailing, geometry.size.width / 1.6)
-                HStack{
-                    ColorManager.backgroundGray
-                    Image(teamIds[Int(game.away.teamId)!]!).resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(getAwayLeaders()[0].name).font(.headline).frame(width: geometry.size.width / 1.7, height: geometry.size.width / 10, alignment: .leading)
-                    Text(getAwayLeaders()[0].points!).fontWeight(.bold).frame(width: geometry.size.width / 5, height: geometry.size.width / 10).font(.title3)
+            LazyVGrid(columns: columns, spacing: 4) {
+                Section(header:
+                            HStack {Text("Point Leaders")
+                                .font(.title2)
+                                .bold()
+                                .frame(alignment: .leading)
+                                Spacer()
+                            }
+                ) {
+                    
+                    VStack {
+                        Image(teamIds[Int(game.away.teamId)!]!).resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                        Image(teamIds[Int(game.home.teamId)!]!).resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                    }
+                    VStack(alignment: .leading) {
+                        Text(getAwayLeaders()[0].name).font(.headline)
+                            .frame(height: geometry.size.width / 10)
+                        Text(getHomeLeaders()[0].name).font(.headline)
+                            .frame(height: geometry.size.width / 10)
+                    }
+                    VStack {
+                        Text(getAwayLeaders()[0].points!).fontWeight(.bold).font(.title3)
+                            .frame(height: geometry.size.width / 10)
+                        
+                        Text(getHomeLeaders()[0].points!).fontWeight(.bold).font(.title3)
+                            .frame(height: geometry.size.width / 10)
+                        
+                    }
+                    
                 }
-                HStack{
-                    Image(teamIds[Int(game.home.teamId)!]!).resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(getHomeLeaders()[0].name).font(.headline).frame(width: geometry.size.width / 1.7, height: geometry.size.width / 10, alignment: .leading)
-                    Text(getHomeLeaders()[0].points!).fontWeight(.bold).frame(width: geometry.size.width / 5, height: geometry.size.width / 10).font(.title3)
+                Section(header:
+                            HStack {Text("Assist Leaders")
+                                .font(.title2)
+                                .bold()
+                                .frame(alignment: .leading)
+                                Spacer()
+                            }
+                ) {
+                    
+                    VStack {
+                        Image(teamIds[Int(game.away.teamId)!]!).resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                        Image(teamIds[Int(game.home.teamId)!]!).resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                    }
+                    VStack(alignment: .leading) {
+                        Text(getAwayLeaders()[1].name).font(.headline)
+                            .frame(height: geometry.size.width / 10)
+                        Text(getHomeLeaders()[1].name).font(.headline)
+                            .frame(height: geometry.size.width / 10)
+                    }
+                    VStack {
+                        Text(getAwayLeaders()[1].assists!).fontWeight(.bold).font(.title3)
+                            .frame(height: geometry.size.width / 10)
+                        
+                        Text(getHomeLeaders()[1].assists!).fontWeight(.bold).font(.title3)
+                            .frame(height: geometry.size.width / 10)
+                        
+                    }
+                    
                 }
-                Text("Assist Leaders").font(.title2).fontWeight(.bold).padding(.trailing, geometry.size.width / 1.6)
-                HStack{
-                    Image(teamIds[Int(game.away.teamId)!]!).resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(getAwayLeaders()[1].name).font(.headline).frame(width: geometry.size.width / 1.7, height: geometry.size.width / 10, alignment: .leading)
-                    Text(getAwayLeaders()[1].assists!).fontWeight(.bold).frame(width: geometry.size.width / 5, height: geometry.size.width / 10).font(.title3)
+                Section(header:
+                            HStack {Text("Rebound Leaders")
+                                .font(.title2)
+                                .bold()
+                                .frame(alignment: .leading)
+                                Spacer()
+                            }
+                ) {
+                    
+                    VStack {
+                        Image(teamIds[Int(game.away.teamId)!]!).resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                        Image(teamIds[Int(game.home.teamId)!]!).resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                    }
+                    VStack(alignment: .leading) {
+                        Text(getAwayLeaders()[2].name).font(.headline)
+                            .frame(height: geometry.size.width / 10)
+                        Text(getHomeLeaders()[2].name).font(.headline)
+                            .frame(height: geometry.size.width / 10)
+                    }
+                    VStack {
+                        Text(getAwayLeaders()[2].rebounds!).fontWeight(.bold).font(.title3)
+                            .frame(height: geometry.size.width / 10)
+                        
+                        Text(getHomeLeaders()[2].rebounds!).fontWeight(.bold).font(.title3)
+                            .frame(height: geometry.size.width / 10)
+                        
+                    }
+                    
                 }
-                HStack{
-                    Image(teamIds[Int(game.home.teamId)!]!).resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(getHomeLeaders()[1].name).font(.headline).frame(width: geometry.size.width / 1.7, height: geometry.size.width / 10, alignment: .leading)
-                    Text(getHomeLeaders()[1].assists!).fontWeight(.bold).frame(width: geometry.size.width / 5, height: geometry.size.width / 10).font(.title3)
-                }
-                Text("Rebound Leaders").font(.title2).fontWeight(.bold).lineLimit(1).padding(.trailing, geometry.size.width / 1.9)
-                HStack{
-                    Image(teamIds[Int(game.away.teamId)!]!).resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(getAwayLeaders()[2].name).font(.headline).frame(width: geometry.size.width / 1.7, height: geometry.size.width / 10, alignment: .leading)
-                    Text(getAwayLeaders()[2].rebounds!).fontWeight(.bold).frame(width: geometry.size.width / 5, height: geometry.size.width / 10).font(.title3)
-                }
-                HStack{
-                    Image(teamIds[Int(game.home.teamId)!]!).resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(getHomeLeaders()[2].name).font(.headline).frame(width: geometry.size.width / 1.7, height: geometry.size.width / 10, alignment: .leading)
-                    Text(getHomeLeaders()[2].rebounds!).fontWeight(.bold).frame(width: geometry.size.width / 5, height: geometry.size.width / 10).font(.title3)
-                }
+                
             }
+            //            .padding()
+            .padding([.bottom, .leading, .trailing])
         }
     }
 }
 
-//struct GameLeaders_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        let awayPointLeader = PlayerStat(points: "40", rebounds: "", assists: "", playerId: "", name: "Malcolm Brogdon")
-//        let awayAssistLeader = PlayerStat(points: "", rebounds: "", assists: "11", playerId: "", name: "Malcolm Brogdon")
-//        let awayReboundLeader = PlayerStat(points: "", rebounds: "12", assists: "", playerId: "", name: "Domantas Sabonis")
-//
-//        let homePointLeader = PlayerStat(points: "35", rebounds: "", assists: "", playerId: "", name: "Terrence Ross")
-//        let homeAssistLeader = PlayerStat(points: "", rebounds: "", assists: "8", playerId: "", name: "Markelle Fultz")
-//        let homeReboundLeader = PlayerStat(points: "", rebounds: "9", assists: "", playerId: "", name: "Mo Bamba")
-//        let awayleaders = [awayPointLeader, awayAssistLeader, awayReboundLeader]
-//        let homeleaders = [homePointLeader, homeAssistLeader, homeReboundLeader]
-//
-//        GameLeaders(game: DubbClubiOS.PastGameForTeam(gameId: String(9018), date: "2021-04-09T23:00:00.000Z", home: DubbClubiOS.TeamLite(teamId: 26, teamName: "Orlando Magic", conferenceName: "east", place: 14, wins: 17, losses: 33), away: DubbClubiOS.TeamLite(teamId: 15, teamName: "Indiana Pacers", conferenceName: "east", place: 9, wins: 22, losses: 26), gameStats: DubbClubiOS.GameStats(home: TeamGameSummary(teamId: "2", points: "26", lineScore: [String](), leaders: homeleaders), away: TeamGameSummary(teamId: "15", points: "42", lineScore: [String](), leaders: awayleaders))))
-//    }
-//}
+struct GameLeaders_Previews: PreviewProvider {
+    static var previews: some View {
+
+
+
+        GameLeaders(game: GameStats(home: DubbClubiOS.TeamGameSummary(teamId: "5", points: "109", lineScore: ["44", "21", "28", "16"], leaders: [DubbClubiOS.PlayerStat(points: Optional("5"), rebounds: nil, assists: nil, playerId: "1880", name: "Jalen McDaniels"), DubbClubiOS.PlayerStat(points: nil, rebounds: Optional("3"), assists: nil, playerId: "458", name: "Terry Rozier"), DubbClubiOS.PlayerStat(points: nil, rebounds: nil, assists: Optional("10"), playerId: "458", name: "Terry Rozier"), DubbClubiOS.PlayerStat(points: Optional("34"), rebounds: nil, assists: nil, playerId: "458", name: "Terry Rozier"), DubbClubiOS.PlayerStat(points: nil, rebounds: Optional("4"), assists: nil, playerId: "941", name: "Miles Bridges"), DubbClubiOS.PlayerStat(points: nil, rebounds: Optional("8"), assists: nil, playerId: "1897", name: "P.J. Washington")]), away: DubbClubiOS.TeamGameSummary(teamId: "29", points: "101", lineScore: ["24", "27", "21", "29"], leaders: [DubbClubiOS.PlayerStat(points: Optional("18"), rebounds: nil, assists: nil, playerId: "347", name: "CJ McCollum"), DubbClubiOS.PlayerStat(points: nil, rebounds: Optional("1"), assists: nil, playerId: "434", name: "Norman Powell"), DubbClubiOS.PlayerStat(points: nil, rebounds: nil, assists: Optional("2"), playerId: "398", name: "Jusuf Nurkic"), DubbClubiOS.PlayerStat(points: nil, rebounds: Optional("7"), assists: nil, playerId: "291", name: "Enes Kanter"), DubbClubiOS.PlayerStat(points: Optional("8"), rebounds: nil, assists: nil, playerId: "398", name: "Jusuf Nurkic"), DubbClubiOS.PlayerStat(points: nil, rebounds: Optional("3"), assists: nil, playerId: "1875", name: "Nassir Little"), DubbClubiOS.PlayerStat(points: nil, rebounds: nil, assists: Optional("6"), playerId: "347", name: "CJ McCollum"), DubbClubiOS.PlayerStat(points: nil, rebounds: Optional("5"), assists: nil, playerId: "347", name: "CJ McCollum"), DubbClubiOS.PlayerStat(points: Optional("24"), rebounds: nil, assists: nil, playerId: "21", name: "Carmelo Anthony")])))
+    }
+}

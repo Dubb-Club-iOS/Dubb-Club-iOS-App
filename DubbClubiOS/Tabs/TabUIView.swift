@@ -22,7 +22,7 @@ struct TabUIView: View {
                         .renderingMode(.template)
                     Text("Home")
                 }
-            SearchTab()
+            SearchTab(userFaves: userFaves)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")

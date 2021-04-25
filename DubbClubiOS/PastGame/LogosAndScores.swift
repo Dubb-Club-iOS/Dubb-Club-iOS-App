@@ -9,6 +9,9 @@ import SwiftUI
 
 struct LogosAndScores: View {
     var game: GameStats
+    @State private var showingPopoverAway = false
+    @State private var showingPopoverHome = false
+    @ObservedObject var userFaves: UserFaves
     
     var body: some View {
         GeometryReader { geometry in
@@ -17,30 +20,46 @@ struct LogosAndScores: View {
                     ColorManager.backgroundGray
                     VStack{
                         HStack{
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(Color(teamIds[Int(game.away.teamId)!]!))
-                                    .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(ColorManager.imageGray)
-                                    .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
-                                Image(teamIds[Int(game.away.teamId)!]!).resizable()
-                                    .scaledToFit()
-                                    .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                            Button(action: {
+                                self.showingPopoverAway = true
+                            }) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                        .fill(Color(teamIds[Int(game.away.teamId)!]!))
+                                        .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
+                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                        .fill(ColorManager.imageGray)
+                                        .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
+                                    Image(teamIds[Int(game.away.teamId)!]!).resizable()
+                                        .scaledToFit()
+                                        .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                                    
+                                    
+                                }
+                            }.popover(isPresented: $showingPopoverAway) {
+                                TeamDetail(userFaves: userFaves, teamId: Int(game.away.teamId)!)
                             }
                             Text("@").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                                 .font(.title).lineLimit(1).minimumScaleFactor(0.1)
                                 .foregroundColor(.white).frame(width: geometry.size.width / 10, height: geometry.size.width / 10, alignment: .center)
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(Color(teamIds[Int(game.home.teamId)!]!))
-                                    .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(ColorManager.imageGray)
-                                    .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
-                                Image(teamIds[Int(game.home.teamId)!]!).resizable()
-                                    .scaledToFit()
-                                    .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                            Button(action: {
+                                self.showingPopoverHome = true
+                            }) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                        .fill(Color(teamIds[Int(game.home.teamId)!]!))
+                                        .frame(width: geometry.size.width / 2.7, height: geometry.size.width / 2.7)
+                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                        .fill(ColorManager.imageGray)
+                                        .frame(width: geometry.size.width / 2.8, height: geometry.size.width / 2.8)
+                                    Image(teamIds[Int(game.home.teamId)!]!).resizable()
+                                        .scaledToFit()
+                                        .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
+                                    
+                                    
+                                }
+                            }.popover(isPresented: $showingPopoverHome) {
+                                TeamDetail(userFaves: userFaves, teamId: Int(game.home.teamId)!)
                             }
                         }// end of HStack of team logos
                         HStack{

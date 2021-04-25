@@ -9,34 +9,57 @@ import SwiftUI
 struct PeriodScores: View {
     var game: GameStats
     
+    var columns: [GridItem] =
+        [
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+    
     var body: some View {
         let periodScoreAway = game.away.lineScore
         let periodScoreHome = game.home.lineScore
         GeometryReader { geometry in
-            VStack{
-                ColorManager.backgroundGray
-                Text("Line Score").font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/).fontWeight(.bold).padding(.trailing, geometry.size.width / 1.9)
-                HStack{
-                    Image(teamIds[Int(game.away.teamId)!]!).resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(periodScoreAway[0]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(periodScoreAway[1]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(periodScoreAway[2]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(periodScoreAway[3]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+            LazyVGrid(columns: columns, spacing: 4) {
+                Section(header:
+                            HStack {Text("Period Scores")
+                                .font(.title2)
+                                .bold()
+                                .frame(alignment: .leading)
+                                Spacer()
+                            }
+                ) {
+                    
+                    VStack {
+                        Image(teamIds[Int(game.away.teamId)!]!).resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                        Image(teamIds[Int(game.home.teamId)!]!).resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                    }
+                    VStack(alignment: .leading) {
+                        Text(periodScoreAway[0]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                        Text(periodScoreHome[0]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                    }
+                    VStack(alignment: .leading) {
+                        Text(periodScoreAway[1]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                        Text(periodScoreHome[1]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                    }
+                    VStack(alignment: .leading) {
+                        Text(periodScoreAway[2]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                        Text(periodScoreHome[2]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                    }
+                    VStack(alignment: .leading) {
+                        Text(periodScoreAway[3]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                        Text(periodScoreHome[3]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
+                    }
                     
                 }
-                HStack{
-                    Image(teamIds[Int(game.home.teamId)!]!).resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(periodScoreHome[0]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(periodScoreHome[1]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(periodScoreHome[2]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    Text(periodScoreHome[3]).font(.title2).frame(width: geometry.size.width / 6, height: geometry.size.width / 10)
-                    
-                }
-            }
+            }.padding([.top, .leading, .trailing])
+            
         }
     }
 }

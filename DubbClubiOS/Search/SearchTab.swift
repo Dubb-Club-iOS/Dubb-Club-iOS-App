@@ -11,10 +11,7 @@ class DateModel: ObservableObject {
     @Published var dateSelect: Date = Date()
     @Published var dateEdit: Date = Date()
     
-    
-    
 }
-
 
 
 struct SearchTab: View {
@@ -35,6 +32,7 @@ struct SearchTab: View {
     @State var upcomingGames = [UpcomingGame]()
     @State var pastGames = [PastGameForTeam]()
     
+    @ObservedObject var userFaves: UserFaves
     
     func getDate(date: String) -> String {
         let dateFormatter = DateFormatter()
@@ -65,7 +63,7 @@ struct SearchTab: View {
         do {
             if let file = URL(string: "https://api.dubb.club/api/nba/getGameFromDb/\(gameId)") {
                 let data = try Data(contentsOf: file)
-                print(gameId)
+//                print(gameId)
                 let game: GameFromDbParent = try! JSONDecoder().decode(GameFromDbParent.self, from: data)
                 self.gameObjs.append(game.game)
             } else {
@@ -107,7 +105,7 @@ struct SearchTab: View {
         let format = DateFormatter()
         format.dateFormat = "yyyy-MM-dd"
         let datePickedString = format.string(from: date)
-        print("Date Picked String", datePickedString)
+//        print("Date Picked String", datePickedString)
         getGameIdsForDate(date: datePickedString)
         for gameId in gameIds {
             getGameById(gameId: gameId)
@@ -144,7 +142,7 @@ struct SearchTab: View {
             }
             
         }
-        print(self.upcomingGames.count)
+//        print(self.upcomingGames.count)
     }
     
     func getPastGamesFromGameList() {
@@ -174,7 +172,7 @@ struct SearchTab: View {
                 self.pastGames.append(gameToAdd)
             }
         }
-        print(self.pastGames.count)
+//        print(self.pastGames.count)
     }
     
     
@@ -223,9 +221,9 @@ struct SearchTab: View {
                                         getGamesForTeam(teamId: searchMatchesTeam)
                                         getUpcomingGamesFromGameList()
                                         getPastGamesFromGameList()
-                                        print("committed!")
-                                        print(searchInput)
-                                        print(searchMatchesTeam)
+//                                        print("committed!")
+//                                        print(searchInput)
+//                                        print(searchMatchesTeam)
                                     })
                                     .onAppear(perform: {
                                         self.animate = true
@@ -307,21 +305,24 @@ struct SearchTab: View {
                         //Text(String(gameObjs.count))
                         LazyVGrid(columns: twoColumnGrid, spacing: 4) {
                             ForEach(upcomingGames, id: \.self) { gameItem in
-                                SearchUpcomingGameCell(game: gameItem)
+                                PredictionCard(game: gameItem, userFaves: userFaves)
                                     .frame(height: geometry.size.height / 2.5)
                                     .cornerRadius(10)
                                     .aspectRatio(1, contentMode: .fit)
                                 
                             }
+                        }
+                        if upcomingGames.count > 0 && pastGames.count > 0{
+                            Divider().padding()
+                        }
+                        LazyVGrid(columns: twoColumnGrid, spacing: 4) {
                             ForEach(pastGames, id: \.self) { gameItem in
-                                SearchPastGameCell(game: gameItem)
+                                SearchPastGameCell(game: gameItem, userFaves: userFaves)
                                     .frame(height: geometry.size.height / 2.5)
                                     .cornerRadius(10)
                                     .aspectRatio(1, contentMode: .fit)
                             }
-                            
                         }
-                        
                         
                     }
                     
@@ -336,6 +337,13 @@ struct SearchTab: View {
 struct SearchTab_Previews: PreviewProvider {
     //let example: Binding<String> = "lakers"
     static var previews: some View {
-        SearchTab()
+        SearchTab_PreviewWrapper()
+    }
+    struct SearchTab_PreviewWrapper: View {
+        @StateObject var userFaves = UserFaves(nba: [1, 2, 4, 17, 22])
+        
+        var body: some View {
+            SearchTab(userFaves: userFaves)
+        }
     }
 }
