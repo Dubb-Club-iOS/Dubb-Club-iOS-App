@@ -46,7 +46,7 @@ struct SearchPastGameCell: View {
                                     .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
                             }
                             Spacer()
-                            let homeScore = game.gameStats.home.points
+                            let awayScore = game.gameStats.away.points
                             /*
                             Text(homeScore)
                                 .fontWeight(.bold)
@@ -58,7 +58,7 @@ struct SearchPastGameCell: View {
                                 .scaledToFit()
                                 .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
                             */
-                            if homeScore.count == 0 {
+                            if awayScore.count == 0 {
                                 Text("Not Available")
                                     .fontWeight(.bold)
                                     //.padding([.leading, .trailing], 4)
@@ -66,7 +66,7 @@ struct SearchPastGameCell: View {
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.01)
                             } else {
-                                Text(homeScore)
+                                Text(awayScore)
                                     .fontWeight(.bold)
                                     //.padding([.leading, .trailing], 4)
                                     .font(.system(size: geometry.size.width / 2.9))
@@ -101,7 +101,7 @@ struct SearchPastGameCell: View {
                                     .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
                             }
                             Spacer()
-                            let awayScore = game.gameStats.away.points
+                            let homeScore = game.gameStats.home.points
                             /*
                             Text(awayScore)
                                 .fontWeight(.bold)
@@ -113,7 +113,7 @@ struct SearchPastGameCell: View {
                                 .scaledToFit()
                                 .frame(width: geometry.size.width / 2.9, height: geometry.size.width / 2.9)
                             */
-                            if awayScore.count == 0 {
+                            if homeScore.count == 0 {
                                 Text("Not Available")
                                     .fontWeight(.bold)
                                     //.padding([.leading, .trailing], 4)
@@ -121,7 +121,7 @@ struct SearchPastGameCell: View {
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.01)
                             } else {
-                                Text(awayScore)
+                                Text(homeScore)
                                     .fontWeight(.bold)
                                     //.padding([.leading, .trailing], 4)
                                     .font(.system(size: geometry.size.width / 2.9))
