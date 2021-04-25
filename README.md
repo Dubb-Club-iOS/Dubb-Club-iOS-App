@@ -82,7 +82,7 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 **Optional Nice-to-have Stories**
 - [X]  View team and player stats
 - [ ]  Vote on game outcomes
-- [ ]  Sorting by confidence, etc.
+- [X]  Sorting by confidence, etc.
 - [ ]  Store/cache data locally
 - [ ]  Change password.
 
