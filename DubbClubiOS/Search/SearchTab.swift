@@ -268,7 +268,7 @@ struct SearchTab: View {
 //                                            getGamesForDate(date: dateModel.dateSelect)
 //                                        })
                                         .onDisappear(perform: {
-                                            reset()
+//                                            reset()
                                         })
                                         .onChange(of: dateModel.dateSelect, perform: { value in
                                             reset()
