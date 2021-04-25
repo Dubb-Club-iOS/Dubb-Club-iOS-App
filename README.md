@@ -1,6 +1,7 @@
 # Dubb Club iOS
 
 ## Table of Contents
+1. [Sprint 4 Updates](#Sprint-4-Updates)
 1. [Sprint 3 Updates](#Sprint-3-Updates)
 1. [Sprint 2 Updates](#Sprint-2-Updates)
 1. [Sprint 1 Updates](#Sprint-1-Updates)
@@ -8,6 +9,9 @@
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 1. [Schema](#Schema)
+
+## Sprint 4 Updates
+### Below are the gifs for our week 4 sprint.
 
 ## Sprint 3 Updates
 ### Below are the gifs for our week 3 sprint.
@@ -100,6 +104,8 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 -   Past Game Details
 	-   User can view statistics about a specific game
 	-   User can view a team’s record
+-   Standings
+	-   User can view all teams' standings in their respective conferences (East/West)
 -   Search 
 	-   User can search for a specific team and view predictions and previous results
 	-   User can select a game to view the game details
@@ -116,7 +122,8 @@ Dubb Club makes predictions for upcoming NBA games and displays the confidence o
 
 -   Home Stream
 -   Search Page
--	Profile
+-   Standings
+-   Profile
 
 **Flow Navigation** (Screen to Screen)
 -   Login Screen -> Registration Screen/Home Stream
