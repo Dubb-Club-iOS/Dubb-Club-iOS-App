@@ -14,11 +14,13 @@
 ### Below are the gifs for our week 4 sprint.
 
 Search By Team:
+
 ![team search 2](https://user-images.githubusercontent.com/43575529/116014156-d85bb900-a601-11eb-8f48-94297172260b.gif)
 
 
 Search By Date:
 
+![date search 2](https://user-images.githubusercontent.com/43575529/116014204-2375cc00-a602-11eb-9d50-5b26d5080bf4.gif)
 
 ## Sprint 3 Updates
 ### Below are the gifs for our week 3 sprint.
