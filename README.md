@@ -14,8 +14,8 @@
 ### Below are the gifs for our week 4 sprint.
 
 Search By Team:
+![team search 2](https://user-images.githubusercontent.com/43575529/116014156-d85bb900-a601-11eb-8f48-94297172260b.gif)
 
-<img src="https://i.imgur.com/AXBNqbI.gif" width=250><br>
 
 Search By Date:
 
