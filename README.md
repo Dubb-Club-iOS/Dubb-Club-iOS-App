@@ -23,6 +23,7 @@ Search By Date:
 ![date search 2](https://user-images.githubusercontent.com/43575529/116014204-2375cc00-a602-11eb-9d50-5b26d5080bf4.gif)
 
 Past Game Details Page:
+
 <img src="http://g.recordit.co/bpMnOBeXz7.gif" width=250><br>
 
 ## Sprint 3 Updates
