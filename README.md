@@ -27,12 +27,11 @@ Sort Games By Confidence:
 
 Search By Team:
 
-![team search 2](https://user-images.githubusercontent.com/43575529/116014156-d85bb900-a601-11eb-8f48-94297172260b.gif)
-
+![search-by-team-sprint4](https://user-images.githubusercontent.com/43022012/116014816-20300f80-a605-11eb-9771-c2e213d7d5cf.gif)
 
 Search By Date:
 
-![date search 2](https://user-images.githubusercontent.com/43575529/116014204-2375cc00-a602-11eb-9d50-5b26d5080bf4.gif)
+![search-by-date-sprint4](https://user-images.githubusercontent.com/43022012/116014829-2920e100-a605-11eb-9b68-6364a9d1f886.gif)
 
 Past Game Details Page:
 
