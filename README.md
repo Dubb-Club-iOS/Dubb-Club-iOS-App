@@ -13,6 +13,18 @@
 ## Sprint 4 Updates
 ### Below are the gifs for our week 4 sprint.
 
+Favorite Teams / View Team Detail:
+
+![favorites-sprint4](https://user-images.githubusercontent.com/43022012/116014626-2d98ca00-a604-11eb-9f50-6fc0be54c13b.gif)
+
+View League Standings:
+
+![standings-sprint4](https://user-images.githubusercontent.com/43022012/116014599-093ced80-a604-11eb-90fe-e07662829e24.gif)
+
+Sort Games By Confidence: 
+
+![sort-by-confidence-sprint4](https://user-images.githubusercontent.com/43022012/116014607-1954cd00-a604-11eb-93c9-769e4e524973.gif)
+
 Search By Team:
 
 ![team search 2](https://user-images.githubusercontent.com/43575529/116014156-d85bb900-a601-11eb-8f48-94297172260b.gif)
