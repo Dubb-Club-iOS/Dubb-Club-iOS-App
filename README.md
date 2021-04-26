@@ -14,7 +14,8 @@
 ### Below are the gifs for our week 4 sprint.
 
 Search By Team:
-[Imgur](https://i.imgur.com/AXBNqbI.gifv)
+
+<img src="https://i.imgur.com/AXBNqbI.gif" width=250><br>
 
 Search By Date:
 
