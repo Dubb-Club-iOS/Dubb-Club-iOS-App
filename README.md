@@ -13,6 +13,11 @@
 ## Sprint 4 Updates
 ### Below are the gifs for our week 4 sprint.
 
+Search By Team:
+
+Search By Date:
+
+
 ## Sprint 3 Updates
 ### Below are the gifs for our week 3 sprint.
 
